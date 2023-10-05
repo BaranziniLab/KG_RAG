@@ -1,1 +1,1 @@
-# SPOKE_LLM
+# SPOKE_GPT
