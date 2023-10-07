@@ -54,7 +54,7 @@ llm = HuggingFacePipeline(pipeline = pipe,
 
 
 system_prompt = "You are an advanced assistant that excels at translation. "
-instruction = "Answer the following question:\n\n {question}"
+instruction = "Answer the question asked:\n\n {question}"
 template = get_prompt(instruction, system_prompt)
 
 prompt = PromptTemplate(template=template, input_variables=["question"])
@@ -63,7 +63,7 @@ llm_chain = LLMChain(prompt=prompt, llm=llm)
 question = input("Enter your question : ")
 # output = llm_chain.run(question)
 output = llm(question)
-# print(output)
+print(output)
 
 
 
