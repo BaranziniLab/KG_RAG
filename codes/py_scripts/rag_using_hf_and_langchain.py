@@ -1,16 +1,15 @@
-from langchain.llms import HuggingFacePipeline
+from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from transformers import pipeline
 import transformers
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
 import torch
 
 
 
 MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
-# MODEL_NAME = "TheBloke/Llama-2-7B-Chat-GGML"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -34,6 +33,7 @@ model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,
                                              torch_dtype=torch.float16,
                                              use_auth_token=True
                                              )
+streamer = TextStreamer(tokenizer)
 
 
 pipe = pipeline("text-generation",
@@ -45,12 +45,11 @@ pipe = pipeline("text-generation",
                 do_sample = True,
                 top_k = 30,
                 num_return_sequences = 1,
-                eos_token_id = tokenizer.eos_token_id
+                eos_token_id = tokenizer.eos_token_id,
+                streamer=streamer
                 )
 
-llm = HuggingFacePipeline(pipeline = pipe, 
-                          callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
-                          verbose=True,
+llm = HuggingFacePipeline(pipeline = pipe,
                           model_kwargs = {'temperature':0})
 
 
@@ -63,8 +62,8 @@ prompt = PromptTemplate(template=template, input_variables=["question"])
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 question = input("Enter your question : ")
-# output = llm_chain.run(question)
-llm(question)
+output = llm_chain.run(question)
+# llm(question)
 # output = llm(question)
 # print(output)
 
