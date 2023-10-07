@@ -9,7 +9,8 @@ import torch
 
 
 
-MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
+# MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
+MODEL_NAME = "TheBloke/Llama-2-7B-Chat-GGML"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
