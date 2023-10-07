@@ -47,7 +47,7 @@ pipe = pipeline("text-generation",
                 )
 
 llm = HuggingFacePipeline(pipeline = pipe, 
-                          callback_manager=CallbackManager([StreamingStdOutCallbackHandler()])),
+                          callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
                           model_kwargs = {'temperature':0})
 
 
