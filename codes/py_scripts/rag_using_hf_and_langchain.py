@@ -8,6 +8,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
 
+
 MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
 
 B_INST, E_INST = "[INST]", "[/INST]"
@@ -53,15 +54,15 @@ llm = HuggingFacePipeline(pipeline = pipe,
 
 
 system_prompt = "You are an advanced assistant that excels at translation. "
-instruction = "Convert the following text from English to French:\n\n {question}"
+instruction = "Answer the following question:\n\n {question}"
 template = get_prompt(instruction, system_prompt)
 
 prompt = PromptTemplate(template=template, input_variables=["question"])
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
-question = "how are you today?"
+question = input("Enter your question : ")
 output = llm_chain.run(question)
-print(output)
+# print(output)
 
 
 
