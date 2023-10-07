@@ -3,6 +3,7 @@ from langchain import PromptTemplate,  LLMChain
 from transformers import pipeline
 import transformers
 from transformers import AutoTokenizer, AutoModelForCausalLM
+import torch
 
 
 MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
