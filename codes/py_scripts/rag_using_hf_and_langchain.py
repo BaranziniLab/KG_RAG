@@ -1,5 +1,7 @@
 from langchain import HuggingFacePipeline
-from langchain import PromptTemplate,  LLMChain
+from langchain import PromptTemplate, LLMChain
+from langchain.callbacks.manager import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from transformers import pipeline
 import transformers
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -45,6 +47,7 @@ pipe = pipeline("text-generation",
                 )
 
 llm = HuggingFacePipeline(pipeline = pipe, 
+                          callback_manager=CallbackManager([StreamingStdOutCallbackHandler()])),
                           model_kwargs = {'temperature':0})
 
 
