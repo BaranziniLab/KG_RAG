@@ -1,4 +1,4 @@
-from langchain import HuggingFacePipeline
+from langchain.llms import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
