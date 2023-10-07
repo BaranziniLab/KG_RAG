@@ -49,14 +49,14 @@ llm = HuggingFacePipeline(pipeline = pipe,
 
 
 system_prompt = "You are an advanced assistant that excels at translation. "
-instruction = "Convert the following text from English to French:\n\n {text}"
+instruction = "Convert the following text from English to French:\n\n {question}"
 template = get_prompt(instruction, system_prompt)
 
-prompt = PromptTemplate(template=template, input_variables=["text"])
+prompt = PromptTemplate(template=template, input_variables=["question"])
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 question = "how are you today?"
-output = llm_chain.run(text)
+output = llm_chain.run(question)
 print(output)
 
 
