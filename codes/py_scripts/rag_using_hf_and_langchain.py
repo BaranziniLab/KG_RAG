@@ -61,7 +61,8 @@ prompt = PromptTemplate(template=template, input_variables=["question"])
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 question = input("Enter your question : ")
-output = llm_chain.run(question)
+# output = llm_chain.run(question)
+output = llm(question)
 # print(output)
 
 
