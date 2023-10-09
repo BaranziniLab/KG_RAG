@@ -85,7 +85,7 @@ context = retrieved_context
 prompt = PromptTemplate(template=template, input_variables=["context", "question"])
 
 llm_chain = LLMChain(prompt=prompt, llm=llm)
-output = llm_chain.run(question)
+output = llm_chain.run(context=context, question=question)
 
 
 
