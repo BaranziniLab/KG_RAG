@@ -9,7 +9,7 @@ import torch
 
 VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_context_chromaDB_using_pubmed_bert_sentence_transformer_model_with_chunk_size_650"
 SENTENCE_EMBEDDING_MODEL = "pritamdeka/S-PubMedBert-MS-MARCO"
-MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
+MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 
 RETRIEVAL_SCORE_THRESH = 0.72
 
