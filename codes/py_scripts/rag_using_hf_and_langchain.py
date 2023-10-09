@@ -7,8 +7,8 @@ import transformers
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
 import torch
 
-VECTOR_DB_PATH = 
-SENTENCE_EMBEDDING_MODEL = 
+VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_context_chromaDB_using_pubmed_bert_sentence_transformer_model_with_chunk_size_650"
+SENTENCE_EMBEDDING_MODEL = "pritamdeka/S-PubMedBert-MS-MARCO"
 MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
 
 RETRIEVAL_SCORE_THRESH = 0.72
@@ -66,7 +66,9 @@ You are a biomedical researcher. For answering the question at the end, you need
 instruction = "Context:\n\n{context} \n\nQuestion: {question}"
 template = get_prompt(instruction, system_prompt)
 
+print("")
 question = input("Enter your question : ")
+print("")
 
 search_result = vectorstore.similarity_search_with_score(question, k=10000)
 score_range = (search_result[-1][-1] - search_result[0][-1]) / (search_result[-1][-1] + search_result[0][-1])
