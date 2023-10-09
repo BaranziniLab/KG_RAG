@@ -1,13 +1,18 @@
 from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
+from langchain.vectorstores import Chroma
+from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from transformers import pipeline
 import transformers
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
 import torch
 
-
-
+VECTOR_DB_PATH = 
+SENTENCE_EMBEDDING_MODEL = 
 MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
+
+RETRIEVAL_SCORE_THRESH = 0.72
+
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -22,6 +27,10 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     return prompt_template
 
 
+embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
+
+vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, 
+                     embedding_function=embedding_function)
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                           use_auth_token=True)
@@ -51,19 +60,30 @@ llm = HuggingFacePipeline(pipeline = pipe,
                           model_kwargs = {'temperature':0})
 
 
-
-system_prompt = "You are a friendly assitant"
-instruction = "Answer the question asked:\n\n {question}"
+system_prompt = """
+You are a biomedical researcher. For answering the question at the end, you need to first read the Context provided and then answer the Question. If you don't know the answer, report as "I don't know", don't try to make up an answer.
+"""
+instruction = "Context:\n\n{context} \n\nQuestion: {question}"
 template = get_prompt(instruction, system_prompt)
 
-prompt = PromptTemplate(template=template, input_variables=["question"])
-llm_chain = LLMChain(prompt=prompt, llm=llm)
-
 question = input("Enter your question : ")
+
+search_result = vectorstore.similarity_search_with_score(question, k=10000)
+score_range = (search_result[-1][-1] - search_result[0][-1]) / (search_result[-1][-1] + search_result[0][-1])
+thresh = RETRIEVAL_SCORE_THRESH*score_range
+retrieved_context = ""
+for item in search_result:
+    item_score = (search_result[-1][-1] - item[-1]) / (search_result[-1][-1] + item[-1])
+    if item_score < thresh:
+        break
+    retrieved_context += item[0].page_content
+    retrieved_context += "\n"
+
+context = retrieved_context
+prompt = PromptTemplate(template=template, input_variables=["context", "question"])
+
+llm_chain = LLMChain(prompt=prompt, llm=llm)
 output = llm_chain.run(question)
-# llm(question)
-# output = llm(question)
-# print(output)
 
 
 
