@@ -12,6 +12,11 @@ DEFAULT_SYSTEM_PROMPT = """\
 You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
 
 If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
+SYSTEM_PROMPT = """
+You are a biomedical researcher. Answer the Question asked. If you don't know the answer, report as "I don't know", don't try to make up an answer.
+"""
+INSTRUCTION = "Question: {question}"
+
 
 def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     SYSTEM_PROMPT = B_SYS + new_system_prompt + E_SYS
@@ -46,10 +51,8 @@ pipe = pipeline("text-generation",
 llm = HuggingFacePipeline(pipeline = pipe,
                           model_kwargs = {'temperature':0})
 
-system_prompt = "You are a friendly assitant"
-instruction = "Answer the question asked:\n\n {question}"
-template = get_prompt(instruction, system_prompt)
 
+template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
 prompt = PromptTemplate(template=template, input_variables=["question"])
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
