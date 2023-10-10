@@ -1,10 +1,13 @@
 from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 from transformers import pipeline
+import transformers
+from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
 import torch
 
 
-MODEL_NAME = "TheBloke/Llama-2-13B-chat-GGUF"
+
+MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -19,19 +22,35 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     return prompt_template
 
 
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
+                                          use_auth_token=True)
+
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,
+                                             device_map='auto',
+                                             torch_dtype=torch.float16,
+                                             use_auth_token=True
+                                             )
+streamer = TextStreamer(tokenizer)
+
+
 pipe = pipeline("text-generation",
-                model = MODEL_NAME,
+                model = model,
+                tokenizer = tokenizer,
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
                 max_new_tokens = 512,
                 do_sample = True,
                 top_k = 30,
-                num_return_sequences = 1
+                num_return_sequences = 1,
+                eos_token_id = tokenizer.eos_token_id,
+                streamer=streamer
                 )
-
 
 llm = HuggingFacePipeline(pipeline = pipe,
                           model_kwargs = {'temperature':0})
+
+
 
 system_prompt = "You are a friendly assitant"
 instruction = "Answer the question asked:\n\n {question}"
@@ -42,4 +61,11 @@ llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 question = input("Enter your question : ")
 output = llm_chain.run(question)
-print(output)
+# llm(question)
+# output = llm(question)
+# print(output)
+
+
+
+
+
