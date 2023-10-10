@@ -5,6 +5,7 @@ import torch
 
 
 MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
+BRANCH_NAME = "gptq-4bit-64g-actorder_True"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -28,12 +29,13 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                          use_auth_token=True)
-gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
+# gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
                                             device_map='auto',
                                             torch_dtype=torch.float16,
                                             use_auth_token=True,
-                                            quantization_config=gptq_config)
+                                            revision=BRANCH_NAME
+                                            )
 streamer = TextStreamer(tokenizer)
 
 pipe = pipeline("text-generation",
