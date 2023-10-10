@@ -1,10 +1,11 @@
 from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
 import torch
 
 
-MODEL_NAME = "TheBloke/Llama-2-13B-chat-GGUF"
+MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -19,14 +20,23 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     return prompt_template
 
 
+
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+gptq_config = GPTQConfig(bits=4, dataset="wikitext", tokenizer=tokenizer)
+model = AutoModelForCausalLM.from_pretrained(model_id, quantization_config=gptq_config)
+streamer = TextStreamer(tokenizer)
+
 pipe = pipeline("text-generation",
-                model = MODEL_NAME,
+                model = model,
+                tokenizer = tokenizer,
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
                 max_new_tokens = 512,
                 do_sample = True,
                 top_k = 30,
-                num_return_sequences = 1
+                num_return_sequences = 1,
+                streamer=streamer
                 )
 
 
