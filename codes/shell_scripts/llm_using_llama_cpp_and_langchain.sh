@@ -1,5 +1,5 @@
 MODEL_PATH="/data1/somank/llm_data/llm_models/llama-2-13b-chat.Q5_K_M.gguf"
-N_GPU_LAYERS=20
+N_GPU_LAYERS=40
 N_BATCH=512
 
 
