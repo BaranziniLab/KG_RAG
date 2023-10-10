@@ -22,7 +22,7 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
 
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-gptq_config = GPTQConfig(bits=4, dataset="wikitext2", tokenizer=tokenizer)
+gptq_config = GPTQConfig(bits=4, dataset="wikitext2", tokenizer=tokenizer, disable_exllama=True)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, quantization_config=gptq_config)
 streamer = TextStreamer(tokenizer)
 
