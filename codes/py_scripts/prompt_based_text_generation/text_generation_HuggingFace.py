@@ -56,7 +56,7 @@ pipe = pipeline("text-generation",
 
 
 llm = HuggingFacePipeline(pipeline = pipe,
-                          model_kwargs = {'temperature':0})
+                          model_kwargs = {"temperature":0, "top_p":1})
 
 
 template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)

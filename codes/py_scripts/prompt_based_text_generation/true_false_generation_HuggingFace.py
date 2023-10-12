@@ -13,6 +13,7 @@ BRANCH_NAME = sys.argv[2]
 QUESTION_PATH = sys.argv[3]
 SAVE_PATH = sys.argv[4]
 STREAM = sys.argv[5]
+CACHE_DIR = sys.argv[6]
 
 
 
@@ -47,12 +48,14 @@ def parse_response(response):
 
 def model(MODEL_NAME, BRANCH_NAME, stream=False):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                             use_auth_token=True)
+                                             use_auth_token=True,
+                                             cache_dir=CACHE_DIR)
     model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
                                         device_map='auto',
                                         torch_dtype=torch.float16,
                                         use_auth_token=True,
-                                        revision=BRANCH_NAME                                                
+                                        revision=BRANCH_NAME,
+                                        cache_dir=CACHE_DIR
                                         )
     # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
     if stream:
