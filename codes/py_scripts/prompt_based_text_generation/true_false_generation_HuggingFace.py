@@ -18,7 +18,7 @@ You are a helpful, respectful and honest assistant. Always answer as helpfully a
 
 If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
 SYSTEM_PROMPT = """
-You are a biomedical researcher. Answer the given Question as either True or False. If you don't know the answer, report as "Don't know", don't try to make up an answer. Provide the answer in the following format:
+You are a biomedical researcher. Answer the given Question as either True or False. Don't give any other explanations. If you don't know the answer, report as "Don't know", don't try to make up an answer. Provide the answer in the following format:
 {{answer : <True> or <False> or <Don't know>}}
 """
 INSTRUCTION = "Question: {question}"
@@ -44,7 +44,7 @@ model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,
                                             use_auth_token=True,
                                             revision=BRANCH_NAME
                                             )
-# streamer = TextStreamer(tokenizer)
+streamer = TextStreamer(tokenizer)
 
 pipe = pipeline("text-generation",
                 model = model,
@@ -54,7 +54,8 @@ pipe = pipeline("text-generation",
                 max_new_tokens = 512,
                 do_sample = True,
                 top_k = 30,
-                num_return_sequences = 1
+                num_return_sequences = 1,
+                streamer=streamer
                 )
 
 
