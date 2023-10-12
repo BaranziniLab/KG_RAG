@@ -4,7 +4,7 @@ from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStre
 import torch
 
 
-MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
+MODEL_NAME = "TheBloke/Llama-2-7B-chat-GPTQ"
 BRANCH_NAME = "gptq-4bit-64g-actorder_True"
 CACHE_DIR = "/data1/somank/llm_data/llm_models/huggingface"
 
