@@ -6,6 +6,7 @@ import torch
 
 MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
 BRANCH_NAME = "gptq-4bit-64g-actorder_True"
+CACHE_DIR = "/data1/somank/llm_data/llm_models"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -28,13 +29,16 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
 
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                         use_auth_token=True)
+                                         use_auth_token=True,
+                                         cache_dir=CACHE_DIR
+                                         )
 # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
                                             device_map='auto',
                                             torch_dtype=torch.float16,
                                             use_auth_token=True,
-                                            revision=BRANCH_NAME
+                                            revision=BRANCH_NAME,
+                                            cache_dir=CACHE_DIR
                                             )
 streamer = TextStreamer(tokenizer)
 
