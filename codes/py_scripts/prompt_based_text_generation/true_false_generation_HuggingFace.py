@@ -20,7 +20,7 @@ STREAM = sys.argv[5]
 # BRANCH_NAME = "gptq-4bit-64g-actorder_True"
 
 stream_dict = {
-    "True" : True
+    "True" : True,
     "False" : False
 }
 
