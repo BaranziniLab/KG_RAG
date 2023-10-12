@@ -31,9 +31,25 @@ DEFAULT_SYSTEM_PROMPT = """\
 You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
 
 If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
+
+# SYSTEM_PROMPT = """
+# You are a biomedical researcher. Answer the given Question as either True or False. Don't give any other explanations. If you don't know the answer, report as "Don't know", don't try to make up an answer. Provide the answer in the following format:
+# {{answer : <True> or <False> or <Don't know>}}
+# """
+
 SYSTEM_PROMPT = """
-You are a biomedical researcher. Answer the given Question as either True or False. Don't give any other explanations. If you don't know the answer, report as "Don't know", don't try to make up an answer. Provide the answer in the following format:
-{{answer : <True> or <False> or <Don't know>}}
+You are a biomedical researcher. Please provide your answer in the following JSON format for the Question asked:
+{{
+  "answer": "True"
+}}
+OR
+{{
+  "answer": "False"
+}}
+OR
+{{
+  "answer": "Don't know"
+}}
 """
 INSTRUCTION = "Question: {question}"
 

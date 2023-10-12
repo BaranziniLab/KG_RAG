@@ -17,6 +17,8 @@ If a question does not make any sense, or is not factually coherent, explain why
 SYSTEM_PROMPT = """
 You are a biomedical researcher. Answer the Question asked. If you don't know the answer, report as "I don't know", don't try to make up an answer.
 """
+
+
 INSTRUCTION = "Question: {question}"
 
 
