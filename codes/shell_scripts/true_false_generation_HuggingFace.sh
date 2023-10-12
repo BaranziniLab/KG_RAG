@@ -4,4 +4,4 @@ QUESTION_PATH="/data1/somank/llm_data/analysis/test_questions.csv"
 SAVE_PATH="/data1/somank/llm_data/analysis"
 STREAM="False"
 
-python ../py_scripts/prompt_based_text_generation/true_false_generation_HuggingFace.py
+python ../py_scripts/prompt_based_text_generation/true_false_generation_HuggingFace.py $MODEL_NAME $BRANCH_NAME $QUESTION_PATH $SAVE_PATH $STREAM
