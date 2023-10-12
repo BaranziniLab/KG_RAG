@@ -102,7 +102,7 @@ def main():
         for index, row in question_df.iterrows():
             question = row["text"]
             output = llm_chain.run(question)
-            answer_list.append((row["text"], row["label"], parse_response(output)))
+            answer_list.append((row["text"], row["label"], output))
         answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
         answer_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True)    
         print("Completed in {} min".format((time.time()-start_time)/60))
