@@ -81,12 +81,13 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
                               model_kwargs = {"temperature":0, "top_p":1})
     return llm
 
-def main():
+def main():    
     llm = model(MODEL_NAME, BRANCH_NAME, stream=STREAM)               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     if QUESTION_PATH:
+        start_time = time.time()
         SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_response.csv"
         question_df = pd.read_csv(QUESTION_PATH)
         question_df = question_df.head()
@@ -97,8 +98,11 @@ def main():
             answer_list.append((row["text"], row["label"], parse_response(output)))
         answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
         answer_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True)    
+        print("Completed in {} min".format((time.time()-start_time)/60))
     else:
         question = input("Enter your question : ")
         output = llm_chain.run(question)
         print(parse_response(output))
 
+if __name__ == "__main__":
+    main()
