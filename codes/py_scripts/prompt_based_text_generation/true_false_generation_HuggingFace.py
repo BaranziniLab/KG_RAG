@@ -95,7 +95,6 @@ def main():
         start_time = time.time()
         SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_response.csv"
         question_df = pd.read_csv(QUESTION_PATH)
-        question_df = question_df.head()
         answer_list = []
         for index, row in question_df.iterrows():
             question = row["text"]
