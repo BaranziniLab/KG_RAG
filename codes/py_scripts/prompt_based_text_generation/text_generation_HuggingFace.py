@@ -6,7 +6,7 @@ import torch
 
 MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
 BRANCH_NAME = "gptq-4bit-64g-actorder_True"
-CACHE_DIR = "/data1/somank/llm_data/llm_models"
+CACHE_DIR = "/data1/somank/llm_data/llm_models/huggingface"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
