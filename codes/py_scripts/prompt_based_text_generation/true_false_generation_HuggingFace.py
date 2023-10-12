@@ -19,7 +19,7 @@ You are a helpful, respectful and honest assistant. Always answer as helpfully a
 If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
 SYSTEM_PROMPT = """
 You are a biomedical researcher. Answer the given Question as either True or False. If you don't know the answer, report as "Don't know", don't try to make up an answer. Provide the answer in the following format:
-{answer : <True> or <False> or <Don't know>}
+{{answer : <True> or <False> or <Don't know>}}
 """
 INSTRUCTION = "Question: {question}"
 
