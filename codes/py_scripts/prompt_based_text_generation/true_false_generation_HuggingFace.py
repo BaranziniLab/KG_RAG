@@ -19,6 +19,11 @@ STREAM = sys.argv[5]
 # MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
 # BRANCH_NAME = "gptq-4bit-64g-actorder_True"
 
+stream_dict = {
+    "True" : True
+    "False" : False
+}
+
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
 DEFAULT_SYSTEM_PROMPT = """\
@@ -82,7 +87,7 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
     return llm
 
 def main():    
-    llm = model(MODEL_NAME, BRANCH_NAME, stream=STREAM)               
+    llm = model(MODEL_NAME, BRANCH_NAME, stream=stream_dict[STREAM])               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
