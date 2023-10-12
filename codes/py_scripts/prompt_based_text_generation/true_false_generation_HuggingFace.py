@@ -2,11 +2,19 @@ from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
 import torch
+import pandas as pd
+import os
+import time
 import sys
 
 
 MODEL_NAME = sys.argv[1]
 BRANCH_NAME = sys.argv[2]
+QUESTION_PATH = sys.argv[3]
+SAVE_PATH = sys.argv[4]
+STREAM = sys.argv[5]
+
+
 
 # MODEL_NAME = "TheBloke/Llama-2-13B-chat-GPTQ"
 # BRANCH_NAME = "gptq-4bit-64g-actorder_True"
@@ -32,42 +40,65 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
 def parse_response(response):
     return response.split("{answer: ")[-1].split("}")[0]
 
+def model(MODEL_NAME, BRANCH_NAME, stream=False):
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
+                                             use_auth_token=True)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
+                                        device_map='auto',
+                                        torch_dtype=torch.float16,
+                                        use_auth_token=True,
+                                        revision=BRANCH_NAME                                                
+                                        )
+    # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
+    if stream:
+        streamer = TextStreamer(tokenizer)
+        pipe = pipeline("text-generation",
+                    model = model,
+                    tokenizer = tokenizer,
+                    torch_dtype = torch.bfloat16,
+                    device_map = "auto",
+                    max_new_tokens = 512,
+                    do_sample = True,
+                    top_k = 30,
+                    num_return_sequences = 1,
+                    streamer=streamer
+                    )
 
+    else:
+        pipe = pipeline("text-generation",
+                    model = model,
+                    tokenizer = tokenizer,
+                    torch_dtype = torch.bfloat16,
+                    device_map = "auto",
+                    max_new_tokens = 512,
+                    do_sample = True,
+                    top_k = 30,
+                    num_return_sequences = 1
+                    )
 
+    
+    llm = HuggingFacePipeline(pipeline = pipe,
+                              model_kwargs = {"temperature":0, "top_p":1})
+    return llm
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                         use_auth_token=True)
-# gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
-model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
-                                            device_map='auto',
-                                            torch_dtype=torch.float16,
-                                            use_auth_token=True,
-                                            revision=BRANCH_NAME
-                                            )
-streamer = TextStreamer(tokenizer)
-
-pipe = pipeline("text-generation",
-                model = model,
-                tokenizer = tokenizer,
-                torch_dtype = torch.bfloat16,
-                device_map = "auto",
-                max_new_tokens = 512,
-                do_sample = True,
-                top_k = 30,
-                num_return_sequences = 1,
-                streamer=streamer
-                )
-
-
-llm = HuggingFacePipeline(pipeline = pipe,
-                          model_kwargs = {'temperature':0})
-
-
-template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-prompt = PromptTemplate(template=template, input_variables=["question"])
-llm_chain = LLMChain(prompt=prompt, llm=llm)
-
-question = input("Enter your question : ")
-output = llm_chain.run(question)
-print(parse_response(output))
+def main():
+    llm = model(MODEL_NAME, BRANCH_NAME, stream=STREAM)               
+    template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+    prompt = PromptTemplate(template=template, input_variables=["question"])
+    llm_chain = LLMChain(prompt=prompt, llm=llm)
+    if QUESTION_PATH:
+        SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_response.csv"
+        question_df = pd.read_csv(QUESTION_PATH)
+        question_df = question_df.head()
+        answer_list = []
+        for index, row in question_df.iterrows():
+            question = row["text"]
+            output = llm_chain.run(question)
+            answer_list.append((row["text"], row["label"], parse_response(output)))
+        answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
+        answer_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True)    
+    else:
+        question = input("Enter your question : ")
+        output = llm_chain.run(question)
+        print(parse_response(output))
 
