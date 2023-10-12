@@ -29,6 +29,9 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     prompt_template =  B_INST + SYSTEM_PROMPT + instruction + E_INST
     return prompt_template
 
+def parse_response(response):
+    return response.split("{answer: ")[-1].split("}")[0]
+
 
 
 
@@ -41,7 +44,7 @@ model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,
                                             use_auth_token=True,
                                             revision=BRANCH_NAME
                                             )
-streamer = TextStreamer(tokenizer)
+# streamer = TextStreamer(tokenizer)
 
 pipe = pipeline("text-generation",
                 model = model,
@@ -51,8 +54,7 @@ pipe = pipeline("text-generation",
                 max_new_tokens = 512,
                 do_sample = True,
                 top_k = 30,
-                num_return_sequences = 1,
-                streamer=streamer
+                num_return_sequences = 1
                 )
 
 
@@ -66,4 +68,5 @@ llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 question = input("Enter your question : ")
 output = llm_chain.run(question)
-print(output)
+print(parse_response(output))
+
