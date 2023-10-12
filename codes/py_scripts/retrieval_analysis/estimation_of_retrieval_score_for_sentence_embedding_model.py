@@ -28,8 +28,8 @@ def main():
         question_in_vectorDB = question_data.questions_as_in_database.values[question_id]
         search_result = vectorstore.similarity_search_with_score(question, k=MAX_SEARCH)
         for index, item in enumerate(search_result):
-        	if question_in_vectorDB in item[0].page_content:
-        		break
+            if question_in_vectorDB in item[0].page_content:
+                break
         score_range = (search_result[-1][-1]-search_result[0][-1])/(search_result[-1][-1]+search_result[0][-1])
         question_score = (search_result[-1][-1]-search_result[index][-1])/(search_result[-1][-1]+search_result[index][-1])
         retrieval_score = np.divide(question_score, score_range)
