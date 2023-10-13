@@ -38,7 +38,7 @@ If a question does not make any sense, or is not factually coherent, explain why
 # """
 
 SYSTEM_PROMPT = """
-You are a biomedical researcher. Please provide your answer in the following JSON format for the Question asked:
+You are an expert biomedical researcher. Please provide your answer in the following JSON format for the Question asked:
 {{
   "answer": "True"
 }}

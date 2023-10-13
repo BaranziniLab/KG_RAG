@@ -15,7 +15,7 @@ You are a helpful, respectful and honest assistant. Always answer as helpfully a
 
 If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
 SYSTEM_PROMPT = """
-You are a biomedical researcher. Answer the Question asked. If you don't know the answer, report as "I don't know", don't try to make up an answer.
+You are an expert biomedical researcher. Answer the Question asked. If you don't know the answer, report as "I don't know", don't try to make up an answer.
 """
 
 

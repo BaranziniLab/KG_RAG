@@ -28,7 +28,7 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 
 SYSTEM_PROMPT = """
-You are a biomedical researcher. For answering the question at the end, you need to first read the Context provided and then answer the Question. If you don't know the answer, report as "I don't know", don't try to make up an answer.
+You are an expert biomedical researcher. For answering the question at the end, you need to first read the Context provided and then answer the Question. If you don't know the answer, report as "I don't know", don't try to make up an answer.
 """
 INSTRUCTION = "Context:\n\n{context} \n\nQuestion: {question}"
 
