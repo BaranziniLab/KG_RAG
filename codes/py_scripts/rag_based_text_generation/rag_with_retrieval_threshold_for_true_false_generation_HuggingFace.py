@@ -23,11 +23,10 @@ CACHE_DIR = sys.argv[8]
 
 RETRIEVAL_SCORE_THRESH = 0.72
 MAX_TOKEN_SIZE_OF_LLM = 4096
-CHARACTERS_PER_TOKEN = 4
-MAX_CONTEXT_TOKENS_IN_INPUT = 1000
+MAX_CONTEXT_TOKENS_IN_INPUT = 4000
 
 
-max_characters_in_context = MAX_CONTEXT_TOKENS_IN_INPUT*CHARACTERS_PER_TOKEN
+
 
 stream_dict = {
     "True" : True,
@@ -133,16 +132,20 @@ def main():
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
+
     if QUESTION_PATH:
         start_time = time.time()
         SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_rag_based_response.csv"
         question_df = pd.read_csv(QUESTION_PATH)
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
         answer_list = []
         for index, row in question_df.iterrows():
             question = row["text"]
             context = retrieve_context(question)
-            if len(context) >= max_characters_in_context:
-                context = context[0:max_characters_in_context]
+            context_tokens = tokenizer.tokenize(context)
+            if len(context_tokens) > MAX_CONTEXT_TOKENS_IN_INPUT:
+                tokens = list(map(lambda x:x.split("▁")[-1], tokens))
+                context = " ".join(tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT])
             output = llm_chain.run(context=context, question=question)
             answer_list.append((row["text"], row["label"], output))
         answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
