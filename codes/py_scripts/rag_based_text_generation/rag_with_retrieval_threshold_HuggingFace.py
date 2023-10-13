@@ -11,7 +11,9 @@ import sys
 VECTOR_DB_PATH = sys.argv[1]
 SENTENCE_EMBEDDING_MODEL = sys.argv[2]
 MODEL_NAME = sys.argv[3]
-CACHE_DIR = sys.argv[4]
+BRANCH_NAME = sys.argv[4]
+CACHE_DIR = sys.argv[5]
+
 # "meta-llama/Llama-2-13b-chat-hf"
 
 RETRIEVAL_SCORE_THRESH = 0.72
