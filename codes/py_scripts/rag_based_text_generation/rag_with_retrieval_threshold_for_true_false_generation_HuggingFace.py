@@ -22,6 +22,12 @@ CACHE_DIR = sys.argv[8]
 
 
 RETRIEVAL_SCORE_THRESH = 0.72
+MAX_TOKEN_SIZE_OF_LLM = 4096
+CHARACTERS_PER_TOKEN = 4
+MAX_CONTEXT_TOKENS_IN_INPUT = 4000
+
+
+max_characters_in_context = MAX_CONTEXT_TOKENS_IN_INPUT*CHARACTERS_PER_TOKEN
 
 stream_dict = {
     "True" : True,
@@ -75,7 +81,7 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
                                         )
-    model = exllama_set_max_input_length(model, 4096)
+    model = exllama_set_max_input_length(model, MAX_TOKEN_SIZE_OF_LLM)
     # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
     if stream:
         streamer = TextStreamer(tokenizer)
@@ -135,6 +141,8 @@ def main():
         for index, row in question_df.iterrows():
             question = row["text"]
             context = retrieve_context(question)
+            if len(context) >= max_characters_in_context:
+                context = context[0:max_characters_in_context]
             output = llm_chain.run(context=context, question=question)
             answer_list.append((row["text"], row["label"], output))
         answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
@@ -143,6 +151,8 @@ def main():
     else:
         question = input("Enter your question : ")
         context = retrieve_context(question)
+        if len(context) >= max_characters_in_context:
+            context = context[0:max_characters_in_context]
         output = llm_chain.run(context=context, question=question)
         print(output)
 
