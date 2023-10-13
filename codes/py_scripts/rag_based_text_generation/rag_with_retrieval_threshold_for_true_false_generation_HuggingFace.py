@@ -3,6 +3,7 @@ from langchain import PromptTemplate, LLMChain
 from langchain.vectorstores import Chroma
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
+from auto_gptq import exllama_set_max_input_length
 import torch
 import pandas as pd
 import os
@@ -74,6 +75,7 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
                                         )
+    model = exllama_set_max_input_length(model, 4096)
     # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
     if stream:
         streamer = TextStreamer(tokenizer)
