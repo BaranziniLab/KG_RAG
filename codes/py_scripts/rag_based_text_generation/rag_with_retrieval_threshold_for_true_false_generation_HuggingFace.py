@@ -27,7 +27,7 @@ to see how optimal retrieval score threshold is obtained.
 
 RETRIEVAL_SCORE_THRESH = 0.55
 MAX_TOKEN_SIZE_OF_LLM = 4096
-QUESTION_TOKEN_SIZE = 200
+QUESTION_TOKEN_SIZE = 120
 
 
 stream_dict = {
