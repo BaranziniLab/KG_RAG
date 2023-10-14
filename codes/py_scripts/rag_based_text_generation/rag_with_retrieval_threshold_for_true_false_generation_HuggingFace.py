@@ -72,6 +72,7 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
 def model(MODEL_NAME, BRANCH_NAME, stream=False):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                              use_auth_token=True,
+                                             revision=BRANCH_NAME,
                                              cache_dir=CACHE_DIR)
     model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
                                         device_map='auto',
@@ -130,7 +131,7 @@ def retrieve_context(question):
 def main():    
     llm = model(MODEL_NAME, BRANCH_NAME, stream=stream_dict[STREAM])               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, revision=BRANCH_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
     template_tokens = tokenizer.tokenize(template)
     MAX_CONTEXT_TOKENS_IN_INPUT = MAX_TOKEN_SIZE_OF_LLM - len(template_tokens) - QUESTION_TOKEN_SIZE
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
