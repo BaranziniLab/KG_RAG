@@ -1,5 +1,5 @@
-MODEL_NAME="TheBloke/Llama-2-13b-Chat-GPTQ"
-BRANCH_NAME="gptq-4bit-64g-actorder_True"
+MODEL_NAME="meta-llama/Llama-2-7b-chat-hf"
+BRANCH_NAME="main"
 QUESTION_PATH="/data1/somank/llm_data/analysis/test_questions.csv"
 SAVE_PATH="/data1/somank/llm_data/analysis"
 STREAM="False"
