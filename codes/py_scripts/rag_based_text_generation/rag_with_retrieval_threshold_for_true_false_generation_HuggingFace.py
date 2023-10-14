@@ -23,7 +23,7 @@ CACHE_DIR = sys.argv[8]
 
 RETRIEVAL_SCORE_THRESH = 0.72
 MAX_TOKEN_SIZE_OF_LLM = 4096
-MAX_CONTEXT_TOKENS_IN_INPUT = 4000
+QUESTION_TOKEN_SIZE = 50
 
 
 
@@ -130,22 +130,23 @@ def retrieve_context(question):
 def main():    
     llm = model(MODEL_NAME, BRANCH_NAME, stream=stream_dict[STREAM])               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
+    template_tokens = tokenizer.tokenize(template)
+    MAX_CONTEXT_TOKENS_IN_INPUT = MAX_TOKEN_SIZE_OF_LLM - len(template_tokens) - QUESTION_TOKEN_SIZE
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
 
     if QUESTION_PATH:
         start_time = time.time()
         SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_rag_based_response.csv"
-        question_df = pd.read_csv(QUESTION_PATH)
-        tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
+        question_df = pd.read_csv(QUESTION_PATH)        
         answer_list = []
         for index, row in question_df.iterrows():
             question = row["text"]
             context = retrieve_context(question)
             context_tokens = tokenizer.tokenize(context)
             if len(context_tokens) > MAX_CONTEXT_TOKENS_IN_INPUT:
-                tokens = list(map(lambda x:x.split("▁")[-1], tokens))
-                context = " ".join(tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT])
+                context = ''.join([word if word != '<0x0A>' else '\n' for word in context_tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT]]).replace('▁',' ').strip()
             output = llm_chain.run(context=context, question=question)
             answer_list.append((row["text"], row["label"], output))
         answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
@@ -154,8 +155,8 @@ def main():
     else:
         question = input("Enter your question : ")
         context = retrieve_context(question)
-        if len(context) >= max_characters_in_context:
-            context = context[0:max_characters_in_context]
+        if len(context) >= MAX_CONTEXT_TOKENS_IN_INPUT:
+            context = ''.join([word if word != '<0x0A>' else '\n' for word in context_tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT]]).replace('▁',' ').strip()
         output = llm_chain.run(context=context, question=question)
         print(output)
 
