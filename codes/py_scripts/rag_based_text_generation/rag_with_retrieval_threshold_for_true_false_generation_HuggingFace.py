@@ -20,12 +20,14 @@ SAVE_PATH = sys.argv[6]
 STREAM = sys.argv[7]
 CACHE_DIR = sys.argv[8]
 
+"""
+Check llm_notebooks/retrieval_optimization/retrieval_score_threshold_optimization_using_HF_tokenizer.ipynb
+to see how optimal retrieval score threshold is obtained.
+"""
 
-RETRIEVAL_SCORE_THRESH = 0.72
+RETRIEVAL_SCORE_THRESH = 0.55
 MAX_TOKEN_SIZE_OF_LLM = 4096
 QUESTION_TOKEN_SIZE = 50
-
-
 
 
 stream_dict = {
