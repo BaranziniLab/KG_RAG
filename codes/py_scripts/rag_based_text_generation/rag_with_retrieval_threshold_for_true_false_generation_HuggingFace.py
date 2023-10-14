@@ -83,7 +83,7 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
                                         )
-    model = exllama_set_max_input_length(model, MAX_TOKEN_SIZE_OF_LLM)
+#     model = exllama_set_max_input_length(model, MAX_TOKEN_SIZE_OF_LLM)
     # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
     if stream:
         streamer = TextStreamer(tokenizer)
