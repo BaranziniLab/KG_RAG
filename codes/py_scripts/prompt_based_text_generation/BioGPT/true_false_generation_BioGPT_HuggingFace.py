@@ -38,8 +38,7 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
     tokenizer = BioGptTokenizer.from_pretrained(MODEL_NAME,
                                                 cache_dir=CACHE_DIR
                                                )
-    model = BioGptForCausalLM.from_pretrained(MODEL_NAME,                                             
-                                        device_map='auto',
+    model = BioGptForCausalLM.from_pretrained(MODEL_NAME,
                                         torch_dtype=torch.float16,
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
