@@ -1,4 +1,4 @@
-MODEL_NAME="meta-llama/Llama-2-13b-chat-hf"
+MODEL_NAME="microsoft/BioGPT-Large-PubMedQA"
 BRANCH_NAME="main"
 QUESTION_PATH="/data/somank/llm_data/analysis/test_questions.csv"
 SAVE_PATH="/data/somank/llm_data/analysis"
