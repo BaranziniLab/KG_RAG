@@ -29,6 +29,11 @@ OR
 Question: {question}
 """
 
+stream_dict = {
+    "True" : True,
+    "False" : False
+}
+
 def model(MODEL_NAME, BRANCH_NAME, stream=False):
     tokenizer = BioGptTokenizer.from_pretrained(MODEL_NAME,
                                                 cache_dir=CACHE_DIR
