@@ -17,7 +17,7 @@ pipe = pipeline("text-generation",
                 tokenizer = tokenizer,
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
-                max_new_tokens = 30
+                max_new_tokens = 30,
                 streamer=streamer
                 )
 
