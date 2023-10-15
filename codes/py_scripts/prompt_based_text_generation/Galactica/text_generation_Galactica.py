@@ -16,7 +16,8 @@ pipe = pipeline("text-generation",
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
                 max_length = 30,
-                streamer=streamer
+                streamer=streamer,
+                temperature=0.01
                 )
 
 input_text = input("Enter your text : ")
