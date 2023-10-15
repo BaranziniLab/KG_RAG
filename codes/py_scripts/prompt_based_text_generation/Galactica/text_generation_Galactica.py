@@ -20,7 +20,7 @@ pipe = pipeline("text-generation",
                 )
 
 input_text = input("Enter your text : ")
-pipe(input_text, max_length=75, num_return_sequences=1, do_sample=True)
+pipe(input_text, max_length=100, num_return_sequences=1, do_sample=True)
 
 # input_text = "The Transformer architecture [START_REF]"
 
