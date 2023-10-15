@@ -6,7 +6,7 @@ import torch
 MODEL_NAME = "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
-model = AutoModel.from_pretrained(MODEL_NAME, cache_dir=CACHE_DIR)
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, cache_dir=CACHE_DIR)
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=CACHE_DIR)
 
 
