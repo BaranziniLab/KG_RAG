@@ -22,4 +22,4 @@ pipe = pipeline("text-generation",
                 )
 
 question = input("Enter you statement : ")
-pipe(question, max_length=100, num_return_sequences=1, do_sample=True)
+pipe(question, max_length=35, num_return_sequences=1, do_sample=True)
