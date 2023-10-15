@@ -1,9 +1,9 @@
 from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
-from transformers import pipeline, AutoTokenizer, AutoModel, TextStreamer
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer
 import torch
 
-MODEL_NAME = "michiyasunaga/BioLinkBERT-base"
+MODEL_NAME = "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
 model = AutoModel.from_pretrained(MODEL_NAME, cache_dir=CACHE_DIR)
