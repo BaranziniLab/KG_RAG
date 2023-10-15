@@ -1,5 +1,6 @@
-# pip install accelerate
+
 from transformers import AutoTokenizer, OPTForCausalLM, pipeline, TextStreamer
+import torch
 
 MODEL_NAME = "facebook/galactica-1.3b"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
