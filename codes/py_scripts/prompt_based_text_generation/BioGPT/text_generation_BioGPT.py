@@ -18,8 +18,8 @@ pipe = pipeline("text-generation",
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
                 streamer=streamer,
-                temperature=0
+                temperature=0.1
                 )
 
 question = input("Enter you statement : ")
-pipe(question, max_length=20, num_return_sequences=1, do_sample=True)
+pipe(question, max_length=100, num_return_sequences=1, do_sample=True)
