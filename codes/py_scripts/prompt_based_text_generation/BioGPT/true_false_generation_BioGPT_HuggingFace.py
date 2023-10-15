@@ -2,6 +2,8 @@ from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 from transformers import BioGptTokenizer, BioGptForCausalLM, pipeline, TextStreamer
 import torch
+import pandas as pd
+import os
 import time
 import sys
 
