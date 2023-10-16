@@ -32,7 +32,7 @@ def model(MODEL_NAME, BRANCH_NAME):
                 tokenizer = tokenizer,
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
-                max_new_tokens = 150,
+                max_new_tokens = 100,
                 do_sample = False
                 )
 
