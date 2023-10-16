@@ -11,7 +11,8 @@ import sys
 MODEL_NAME = "facebook/galactica-1.3b"
 BRANCH_NAME = "main"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
-QUESTION_PATH = None
+QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions.csv"
+SAVE_PATH = "/data/somank/llm_data/analysis"
 
 template = """
 Question: {question} If you don't know the answer, report as "Don't know", don't try to make up an answer\n\nAnswer:
@@ -52,7 +53,7 @@ def main():
         question_df = pd.read_csv(QUESTION_PATH)
         answer_list = []
         for index, row in question_df.iterrows():
-            question = row["text"]
+            question = "Is " + row["text"] + "?"
             output = llm_chain.run(question)
             answer_list.append((row["text"], row["label"], output))
         answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
@@ -63,5 +64,7 @@ def main():
         output = llm_chain.run(question)
         print(output)
 
+        
 if __name__ == "__main__":
     main()
+    
