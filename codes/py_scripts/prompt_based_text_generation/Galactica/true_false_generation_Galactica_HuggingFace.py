@@ -1,5 +1,12 @@
+from langchain import HuggingFacePipeline
+from langchain import PromptTemplate, LLMChain
 from transformers import AutoTokenizer, OPTForCausalLM, pipeline, TextStreamer
 import torch
+import pandas as pd
+import os
+import time
+import sys
+
 
 MODEL_NAME = "facebook/galactica-1.3b"
 BRANCH_NAME = "main"
@@ -13,12 +20,10 @@ Question: {question} If you don't know the answer, report as "Don't know", don't
 
 def model(MODEL_NAME, BRANCH_NAME):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                             use_auth_token=True,
                                              cache_dir=CACHE_DIR)
     model = OPTForCausalLM.from_pretrained(MODEL_NAME,                                             
                                         device_map='auto',
                                         torch_dtype=torch.float16,
-                                        use_auth_token=True,
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
                                         )
