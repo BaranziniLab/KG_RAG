@@ -17,7 +17,8 @@ VECTOR_DB_NAME = sys.argv[6]
 def load_data():
     with open(DATA_PATH, "rb") as f:
         data = pickle.load(f)
-    metadata_list = list(map(lambda x:{"node information":x.split("(")[0].split("Following is the contextual information about the ")[-1] + "from SPOKE knowledge graph"}, data))
+    metadata_list = list(map(lambda x:{"source": x + " from SPOKE knowledge graph"}, data))
+#     metadata_list = list(map(lambda x:{"node information":x.split("(")[0].split("Following is the contextual information about the ")[-1] + "from SPOKE knowledge graph"}, data))
     return data, metadata_list
 
 def create_vectordb():
