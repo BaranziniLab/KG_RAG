@@ -95,7 +95,7 @@ def model(MODEL_NAME, BRANCH_NAME):
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
                                         )
-    model = exllama_set_max_input_length(model, MAX_TOKEN_SIZE_OF_LLM)
+#     model = exllama_set_max_input_length(model, MAX_TOKEN_SIZE_OF_LLM)
     pipe = pipeline("text-generation",
                 model = model,
                 tokenizer = tokenizer,
