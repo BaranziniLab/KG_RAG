@@ -7,6 +7,7 @@ from auto_gptq import exllama_set_max_input_length
 import torch
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
+import numpy as np
 import os
 import time
 import sys
