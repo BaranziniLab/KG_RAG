@@ -29,6 +29,8 @@ MAX_NODE_HITS = 5
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:500"
+
 # context_token_size = int(CONTEXT_TOKEN_SIZE_FRACTION*MAX_TOKEN_SIZE_OF_LLM)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
@@ -85,6 +87,7 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     return prompt_template
 
 def model(MODEL_NAME, BRANCH_NAME):
+    torch.cuda.empty_cache()
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                              use_auth_token=True,
                                              revision=BRANCH_NAME,
