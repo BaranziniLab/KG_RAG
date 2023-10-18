@@ -13,14 +13,14 @@ import time
 import sys
 
 
-VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
-NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
+VECTOR_DB_PATH = "/data1/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
+NODE_CONTEXT_PATH = "/data1/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
 SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME = "main"
-QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions.csv"
-SAVE_PATH = "/data/somank/llm_data/analysis"
-CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
+QUESTION_PATH = "/data1/somank/llm_data/analysis/test_questions.csv"
+SAVE_PATH = "/data1/somank/llm_data/analysis"
+CACHE_DIR = "/data1/somank/llm_data/llm_models/huggingface"
 
 
 # MAX_TOKEN_SIZE_OF_LLM = 4096
