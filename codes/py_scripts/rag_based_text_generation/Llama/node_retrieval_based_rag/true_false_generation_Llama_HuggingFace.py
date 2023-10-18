@@ -127,6 +127,7 @@ def retrieve_context(question):
         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
         node_context_extracted += ". ".join(high_similarity_context)
         node_context_extracted += ". "
+    return node_context_extracted
 
         
 
