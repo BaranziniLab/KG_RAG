@@ -50,7 +50,7 @@ INSTRUCTION = "Question: {question}"
 
 
 def main():    
-    llm = model(MODEL_NAME, BRANCH_NAME, stream=stream_dict[STREAM])               
+    llm = model(MODEL_NAME, BRANCH_NAME)               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
