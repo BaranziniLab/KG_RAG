@@ -1,3 +1,4 @@
+codes/llm_notebooks/GPT_models/config.env
 codes/llm_notebooks/GPT_models/test_azure_openAI_API_using_UCSF_versa.ipynb
 codes/node_extraction_using_neo4j.ipynb
 neighborhood.svg
