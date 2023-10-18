@@ -123,7 +123,7 @@ def retrieve_context(question):
         node_name = node[0].page_content
         node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
         node_context_list = node_context.split(". ")
-        print(len(node_context_list))
+        print(question, len(node_context_list))
         node_context_embeddings = embedding_function.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
         percentile_threshold = np.percentile(similarities, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
