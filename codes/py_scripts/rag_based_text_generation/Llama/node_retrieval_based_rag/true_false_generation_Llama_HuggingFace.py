@@ -23,14 +23,33 @@ SAVE_PATH = "/data/somank/llm_data/analysis"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
 
-MAX_TOKEN_SIZE_OF_LLM = 4096
+# MAX_TOKEN_SIZE_OF_LLM = 4096
 # CONTEXT_TOKEN_SIZE_FRACTION = 0.8
 
-# Retrieval parameters
+"""
+****************************************************************************************************** 
+                        Retrieval parameters
+Following parameter decides how many maximum associations to consider from the knowledge graph to answer a question.
+
+If a node hit for a question has N degree, then we will consider a maximum of 
+MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS 
+associations out of that N.
+
+In other words, an upper cap of "MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION" associations will be considered in total across all node hits to answer a question. 
+
+Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered as the hyperparameters that control the information flow from knowledge graph to LLM. They can be tweaked based on the complexity of the question dataset that needs to be answered.
+
+It also controls the token size that goes as input to the LLM.
+"""
+
 MAX_NODE_HITS = 5
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
-MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
+MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 50
+
+"""
+******************************************************************************************************
+"""
 
 # os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:500"
 torch.cuda.empty_cache()
