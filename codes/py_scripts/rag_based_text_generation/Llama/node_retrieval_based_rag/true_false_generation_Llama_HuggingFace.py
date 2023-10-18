@@ -42,10 +42,10 @@ Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered 
 It also controls the token size that goes as input to the LLM.
 """
 
-MAX_NODE_HITS = 5
+MAX_NODE_HITS = 3
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
-MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 50
+MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 
 """
 ******************************************************************************************************
@@ -67,7 +67,7 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 
 SYSTEM_PROMPT = """
-You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided and then provide your answer in the following JSON format:
+You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer in the following JSON format. Importantly, if you don't see any relevant information in the Context with regard to the Question, answer "Don't know" as per the JSON format given below:
 {{
   "answer": "True"
 }}
@@ -129,9 +129,7 @@ def model(MODEL_NAME, BRANCH_NAME):
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
                 max_new_tokens = 512,
-                do_sample = True,
-                top_k = 30,
-                num_return_sequences = 1
+                do_sample = False
                 )    
     llm = HuggingFacePipeline(pipeline = pipe,
                               model_kwargs = {"temperature":0, "top_p":1})
