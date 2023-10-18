@@ -25,12 +25,17 @@ CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
 MAX_TOKEN_SIZE_OF_LLM = 4096
 # CONTEXT_TOKEN_SIZE_FRACTION = 0.8
+
+# Retrieval parameters
 MAX_NODE_HITS = 2
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
+MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:500"
+# os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:500"
+torch.cuda.empty_cache()
 
+max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
 # context_token_size = int(CONTEXT_TOKEN_SIZE_FRACTION*MAX_TOKEN_SIZE_OF_LLM)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
@@ -87,7 +92,6 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     return prompt_template
 
 def model(MODEL_NAME, BRANCH_NAME):
-    torch.cuda.empty_cache()
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                              use_auth_token=True,
                                              revision=BRANCH_NAME,
@@ -125,10 +129,12 @@ def retrieve_context(question):
         node_context_list = node_context.split(". ")        
         node_context_embeddings = embedding_function.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
-        percentile_threshold = np.percentile(similarities, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
-        high_similarity_indices = [index for index, similarity in enumerate(similarities) if similarity > percentile_threshold and similarity > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
+        similarities = sorted([(e, i) for i, e in enumerate(similarities)], reverse=True)
+        percentile_threshold = np.percentile([s[0] for s in similarities], QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
+        high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
+        if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
+            high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-        print(question, len(node_context_list), len(high_similarity_context))
         node_context_extracted += ". ".join(high_similarity_context)
         node_context_extracted += ". "
     return node_context_extracted
