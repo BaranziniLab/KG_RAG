@@ -122,13 +122,13 @@ def retrieve_context(question):
     for node in node_hits:
         node_name = node[0].page_content
         node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
-        node_context_list = node_context.split(". ")
-        print(question, len(node_context_list))
+        node_context_list = node_context.split(". ")        
         node_context_embeddings = embedding_function.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
         percentile_threshold = np.percentile(similarities, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
         high_similarity_indices = [index for index, similarity in enumerate(similarities) if similarity > percentile_threshold and similarity > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
+        print(question, len(node_context_list), len(high_similarity_context))
         node_context_extracted += ". ".join(high_similarity_context)
         node_context_extracted += ". "
     return node_context_extracted
