@@ -30,13 +30,7 @@ You are an expert biomedical researcher. Please provide your answer in the follo
 INSTRUCTION = "Question: {question}"
 
 
-llm = model(MODEL_NAME, BRANCH_NAME)               
-template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-prompt = PromptTemplate(template=template, input_variables=["question"])
-llm_chain = LLMChain(prompt=prompt, llm=llm)
-question = input("Enter your question : ")
-output = llm_chain.run(question)
-print(output)
+
 
 
 
@@ -89,6 +83,13 @@ def model(MODEL_NAME, BRANCH_NAME):
                               model_kwargs = {"temperature":0, "top_p":1})
     return llm
 
+llm = model(MODEL_NAME, BRANCH_NAME)               
+template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+prompt = PromptTemplate(template=template, input_variables=["question"])
+llm_chain = LLMChain(prompt=prompt, llm=llm)
+question = input("Enter your question : ")
+output = llm_chain.run(question)
+print(output)
 
 
 # if __name__ == "__main__":
