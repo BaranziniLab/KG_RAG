@@ -17,8 +17,7 @@ MODEL_NAME = sys.argv[3]
 BRANCH_NAME = sys.argv[4]
 QUESTION_PATH = sys.argv[5]
 SAVE_PATH = sys.argv[6]
-STREAM = sys.argv[7]
-CACHE_DIR = sys.argv[8]
+CACHE_DIR = sys.argv[7]
 
 """
 Check llm_notebooks/retrieval_optimization/retrieval_score_threshold_optimization_using_HF_tokenizer.ipynb
@@ -29,11 +28,6 @@ RETRIEVAL_SCORE_THRESH = 0.55
 MAX_TOKEN_SIZE_OF_LLM = 4096
 QUESTION_TOKEN_SIZE = 120
 
-
-stream_dict = {
-    "True" : True,
-    "False" : False
-}
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -52,10 +46,6 @@ OR
 {{
   "answer": "False"
 }}
-OR
-{{
-  "answer": "Don't know"
-}}
 """
 INSTRUCTION = "Context:\n\n{context} \n\nQuestion: {question}"
 
@@ -66,12 +56,37 @@ vectorstore = Chroma(persist_directory=VECTOR_DB_PATH,
                      embedding_function=embedding_function)
 
 
+def main():    
+    llm = model(MODEL_NAME, BRANCH_NAME)               
+    template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, revision=BRANCH_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
+    template_tokens = tokenizer.tokenize(template)
+    MAX_CONTEXT_TOKENS_IN_INPUT = MAX_TOKEN_SIZE_OF_LLM - len(template_tokens) - QUESTION_TOKEN_SIZE
+    prompt = PromptTemplate(template=template, input_variables=["context", "question"])
+    llm_chain = LLMChain(prompt=prompt, llm=llm)
+    start_time = time.time()
+    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_rag_based_binary_response.csv"
+    question_df = pd.read_csv(QUESTION_PATH)        
+    answer_list = []
+    for index, row in question_df.iterrows():
+        question = row["text"]
+        context = retrieve_context(question)
+        context_tokens = tokenizer.tokenize(context)
+        if len(context_tokens) > MAX_CONTEXT_TOKENS_IN_INPUT:
+            context = ''.join([word if word != '<0x0A>' else '\n' for word in context_tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT]]).replace('▁',' ').strip()
+        output = llm_chain.run(context=context, question=question)
+        answer_list.append((row["text"], row["label"], output))
+    answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
+    answer_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True)    
+    print("Completed in {} min".format((time.time()-start_time)/60))
+    
+
 def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     SYSTEM_PROMPT = B_SYS + new_system_prompt + E_SYS
     prompt_template =  B_INST + SYSTEM_PROMPT + instruction + E_INST
     return prompt_template
 
-def model(MODEL_NAME, BRANCH_NAME, stream=False):
+def model(MODEL_NAME, BRANCH_NAME):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                              use_auth_token=True,
                                              revision=BRANCH_NAME,
@@ -85,32 +100,14 @@ def model(MODEL_NAME, BRANCH_NAME, stream=False):
                                         )
 #     model = exllama_set_max_input_length(model, MAX_TOKEN_SIZE_OF_LLM)
     # gptq_config = GPTQConfig(bits=4, group_size=64, desc_act=True)
-    if stream:
-        streamer = TextStreamer(tokenizer)
-        pipe = pipeline("text-generation",
-                    model = model,
-                    tokenizer = tokenizer,
-                    torch_dtype = torch.bfloat16,
-                    device_map = "auto",
-                    max_new_tokens = 512,
-                    do_sample = True,
-                    top_k = 30,
-                    num_return_sequences = 1,
-                    streamer=streamer
-                    )
-
-    else:
-        pipe = pipeline("text-generation",
-                    model = model,
-                    tokenizer = tokenizer,
-                    torch_dtype = torch.bfloat16,
-                    device_map = "auto",
-                    max_new_tokens = 512,
-                    do_sample = True,
-                    top_k = 30,
-                    num_return_sequences = 1
-                    )
-
+    pipe = pipeline("text-generation",
+                model = model,
+                tokenizer = tokenizer,
+                torch_dtype = torch.bfloat16,
+                device_map = "auto",
+                max_new_tokens = 512,
+                do_sample = False
+                )
     
     llm = HuggingFacePipeline(pipeline = pipe,
                               model_kwargs = {"temperature":0, "top_p":1})
@@ -130,38 +127,6 @@ def retrieve_context(question):
     return retrieved_context
 
 
-def main():    
-    llm = model(MODEL_NAME, BRANCH_NAME, stream=stream_dict[STREAM])               
-    template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, revision=BRANCH_NAME, use_auth_token=True, cache_dir=CACHE_DIR)
-    template_tokens = tokenizer.tokenize(template)
-    MAX_CONTEXT_TOKENS_IN_INPUT = MAX_TOKEN_SIZE_OF_LLM - len(template_tokens) - QUESTION_TOKEN_SIZE
-    prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm_chain = LLMChain(prompt=prompt, llm=llm)
-
-    if QUESTION_PATH:
-        start_time = time.time()
-        SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_rag_based_response.csv"
-        question_df = pd.read_csv(QUESTION_PATH)        
-        answer_list = []
-        for index, row in question_df.iterrows():
-            question = row["text"]
-            context = retrieve_context(question)
-            context_tokens = tokenizer.tokenize(context)
-            if len(context_tokens) > MAX_CONTEXT_TOKENS_IN_INPUT:
-                context = ''.join([word if word != '<0x0A>' else '\n' for word in context_tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT]]).replace('▁',' ').strip()
-            output = llm_chain.run(context=context, question=question)
-            answer_list.append((row["text"], row["label"], output))
-        answer_df = pd.DataFrame(answer_list, columns=["question", "label", "llm_answer"])
-        answer_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True)    
-        print("Completed in {} min".format((time.time()-start_time)/60))
-    else:
-        question = input("Enter your question : ")
-        context = retrieve_context(question)
-        if len(context) >= MAX_CONTEXT_TOKENS_IN_INPUT:
-            context = ''.join([word if word != '<0x0A>' else '\n' for word in context_tokens[0:MAX_CONTEXT_TOKENS_IN_INPUT]]).replace('▁',' ').strip()
-        output = llm_chain.run(context=context, question=question)
-        print(output)
 
         
         
