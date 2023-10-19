@@ -1,6 +1,6 @@
 MODEL_NAME="meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME="main"
-QUESTION_PATH="/data1/somank/llm_data/analysis/test_questions.csv"
+QUESTION_PATH="/data1/somank/llm_data/analysis/test_questions_two_hop.csv"
 SAVE_PATH="/data1/somank/llm_data/analysis"
 CACHE_DIR="/data1/somank/llm_data/llm_models/huggingface"
 
