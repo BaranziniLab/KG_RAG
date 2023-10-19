@@ -91,13 +91,11 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
 
 def get_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                             use_auth_token=True,
                                              cache_dir=CACHE_DIR
                                              )
     model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
                                                 device_map='auto',
                                                 torch_dtype=torch.float16,
-                                                use_auth_token=True,
                                                 revision=BRANCH_NAME,
                                                 cache_dir=CACHE_DIR
                                                 )
