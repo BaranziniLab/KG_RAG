@@ -89,7 +89,7 @@ def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
     prompt_template =  B_INST + SYSTEM_PROMPT + instruction + E_INST
     return prompt_template
 
-def get_model(MODEL_NAME, BRANCH_NAME, streamer, CACHE_DIR):
+def get_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
                                              use_auth_token=True,
                                              cache_dir=CACHE_DIR
