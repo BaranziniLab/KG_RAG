@@ -76,10 +76,6 @@ OR
 {{
   "answer": "False"
 }}
-OR
-{{
-  "answer": "Don't know"
-}}
 """
 INSTRUCTION = "Context:\n\n{context} \n\nQuestion: {question}"
 
@@ -94,7 +90,7 @@ def main():
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
-    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_response.csv"
+    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_binary_response.csv"
     question_df = pd.read_csv(QUESTION_PATH)  
     answer_list = []
     for index, row in question_df.iterrows():
