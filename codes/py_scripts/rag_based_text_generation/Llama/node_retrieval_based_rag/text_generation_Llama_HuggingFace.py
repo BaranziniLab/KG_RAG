@@ -75,7 +75,7 @@ vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedd
 def main():
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm = get_model(MODEL_NAME, BRANCH_NAME, streamer, CACHE_DIR)
+    llm = get_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR)
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
