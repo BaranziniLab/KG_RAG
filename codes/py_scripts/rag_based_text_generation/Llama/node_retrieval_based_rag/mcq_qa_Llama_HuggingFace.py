@@ -70,7 +70,7 @@ embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING
 
 vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function)
 
-def get_prompt(instruction, new_system_prompt=DEFAULT_SYSTEM_PROMPT):
+def get_prompt(instruction, new_system_prompt):
     SYSTEM_PROMPT = B_SYS + new_system_prompt + E_SYS
     prompt_template =  B_INST + SYSTEM_PROMPT + instruction + E_INST
     return prompt_template
