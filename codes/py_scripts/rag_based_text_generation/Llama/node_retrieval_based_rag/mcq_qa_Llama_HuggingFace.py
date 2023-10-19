@@ -119,13 +119,35 @@ def retrieve_context(question):
         node_context_extracted += ". "
     return node_context_extracted
 
+def main():    
+    start_time = time.time()
+    llm = model(MODEL_NAME, BRANCH_NAME)               
+    template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+    prompt = PromptTemplate(template=template, input_variables=["context", "question"])
+    llm_chain = LLMChain(prompt=prompt, llm=llm)
+    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_two_hop_mcq_response.csv"
+    question_df = pd.read_csv(QUESTION_PATH)  
+    answer_list = []
+    for index, row in question_df.iterrows():
+        question = row["text"]
+        context = retrieve_context(question)
+        output = llm_chain.run(context=context, question=question)
+        answer_list.append((row["text"], row["correct_node"], output))
+    answer_df = pd.DataFrame(answer_list, columns=["question", "correct_answer", "llm_answer"])
+    answer_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True) 
+    print("Completed in {} min".format((time.time()-start_time)/60))
 
-question = input("Enter your question : ")
-llm = model(MODEL_NAME, BRANCH_NAME)               
-template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-llm_chain = LLMChain(prompt=prompt, llm=llm)
-context = retrieve_context(question)
-output = llm_chain.run(context=context, question=question)
-print(output)
+# question = input("Enter your question : ")
+# llm = model(MODEL_NAME, BRANCH_NAME)               
+# template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+# prompt = PromptTemplate(template=template, input_variables=["context", "question"])
+# llm_chain = LLMChain(prompt=prompt, llm=llm)
+# context = retrieve_context(question)
+# output = llm_chain.run(context=context, question=question)
+# print(output)
 
+
+if __name__ == "__main__":
+    main()
+    
+    

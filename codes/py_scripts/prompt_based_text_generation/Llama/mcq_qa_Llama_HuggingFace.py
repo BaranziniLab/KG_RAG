@@ -31,16 +31,13 @@ INSTRUCTION = "Question: {question}"
 
 
 
-
-
-
 def main():    
     llm = model(MODEL_NAME, BRANCH_NAME)               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     start_time = time.time()
-    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_two_hop_binary_response.csv"
+    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_two_hop_mcq_response.csv"
     question_df = pd.read_csv(QUESTION_PATH)
     answer_list = []
     for index, row in question_df.iterrows():
@@ -81,14 +78,14 @@ def model(MODEL_NAME, BRANCH_NAME):
                               model_kwargs = {"temperature":0, "top_p":1})
     return llm
 
-llm = model(MODEL_NAME, BRANCH_NAME)               
-template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-prompt = PromptTemplate(template=template, input_variables=["question"])
-llm_chain = LLMChain(prompt=prompt, llm=llm)
-question = input("Enter your question : ")
-output = llm_chain.run(question)
-print(output)
+# llm = model(MODEL_NAME, BRANCH_NAME)               
+# template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+# prompt = PromptTemplate(template=template, input_variables=["question"])
+# llm_chain = LLMChain(prompt=prompt, llm=llm)
+# question = input("Enter your question : ")
+# output = llm_chain.run(question)
+# print(output)
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
