@@ -18,7 +18,7 @@ NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_h
 SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME = "main"
-QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/test_disease_gene_questions_two_hop_mcq.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 

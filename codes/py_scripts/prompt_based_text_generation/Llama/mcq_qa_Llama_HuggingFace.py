@@ -10,9 +10,9 @@ import sys
 
 MODEL_NAME="meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME="main"
-QUESTION_PATH="/data/somank/llm_data/analysis/test_questions_two_hop_mcq.csv"
-SAVE_PATH="/data/somank/llm_data/analysis"
-CACHE_DIR="/data/somank/llm_data/llm_models/huggingface"
+QUESTION_PATH="/data1/somank/llm_data/analysis/test_disease_gene_questions_two_hop_mcq.csv"
+SAVE_PATH="/data1/somank/llm_data/analysis"
+CACHE_DIR="/data1/somank/llm_data/llm_models/huggingface"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
