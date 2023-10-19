@@ -37,7 +37,7 @@ def main():
     prompt = PromptTemplate(template=template, input_variables=["question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     start_time = time.time()
-    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_two_hop_mcq_response.csv"
+    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_two_hop_mcq_disease_gene_response.csv"
     question_df = pd.read_csv(QUESTION_PATH)
     answer_list = []
     for index, row in question_df.iterrows():
