@@ -6,7 +6,7 @@ import torch
 
 MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME = "main"
-CACHE_DIR = "/data1/somank/llm_data/llm_models/huggingface"
+CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
