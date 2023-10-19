@@ -77,13 +77,11 @@ def get_prompt(instruction, new_system_prompt):
 
 def model(MODEL_NAME, BRANCH_NAME):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                             use_auth_token=True,
                                              revision=BRANCH_NAME,
                                              cache_dir=CACHE_DIR)
     model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
                                         device_map='auto',
                                         torch_dtype=torch.float16,
-                                        use_auth_token=True,
                                         revision=BRANCH_NAME,
                                         cache_dir=CACHE_DIR
                                         )
@@ -129,4 +127,5 @@ prompt = PromptTemplate(template=template, input_variables=["context", "question
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 context = retrieve_context(question)
 output = llm_chain.run(context=context, question=question)
+print(output)
 
