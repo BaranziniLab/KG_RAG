@@ -48,7 +48,7 @@ def main():
         question_dict["context"] = context_dict_list
         question_dict_list.append(question_dict)                        
     with open(os.path.join(SAVE_PATH, SAVE_NAME), "wb") as f:
-        pickle.dump(f)
+        pickle.dump(question_dict_list, f)
     print("Completed in {} min".format((time.time()-start_time)/60))
 
 
