@@ -4,6 +4,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import numpy as np
 import os
+import pickle
 import time
 
 
@@ -25,6 +26,7 @@ QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
 vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function)
 
+node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 def main():    
     start_time = time.time()
