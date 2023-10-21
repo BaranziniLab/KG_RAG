@@ -11,9 +11,9 @@ import time
 VECTOR_DB_PATH = "/data1/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
 NODE_CONTEXT_PATH = "/data1/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
 SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-QUESTION_PATH = "/data1/somank/llm_data/analysis/test_questions.csv"
+QUESTION_PATH = "/data1/somank/llm_data/analysis/test_questions_two_hop_mcq_from_disgenet.csv"
 SAVE_PATH = "/data1/somank/llm_data/analysis"
-SAVE_NAME = "extracted_context_of_true_false_test_questions.pickle"
+SAVE_NAME = "extracted_context_of_two_hop_mcq_from_disgenet.pickle"
 
 
 LIST_OF_MAX_NODE_HITS = [1, 2, 3, 4, 5]
