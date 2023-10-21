@@ -16,7 +16,7 @@ SAVE_PATH = "/data/somank/llm_data/analysis"
 SAVE_NAME = "extracted_context_of_true_false_test_questions.pickle"
 
 
-LIST_OF_MAX_NODE_HITS = [1, 3, 5]
+LIST_OF_MAX_NODE_HITS = [1, 2, 3, 4, 5]
 LIST_OF_MAX_NUMBER_OF_TOTAL_CONTEXT_FOR_A_QUESTION = [50, 100, 150]
 
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
