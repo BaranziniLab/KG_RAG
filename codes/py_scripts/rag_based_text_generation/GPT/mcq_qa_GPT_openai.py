@@ -16,10 +16,10 @@ CHAT_DEPLOYMENT_ID = None
 VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
 SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_robokop.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_monarch.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 
-save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_robokop_response.csv"
+save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_monarch_response.csv"
 
 # GPT config params
 temperature = 0
