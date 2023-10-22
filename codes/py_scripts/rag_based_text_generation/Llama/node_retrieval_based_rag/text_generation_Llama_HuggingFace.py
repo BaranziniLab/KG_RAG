@@ -39,9 +39,9 @@ It also controls the token size that goes as input to the LLM.
 """
 
 MAX_NODE_HITS = 3
+MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
-MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 
 """
 ******************************************************************************************************
