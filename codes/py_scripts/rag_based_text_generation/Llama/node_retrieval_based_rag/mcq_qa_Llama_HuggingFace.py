@@ -18,11 +18,11 @@ NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_h
 SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME = "main"
-QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_robokop.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_monarch.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
-SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_robokop_response.csv"
+SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_monarch_response.csv"
 """
 ****************************************************************************************************** 
                         Retrieval parameters
@@ -39,7 +39,7 @@ Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered 
 It also controls the token size that goes as input to the LLM.
 """
 
-MAX_NODE_HITS = 3
+MAX_NODE_HITS = 30
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
