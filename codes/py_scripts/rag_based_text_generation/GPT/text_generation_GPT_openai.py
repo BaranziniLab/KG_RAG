@@ -75,6 +75,8 @@ def main():
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
     context = retrieve_context(question)
+    print("Context:\n")
+    print(context)
     print("Here is my answer:")
     print("")
     context = "Context: "+ retrieve_context(question)
