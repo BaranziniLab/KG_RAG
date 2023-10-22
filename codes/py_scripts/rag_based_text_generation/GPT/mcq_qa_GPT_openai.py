@@ -43,7 +43,7 @@ Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered 
 It also controls the token size that goes as input to the LLM.
 """
 
-MAX_NODE_HITS = 5
+MAX_NODE_HITS = 30
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
@@ -58,10 +58,10 @@ node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
     
 system_prompt = """
-You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer in the following JSON format for the Question asked. Incase if you don't see any relevant information from the Context, use your inherent knowledge to answer the question in the following JSON format for the Question asked.
-{{
-  "answer": <correct answer>
-}}
+    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer in the following JSON format for the Question asked.
+    {{
+      "answer": <correct answer>
+    }}
 """
 
 embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
