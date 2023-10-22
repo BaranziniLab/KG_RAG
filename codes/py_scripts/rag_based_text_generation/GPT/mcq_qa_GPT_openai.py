@@ -58,7 +58,7 @@ node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
     
 system_prompt = """
-You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context and your inherent knowledge on the topic, provide your answer in the following JSON format for the Question asked:
+You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer in the following JSON format for the Question asked:
 {{
   "answer": <correct answer>
 }}
