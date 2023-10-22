@@ -22,7 +22,7 @@ QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_
 SAVE_PATH = "/data/somank/llm_data/analysis"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
-
+SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_robokop_response.csv"
 """
 ****************************************************************************************************** 
                         Retrieval parameters
@@ -124,8 +124,7 @@ def main():
     llm = model(MODEL_NAME, BRANCH_NAME)               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm_chain = LLMChain(prompt=prompt, llm=llm)
-    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_robokop_response.csv"
+    llm_chain = LLMChain(prompt=prompt, llm=llm)    
     question_df = pd.read_csv(QUESTION_PATH)  
     answer_list = []
     for index, row in question_df.iterrows():

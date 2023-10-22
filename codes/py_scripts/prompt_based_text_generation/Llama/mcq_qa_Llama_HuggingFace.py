@@ -10,9 +10,11 @@ import sys
 
 MODEL_NAME="meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME="main"
-QUESTION_PATH="/data1/somank/llm_data/analysis/test_questions_two_hop_mcq_from_disgenet.csv"
+QUESTION_PATH="/data1/somank/llm_data/analysis/test_questions_two_hop_mcq_from_robokop.csv"
 SAVE_PATH="/data1/somank/llm_data/analysis"
 CACHE_DIR="/data1/somank/llm_data/llm_models/huggingface"
+
+SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_two_hop_mcq_from_robokop_response.csv"
 
 B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
@@ -36,8 +38,7 @@ def main():
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)
-    start_time = time.time()
-    SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_prompt_based_two_hop_mcq_from_disgenet_response.csv"
+    start_time = time.time()    
     question_df = pd.read_csv(QUESTION_PATH)
     answer_list = []
     for index, row in question_df.iterrows():
