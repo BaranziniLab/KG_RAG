@@ -38,7 +38,7 @@ Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered 
 It also controls the token size that goes as input to the LLM.
 """
 
-MAX_NODE_HITS = 5
+MAX_NODE_HITS = 30
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
@@ -122,6 +122,7 @@ def retrieve_context(question):
     node_context_extracted = ""
     for node in node_hits:
         node_name = node[0].page_content
+        print(node_name)
         node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
         node_context_list = node_context.split(". ")        
         node_context_embeddings = embedding_function.embed_documents(node_context_list)
