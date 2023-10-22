@@ -53,6 +53,7 @@ QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 """
 
 max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
+node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 if PROMPT_TYPE == "mcq":
     system_prompt = """
