@@ -67,6 +67,7 @@ MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
+system_prompt = "You are an expert biomedical researcher"
 
 # Step 1
 instruction_1 = """
@@ -80,8 +81,8 @@ answer : <list of diseases>
 completion = openai.ChatCompletion.create(
     temperature=temperature, 
     top_p=1,
-    deployment_id=chat_deployment_id,
-    model=chat_model_id,
+    deployment_id=CHAT_DEPLOYMENT_ID,
+    model=CHAT_MODEL_ID,
     messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": instruction_1}
@@ -100,8 +101,8 @@ What Compounds are used to treat each of the following diseases?
 completion = openai.ChatCompletion.create(
     temperature=temperature, 
     top_p=1,
-    deployment_id=chat_deployment_id,
-    model=chat_model_id,
+    deployment_id=CHAT_DEPLOYMENT_ID,
+    model=CHAT_MODEL_ID,
     messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": instruction_2}
