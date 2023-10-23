@@ -96,7 +96,7 @@ node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 
 system_prompt = """
-You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. If you don't know the answer, report as "I don't know", don't try to make up an answer.
+You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer.
 """
 
 # Step 1
@@ -110,6 +110,7 @@ answer : <list of diseases>
 step1_context = "Context: "+ retrieve_context(instruction_1)
 step1_enriched_prompt = step1_context + "\n" + "Question: " + instruction_1
 step1_answer = get_GPT_response(step1_enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
+print(step1_answer)
 extracted_diseases = step1_answer.split("answer : [")[-1].split("]")[0]
 
 # Step 2
