@@ -109,8 +109,7 @@ answer : <list of diseases>
 """
 step1_context = "Context: "+ retrieve_context(instruction_1)
 step1_enriched_prompt = step1_context + "\n" + "Question: " + instruction_1
-step1_output = get_GPT_response(step1_enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
-step1_answer = step1_output.choices[0].message["content"]
+step1_answer = get_GPT_response(step1_enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
 extracted_diseases = step1_answer.split("answer : [")[-1].split("]")[0]
 
 # Step 2
@@ -120,8 +119,7 @@ What Compounds are used to treat each of the following diseases?
 """.format(extracted_diseases)
 step2_context = "Context: "+ retrieve_context(instruction_2)
 step2_enriched_prompt = step2_context + "\n" + "Question: " + instruction_2
-step2_output = get_GPT_response(step2_enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
-step2_answer = step2_output.choices[0].message["content"]
+step2_answer = get_GPT_response(step2_enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
 print(step2_answer)
 
 
