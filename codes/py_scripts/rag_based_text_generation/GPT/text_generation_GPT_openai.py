@@ -13,6 +13,7 @@ from utility import *
 PROMPT_TYPE = sys.argv[1]
 MAX_NODE_HITS = int(sys.argv[2])
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(sys.argv[3])
+QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(sys.argv[4])
 
 CHAT_MODEL_ID = "gpt-4"
 CHAT_DEPLOYMENT_ID = None
@@ -46,7 +47,7 @@ It also controls the token size that goes as input to the LLM.
 """
 
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
-QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
+
 
 """
 ******************************************************************************************************
