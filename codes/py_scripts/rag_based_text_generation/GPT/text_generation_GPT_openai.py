@@ -11,7 +11,7 @@ from utility import *
 
 
 PROMPT_TYPE = sys.argv[1]
-MAX_NODE_HITS = sys.argv[2]
+MAX_NODE_HITS = int(sys.argv[2])
 
 CHAT_MODEL_ID = "gpt-4"
 CHAT_DEPLOYMENT_ID = None
