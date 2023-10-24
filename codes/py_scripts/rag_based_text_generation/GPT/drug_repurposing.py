@@ -56,7 +56,7 @@ max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 system_prompt = """
-    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer in the following JSON format.
+    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. Give your answer in the following JSON format:
     {{Compounds:<list of compounds>, Diseases:<list of diseases>}}
 """
 
