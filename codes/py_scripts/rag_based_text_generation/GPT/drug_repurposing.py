@@ -19,7 +19,12 @@ SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 QUESTION_PATH = "/data/somank/llm_data/analysis/drug_reporposing_questions.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 
-save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_drug_reporposing_questions.csv"
+MAX_NODE_HITS = 1
+MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
+QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
+QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 90
+
+save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_drug_reporposing_questions_90_threshold.csv"
 
 # GPT config params
 temperature = 0
@@ -43,10 +48,7 @@ Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered 
 It also controls the token size that goes as input to the LLM.
 """
 
-MAX_NODE_HITS = 1
-MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
-QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 80
-QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
+
 
 """
 ******************************************************************************************************
