@@ -65,7 +65,8 @@ if PROMPT_TYPE == "mcq":
     """
 elif PROMPT_TYPE == "text":
     system_prompt = """
-    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. If you don't know the answer, report as "I don't know", don't try to make up an answer.
+    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. If you don't know the answer, report as "I don't know", don't try to make up an answer. Give your answer in the following JSON format:
+    {{Compounds:<list of compounds>, Diseases:<list of diseases>}}
     """
 
 embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
