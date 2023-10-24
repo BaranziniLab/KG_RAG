@@ -22,9 +22,9 @@ SAVE_PATH = "/data/somank/llm_data/analysis"
 MAX_NODE_HITS = 1
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
-QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 50
+QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 40
 
-save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_drug_reporposing_questions_50_threshold.csv"
+save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_drug_reporposing_questions_40_threshold.csv"
 
 # GPT config params
 temperature = 0
