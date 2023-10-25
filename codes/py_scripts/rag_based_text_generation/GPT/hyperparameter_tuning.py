@@ -31,7 +31,7 @@ temperature = 0
 if not CHAT_DEPLOYMENT_ID:
     CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
-max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
+
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 system_prompt = """
@@ -48,9 +48,10 @@ def main():
     answer_list = []
     for MAX_NODE_HITS in MAX_NODE_HITS_LIST:
         for QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD in QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST:     
+            max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
             for index, row in question_df.iterrows():
                 question = row["text"]
-                context = "Context: "+ retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
+                context = "Context: "+ retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, max_number_of_high_similarity_context_per_node)
                 enriched_prompt = context + "\n" + "Question: " + question
                 output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
                 answer_list.append((row["disease_1"], row["Compounds"], row["Diseases"], row["text"], output, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD))
@@ -60,7 +61,7 @@ def main():
     print("Completed in {} min".format((time.time()-start_time)/60))
     
 
-def retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD):
+def retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, max_number_of_high_similarity_context_per_node):
     node_hits = vectorstore.similarity_search_with_score(question, k=MAX_NODE_HITS)
     question_embedding = embedding_function.embed_query(question)
     node_context_extracted = ""
