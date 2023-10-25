@@ -38,20 +38,23 @@ openai.api_version = api_version
 
 
 def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
-    response = openai.ChatCompletion.create(
-        temperature=temperature, 
-        deployment_id=chat_deployment_id,
-        model=chat_model_id,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": instruction}
-        ]
-    )
-    if 'choices' in response \
-    and isinstance(response['choices'], list) \
-    and len(response) >= 0 \
-    and 'message' in response['choices'][0] \
-    and 'content' in response['choices'][0]['message']:
-        return response['choices'][0]['message']['content']
-    else:
-        return 'Unexpected response'
+    try:
+        response = openai.ChatCompletion.create(
+            temperature=temperature, 
+            deployment_id=chat_deployment_id,
+            model=chat_model_id,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": instruction}
+            ]
+        )
+        if 'choices' in response \
+        and isinstance(response['choices'], list) \
+        and len(response) >= 0 \
+        and 'message' in response['choices'][0] \
+        and 'content' in response['choices'][0]['message']:
+            return response['choices'][0]['message']['content']
+        else:
+            return 'Unexpected response'
+    except:
+        return None
