@@ -19,8 +19,8 @@ SAVE_PATH = "/data/somank/llm_data/analysis"
 
 
 
-MAX_NODE_HITS_LIST = [1, 15, 30]
-QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST = [10, 50, 90]
+MAX_NODE_HITS_LIST = [1, 10, 20, 30]
+QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST = [10, 30, 60, 90]
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 
@@ -49,8 +49,6 @@ def main():
         answer_list = []
         for threshold_index, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD in enumerate(QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST):     
             max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
-            if (node_hit_index == 0) & ((threshold_index == 0) | (threshold_index == 1)):
-                continue
             for index, row in question_df.iterrows():
                 question = row["text"]
                 context = "Context: "+ retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, max_number_of_high_similarity_context_per_node)
