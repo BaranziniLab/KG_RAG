@@ -8,6 +8,7 @@ import os
 import sys
 sys.path.insert(0, "../../")
 from utility import *
+from tqdm import tqdm
 
 CHAT_MODEL_ID = "gpt-4"
 CHAT_DEPLOYMENT_ID = None
@@ -50,7 +51,7 @@ def main():
         answer_list = []
         for QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD in QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST:     
             max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
-            for index, row in question_df.iterrows():
+            for index, row in tqdm(question_df.iterrows()):
                 question = row["text"]
                 context = "Context: "+ retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, max_number_of_high_similarity_context_per_node)
                 enriched_prompt = context + "\n" + "Question: " + question
