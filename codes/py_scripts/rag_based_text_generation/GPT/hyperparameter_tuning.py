@@ -19,8 +19,8 @@ SAVE_PATH = "/data/somank/llm_data/analysis"
 
 
 
-MAX_NODE_HITS_LIST = [1, 10, 20, 30]
-QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST = [10, 30, 50, 70, 90]
+MAX_NODE_HITS_LIST = [1, 15, 30]
+QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST = [10, 50, 90]
 MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 
@@ -46,18 +46,17 @@ def main():
     question_df = pd.read_csv(QUESTION_PATH)    
     for node_hit_index, MAX_NODE_HITS in enumerate(MAX_NODE_HITS_LIST):
         answer_list = []
-        for QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD in QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST:     
+        for threshold_index, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD in enumerate(QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST):     
             max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
             for index, row in question_df.iterrows():
                 question = row["text"]
                 context = "Context: "+ retrieve_context(question, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, max_number_of_high_similarity_context_per_node)
                 enriched_prompt = context + "\n" + "Question: " + question
                 output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
-                answer_list.append((row["disease_1"], row["Compounds"], row["Diseases"], row["text"], output, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD))                
-        answer_df = pd.DataFrame(answer_list, columns=["disease", "compound_groundTruth", "disease_groundTruth", "text", "llm_answer", "max_node_hits", "context_similarity_threshold"])
-        save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_drug_reporposing_questions_parameter_tuning_round_{}.csv".format(node_hit_index+1)
-        answer_df.to_csv(os.path.join(SAVE_PATH, save_name), index=False, header=True)
-        time.sleep(10)
+                answer_list.append((row["disease_1"], row["Compounds"], row["Diseases"], row["text"], output, MAX_NODE_HITS, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD))                                    
+            answer_df = pd.DataFrame(answer_list, columns=["disease", "compound_groundTruth", "disease_groundTruth", "text", "llm_answer", "max_node_hits", "context_similarity_threshold"])
+            save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_drug_reporposing_questions_parameter_tuning_round_{}_{}.csv".format(node_hit_index+1, threshold_index+1)
+            answer_df.to_csv(os.path.join(SAVE_PATH, save_name), index=False, header=True)
     print("Completed in {} min".format((time.time()-start_time)/60))
     
 
