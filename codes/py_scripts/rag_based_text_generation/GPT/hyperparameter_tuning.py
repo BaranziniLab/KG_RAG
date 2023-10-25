@@ -44,6 +44,7 @@ vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedd
 def main():
     start_time = time.time()
     question_df = pd.read_csv(QUESTION_PATH)    
+    question_df = question_df.head(75)
     for node_hit_index, MAX_NODE_HITS in enumerate(MAX_NODE_HITS_LIST):
         answer_list = []
         for threshold_index, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD in enumerate(QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD_LIST):     
