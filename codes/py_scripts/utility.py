@@ -82,7 +82,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
     entities = disease_entity_extractor(question)
     node_hits = []
     if entities:
-        max_number_of_high_similarity_context_per_node = context_volume/len(entities)
+        max_number_of_high_similarity_context_per_node = int(context_volume/len(entities))
         for entity in entities:
             node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
             node_hits.append(node_search_result[0][0].page_content)
@@ -104,7 +104,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         return node_context_extracted
     else:
         node_hits = vectorstore.similarity_search_with_score(question, k=5)
-        max_number_of_high_similarity_context_per_node = context_volume/5
+        max_number_of_high_similarity_context_per_node = int(context_volume/5)
         question_embedding = embedding_function.embed_query(question)
         node_context_extracted = ""
         for node in node_hits:
