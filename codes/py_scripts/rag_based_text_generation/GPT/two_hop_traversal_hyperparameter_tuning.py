@@ -51,7 +51,7 @@ def main():
             output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
             if not output:
                 time.sleep(5)
-            answer_list.append((row["disease_1"], row["disease_2"], row["central_nodes"], row["text"], output, max_number_of_high_similarity_context_per_node, max_number_of_high_similarity_context_per_node))
+            answer_list.append((row["disease_1"], row["disease_2"], row["central_nodes"], row["text"], output, max_number_of_high_similarity_context_per_node))
         answer_df = pd.DataFrame(answer_list, columns=["disease_1", "disease_2", "central_nodes_groundTruth", "text", "llm_answer", "max_node_context"])
         save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_two_hop_questions_parameter_tuning_round_{}.csv".format(context_index+1)
         answer_df.to_csv(os.path.join(SAVE_PATH, save_name), index=False, header=True)
