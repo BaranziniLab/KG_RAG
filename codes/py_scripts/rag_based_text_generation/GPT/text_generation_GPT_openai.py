@@ -96,7 +96,7 @@ def retrieve_context(question):
     entities = disease_entity_extractor(question)
     node_hits = []
     for entity in entities:
-        node_search_result = vectorstore.similarity_search_with_score(entities[0], k=1)
+        node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
         node_hits.append(node_search_result[0][0].page_content)
     print("Node hits:\n")    
     question_embedding = embedding_function.embed_query(question)
