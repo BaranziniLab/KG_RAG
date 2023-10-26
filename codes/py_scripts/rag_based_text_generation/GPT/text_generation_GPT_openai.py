@@ -82,13 +82,12 @@ def main():
     start_time = time.time()
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
-    context = retrieve_context(question)
+    context = retrieve_context(question, vectorstore, embedding_function, node_context_df, max_number_of_high_similarity_context_per_node, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
     print("Context:\n")
     print(context)
     print("Here is my answer:")
     print("")
-    context = "Context: "+ retrieve_context(question, vectorstore, embedding_function, node_context_df, max_number_of_high_similarity_context_per_node, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
-    enriched_prompt = context + "\n" + "Question: " + question
+    enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
     output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
     print(output)
 
