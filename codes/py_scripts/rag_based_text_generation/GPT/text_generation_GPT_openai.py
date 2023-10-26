@@ -87,38 +87,38 @@ def main():
     print(context)
     print("Here is my answer:")
     print("")
-    context = "Context: "+ retrieve_context(question)
+    context = "Context: "+ retrieve_context(question, vectorstore, embedding_function, node_context_df, max_number_of_high_similarity_context_per_node, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
     enriched_prompt = context + "\n" + "Question: " + question
     output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
     print(output)
 
     
             
-def retrieve_context(question):
-    entities = disease_entity_extractor(question)
-    print("Extracted entities : ", entities)
-    node_hits = []
-    for entity in entities:
-        node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
-        node_hits.append(node_search_result[0][0].page_content)
-#     print("Node hits:\n")    
-    question_embedding = embedding_function.embed_query(question)
-    node_context_extracted = ""
-    for node_name in node_hits:
-#         print(node_name)
-        node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
-        node_context_list = node_context.split(". ")        
-        node_context_embeddings = embedding_function.embed_documents(node_context_list)
-        similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
-        similarities = sorted([(e, i) for i, e in enumerate(similarities)], reverse=True)
-        percentile_threshold = np.percentile([s[0] for s in similarities], QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
-        high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
-        if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
-            high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
-        high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-        node_context_extracted += ". ".join(high_similarity_context)
-        node_context_extracted += ". "
-    return node_context_extracted
+# def retrieve_context(question):
+#     entities = disease_entity_extractor(question)
+#     print("Extracted entities : ", entities)
+#     node_hits = []
+#     for entity in entities:
+#         node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
+#         node_hits.append(node_search_result[0][0].page_content)
+# #     print("Node hits:\n")    
+#     question_embedding = embedding_function.embed_query(question)
+#     node_context_extracted = ""
+#     for node_name in node_hits:
+# #         print(node_name)
+#         node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
+#         node_context_list = node_context.split(". ")        
+#         node_context_embeddings = embedding_function.embed_documents(node_context_list)
+#         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
+#         similarities = sorted([(e, i) for i, e in enumerate(similarities)], reverse=True)
+#         percentile_threshold = np.percentile([s[0] for s in similarities], QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
+#         high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
+#         if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
+#             high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
+#         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
+#         node_context_extracted += ". ".join(high_similarity_context)
+#         node_context_extracted += ". "
+#     return node_context_extracted
         
         
 # def retrieve_context(question):
