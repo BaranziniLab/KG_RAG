@@ -65,7 +65,7 @@ if PROMPT_TYPE == "mcq":
     """
 elif PROMPT_TYPE == "text":
     system_prompt = """
-    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. Give your answer in the following JSON format:
+    You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context. Give your answer in the following JSON format:
     {{Nodes:<list of nodes>}}
     """
 
