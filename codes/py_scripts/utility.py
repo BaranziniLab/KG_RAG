@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 import openai
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -58,3 +59,20 @@ def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_
             return 'Unexpected response'
     except:
         return None
+
+
+def disease_entity_extractor(text):
+    chat_deployment_id = 'gpt-35-turbo'
+    chat_model_id = 'gpt-35-turbo'
+    temperature = 0
+    system_prompt = """
+    You are an expert disease entity extractor from a sentence and report it as JSON in the following format:
+    Diseases : <List of extracted entities>
+    """
+    resp = get_GPT_response(text, system_prompt, chat_model_id, chat_deployment_id, temperature=0)
+    try:
+        entity_dict = json.loads(resp)
+        return entity_dict["Diseases"]
+    except:
+        return None
+    
