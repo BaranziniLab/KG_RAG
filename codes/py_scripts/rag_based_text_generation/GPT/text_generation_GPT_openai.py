@@ -11,7 +11,7 @@ from utility import *
 
 
 PROMPT_TYPE = sys.argv[1]
-MAX_NODE_HITS = int(sys.argv[2])
+max_number_of_high_similarity_context_per_node = int(sys.argv[2])
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(sys.argv[3])
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(sys.argv[4])
 
@@ -53,7 +53,7 @@ MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
 ******************************************************************************************************
 """
 
-max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
+# max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 if PROMPT_TYPE == "mcq":
