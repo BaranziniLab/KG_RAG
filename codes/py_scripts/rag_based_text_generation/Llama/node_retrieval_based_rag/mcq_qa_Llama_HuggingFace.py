@@ -49,8 +49,8 @@ You are an expert biomedical researcher. For answering the Question at the end, 
 
 INSTRUCTION = "Context:\n\n{context} \n\nQuestion: {question}"
 
-vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function)
 embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
+vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function)
 
 
 
