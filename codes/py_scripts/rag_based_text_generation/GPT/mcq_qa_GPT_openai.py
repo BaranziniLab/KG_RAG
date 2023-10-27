@@ -11,7 +11,7 @@ from utility import *
 
 
 
-CHAT_MODEL_ID = "gpt-35-turbo"
+CHAT_MODEL_ID = "gpt-4"
 CHAT_DEPLOYMENT_ID = None
 VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
@@ -19,7 +19,7 @@ SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_monarch_and_robokop.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 
-save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_monarch_and_robokop_response.csv"
+save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_entity_recognition_based_node_retrieval_rag_based_two_hop_mcq_from_monarch_and_robokop_response.csv"
 
 # GPT config params
 temperature = 0
@@ -27,30 +27,11 @@ temperature = 0
 if not CHAT_DEPLOYMENT_ID:
     CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
-"""
-****************************************************************************************************** 
-                        Retrieval parameters
-Following parameter decides how many maximum associations to consider from the knowledge graph to answer a question.
 
-If a node hit for a question has N degree, then we will consider a maximum of 
-MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS 
-associations out of that N.
-
-In other words, an upper cap of "MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION" associations will be considered in total across all node hits to answer a question. 
-
-Hence, MAX_NODE_HITS and MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION can be considered as the hyperparameters that control the information flow from knowledge graph to LLM. They can be tweaked based on the complexity of the question dataset that needs to be answered.
-
-It also controls the token size that goes as input to the LLM.
-"""
-
-MAX_NODE_HITS = 30
-MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION = 150
-QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 95
+CONTEXT_VOLUME = 150
+QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 75
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 
-"""
-******************************************************************************************************
-"""
 
 max_number_of_high_similarity_context_per_node = int(MAX_NUMBER_OF_CONTEXT_FOR_A_QUESTION/MAX_NODE_HITS)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
@@ -73,7 +54,7 @@ def main():
     answer_list = []
     for index, row in question_df.iterrows():
         question = "Question: "+ row["text"]
-        context = "Context: "+ retrieve_context(row["text"])
+        context = "Context: "+ retrieve_context(row["text"], vectorstore, embedding_function, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
         enriched_prompt = context + "\n" + question
         output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
         answer_list.append((row["text"], row["correct_node"], output))
@@ -83,27 +64,6 @@ def main():
 
         
         
-def retrieve_context(question):
-    node_hits = vectorstore.similarity_search_with_score(question, k=MAX_NODE_HITS)
-    question_embedding = embedding_function.embed_query(question)
-    node_context_extracted = ""
-    for node in node_hits:
-        node_name = node[0].page_content
-        node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
-        node_context_list = node_context.split(". ")        
-        node_context_embeddings = embedding_function.embed_documents(node_context_list)
-        similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
-        similarities = sorted([(e, i) for i, e in enumerate(similarities)], reverse=True)
-        percentile_threshold = np.percentile([s[0] for s in similarities], QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
-        high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
-        if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
-            high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
-        high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-        node_context_extracted += ". ".join(high_similarity_context)
-        node_context_extracted += ". "
-    return node_context_extracted
-
-
 if __name__ == "__main__":
     main()
 
