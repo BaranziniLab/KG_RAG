@@ -70,6 +70,7 @@ def disease_entity_extractor(text):
     system_prompt = """
     You are an expert disease entity extractor from a sentence and report it as JSON in the following format:
     Diseases : <List of extracted entities>
+    Note that, only report Diseases. Do not report any other entities like Genes, Proteins, Enzymes etc.
     """
     resp = get_GPT_response(text, system_prompt, chat_model_id, chat_deployment_id, temperature=0)
     try:
