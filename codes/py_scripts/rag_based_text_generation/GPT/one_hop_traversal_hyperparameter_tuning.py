@@ -14,7 +14,7 @@ VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_al
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
 SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL = "sentence-transformers/all-MiniLM-L6-v2"
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL = "pritamdeka/S-PubMedBert-MS-MARCO"
-QUESTION_PATH = "/data/somank/llm_data/analysis/drug_reporposing_questions.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/one_hop_graph_traversal_questions.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 
 
