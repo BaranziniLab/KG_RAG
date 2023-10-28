@@ -4,6 +4,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import openai
 import os
+import time
 from dotenv import load_dotenv, find_dotenv
 import torch
 from langchain import HuggingFacePipeline
