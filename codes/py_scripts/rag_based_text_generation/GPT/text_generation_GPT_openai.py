@@ -19,7 +19,8 @@ CHAT_MODEL_ID = "gpt-4"
 CHAT_DEPLOYMENT_ID = None
 VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
-SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL = "sentence-transformers/all-MiniLM-L6-v2"
+SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL = "pritamdeka/S-PubMedBert-MS-MARCO"
 
 
 save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_node_retrieval_rag_based_two_hop_mcq_from_monarch_response.csv"
@@ -75,14 +76,15 @@ elif PROMPT_TYPE == "text":
     
 #     You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. If you don't know the answer, report as "I don't know", don't try to make up an answer.
     
-embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
-vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function)
+embedding_function_for_node_retrieval = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
+embedding_function_for_context_retrieval = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
+vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function_for_node_retrieval)
 
 def main():
     start_time = time.time()
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
-    context = retrieve_context(question, vectorstore, embedding_function, node_context_df, max_number_of_high_similarity_context_per_node, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+    context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, max_number_of_high_similarity_context_per_node, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
     print("Context:\n")
     print(context)
     print("Here is my answer:")
