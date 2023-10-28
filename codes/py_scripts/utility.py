@@ -5,6 +5,61 @@ import json
 import openai
 import os
 from dotenv import load_dotenv, find_dotenv
+import torch
+from langchain import HuggingFacePipeline
+from langchain.vectorstores import Chroma
+from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
+# from auto_gptq import exllama_set_max_input_length
+
+
+
+
+
+# Config openai library
+config_file = os.path.join(os.path.expanduser('~'), '.gpt_config.env')
+load_dotenv(config_file)
+api_key = os.environ.get('API_KEY')
+api_version = os.environ.get('API_VERSION')
+resource_endpoint = os.environ.get('RESOURCE_ENDPOINT')
+openai.api_type = "azure"
+openai.api_key = api_key
+openai.api_base = resource_endpoint
+openai.api_version = api_version
+
+torch.cuda.empty_cache()
+B_INST, E_INST = "[INST]", "[/INST]"
+B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
+
+
+def get_prompt(instruction, new_system_prompt):
+    system_prompt = B_SYS + new_system_prompt + E_SYS
+    prompt_template =  B_INST + system_prompt + instruction + E_INST
+    return prompt_template
+
+def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_new_tokens=512):
+    tokenizer = AutoTokenizer.from_pretrained(model_name,
+                                             revision=branch_name,
+                                             cache_dir=cache_dir)
+    model = AutoModelForCausalLM.from_pretrained(model_name,                                             
+                                        device_map='auto',
+                                        torch_dtype=torch.float16,
+                                        revision=branch_name,
+                                        cache_dir=cache_dir
+                                        )
+    pipe = pipeline("text-generation",
+                model = model,
+                tokenizer = tokenizer,
+                torch_dtype = torch.bfloat16,
+                device_map = "auto",
+                max_new_tokens = max_new_tokens,
+                do_sample = True
+                )    
+    llm = HuggingFacePipeline(pipeline = pipe,
+                              model_kwargs = {"temperature":temperature, "top_p":top_p})
+    return llm
+
+
 
 def create_mcq(df, source_column, target_column, node_type, predicate):
     disease_pairs = df[source_column].unique()
@@ -28,16 +83,6 @@ def create_mcq(df, source_column, target_column, node_type, predicate):
     new_df.loc[:, "text"] = "Out of the given list, which " + node_type + " " + predicate + " " + new_df.disease_1 + " and " + new_df.disease_2 + ". Given list is: " + new_df.correct_node + ", " + new_df.negative_samples
     return new_df
 
-# Config openai library
-config_file = os.path.join(os.path.expanduser('~'), '.gpt_config.env')
-load_dotenv(config_file)
-api_key = os.environ.get('API_KEY')
-api_version = os.environ.get('API_VERSION')
-resource_endpoint = os.environ.get('RESOURCE_ENDPOINT')
-openai.api_type = "azure"
-openai.api_key = api_key
-openai.api_base = resource_endpoint
-openai.api_version = api_version
 
 
 def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
@@ -79,6 +124,14 @@ def disease_entity_extractor(text):
     except:
         return None
     
+
+def load_sentence_transformer(sentence_embedding_model):
+    return SentenceTransformerEmbeddings(model_name=sentence_embedding_model)
+
+def load_chroma(vector_db_path, sentence_embedding_model):
+    embedding_function = load_sentence_transformer(sentence_embedding_model)
+    return Chroma(persist_directory=vector_db_path, embedding_function=embedding_function)
+
 def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold):
     entities = disease_entity_extractor(question)
     node_hits = []

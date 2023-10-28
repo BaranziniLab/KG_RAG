@@ -1,3 +1,10 @@
+from langchain.vectorstores import Chroma
+from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+import numpy as np
+import time
+import os
 import sys
 sys.path.insert(0, "../../")
 from utility import *
@@ -12,7 +19,7 @@ SENTENCE_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_two_hop_mcq_from_monarch_and_robokop.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 
-save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_PubMedBert_entity_recognition_based_node_retrieval_rag_based_two_hop_mcq_from_monarch_and_robokop_response.csv"
+save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_entity_recognition_based_node_retrieval_rag_based_two_hop_mcq_from_monarch_and_robokop_response.csv"
 
 # GPT config params
 temperature = 0
@@ -26,6 +33,9 @@ QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 75
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 
 
+node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
+
+
     
 system_prompt = """
     You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Based on that Context, provide your answer in the following JSON format for the Question asked.
@@ -34,9 +44,8 @@ system_prompt = """
     }}
 """
 
-vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
-embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
-node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
+embedding_function = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL)
+vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function)
 
 def main():
     start_time = time.time()
@@ -44,9 +53,9 @@ def main():
     answer_list = []
     for index, row in question_df.iterrows():
         print(index)
-        question = row["text"]
-        context =  retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
-        enriched_prompt = "Context: "+ context + "\n" + "Question: "+ question
+        question = "Question: "+ row["text"]
+        context = "Context: "+ retrieve_context(row["text"], vectorstore, embedding_function, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+        enriched_prompt = context + "\n" + question
         output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
         answer_list.append((row["text"], row["correct_node"], output))
     answer_df = pd.DataFrame(answer_list, columns=["question", "correct_answer", "llm_answer"])

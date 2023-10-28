@@ -1,15 +1,4 @@
-from langchain import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
-from langchain.vectorstores import Chroma
-from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
-from auto_gptq import exllama_set_max_input_length
-import torch
-from sklearn.metrics.pairwise import cosine_similarity
-import pandas as pd
-import numpy as np
-import os
-import time
 import sys
 sys.path.insert(0, "../../../")
 from utility import *
@@ -25,6 +14,7 @@ MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME = "main"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 
+
 CONTEXT_VOLUME = 150
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 75
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
@@ -33,13 +23,6 @@ QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 save_name = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_entity_recognition_based_node_retrieval_rag_based_drug_repurposing_questions_response.csv"
 
 
-torch.cuda.empty_cache()
-
-
-node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
-
-B_INST, E_INST = "[INST]", "[/INST]"
-B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
 
 SYSTEM_PROMPT = """
     You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. Give your answer in the following JSON format:
@@ -48,15 +31,15 @@ SYSTEM_PROMPT = """
 
 INSTRUCTION = "Context:\n\n{context} \n\nQuestion: {question}"
 
+vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
+embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
+node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
-embedding_function_for_node_retrieval = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
-embedding_function_for_context_retrieval = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
-vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function_for_node_retrieval)
 
 
 def main():
     start_time = time.time()
-    llm = model(MODEL_NAME, BRANCH_NAME)               
+    llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, max_new_tokens=1024)               
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
     llm_chain = LLMChain(prompt=prompt, llm=llm)    
@@ -71,32 +54,6 @@ def main():
     answer_df.to_csv(os.path.join(SAVE_PATH, save_name), index=False, header=True)
     print("Completed in {} min".format((time.time()-start_time)/60))
 
-def get_prompt(instruction, new_system_prompt):
-    SYSTEM_PROMPT = B_SYS + new_system_prompt + E_SYS
-    prompt_template =  B_INST + SYSTEM_PROMPT + instruction + E_INST
-    return prompt_template
-
-def model(MODEL_NAME, BRANCH_NAME):
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME,
-                                             revision=BRANCH_NAME,
-                                             cache_dir=CACHE_DIR)
-    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME,                                             
-                                        device_map='auto',
-                                        torch_dtype=torch.float16,
-                                        revision=BRANCH_NAME,
-                                        cache_dir=CACHE_DIR
-                                        )
-    pipe = pipeline("text-generation",
-                model = model,
-                tokenizer = tokenizer,
-                torch_dtype = torch.bfloat16,
-                device_map = "auto",
-                max_new_tokens = 1024,
-                do_sample = True
-                )    
-    llm = HuggingFacePipeline(pipeline = pipe,
-                              model_kwargs = {"temperature":0, "top_p":1})
-    return llm
 
 
 

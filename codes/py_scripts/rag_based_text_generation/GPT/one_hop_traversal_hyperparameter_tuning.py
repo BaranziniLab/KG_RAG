@@ -1,9 +1,3 @@
-from langchain.vectorstores import Chroma
-from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
-import pandas as pd
-import numpy as np
-import time
-import os
 import sys
 sys.path.insert(0, "../../")
 from utility import *
@@ -31,16 +25,15 @@ if not CHAT_DEPLOYMENT_ID:
     CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
 
-node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 system_prompt = """
     You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. Give your answer in the following JSON format:
     {{Compounds:<list of compounds>, Diseases:<list of diseases>}}
 """
 
-embedding_function_for_node_retrieval = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
-embedding_function_for_context_retrieval = SentenceTransformerEmbeddings(model_name=SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
-vectorstore = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding_function_for_node_retrieval)
+vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
+embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
+node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 def main():
     start_time = time.time()
