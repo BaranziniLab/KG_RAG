@@ -44,7 +44,6 @@ def main():
     question_df = pd.read_csv(QUESTION_PATH)
     answer_list = []
     for index, row in question_df.iterrows():
-        print(index)
         question = row["text"]
         context =  retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
         enriched_prompt = "Context: "+ context + "\n" + "Question: "+ question
