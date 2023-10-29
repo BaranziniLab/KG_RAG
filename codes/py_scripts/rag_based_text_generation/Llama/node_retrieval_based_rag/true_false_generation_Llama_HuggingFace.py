@@ -17,7 +17,7 @@ CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 SAVE_NAME = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_PubMedBert_and_entity_recognition_based_node_retrieval_rag_based_true_false_binary_response.csv"
 
 
-CONTEXT_VOLUME = 150
+CONTEXT_VOLUME = 130
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 75
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = 0.5
 
