@@ -11,6 +11,7 @@ SAVE_PATH = "/data/somank/llm_data/analysis"
 
 SAVE_NAME = "true_false_question_spoke_map.csv"
 
+vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
 
 def main():
     start_time = time.time()
