@@ -16,7 +16,7 @@ def main():
     start_time = time.time()
     question_df = pd.read_csv(QUESTION_PATH)
     result = []
-    for index, row in question_df:
+    for index, row in question_df.iterrows():
         question = row["text"]
         entities = disease_entity_extractor(question)
         node_hits = []
