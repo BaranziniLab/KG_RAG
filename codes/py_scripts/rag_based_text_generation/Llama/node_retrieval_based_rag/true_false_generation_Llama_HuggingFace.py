@@ -10,7 +10,7 @@ SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL = "sentence-transformers/all-MiniLM-
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL = "pritamdeka/S-PubMedBert-MS-MARCO"
 MODEL_NAME = "meta-llama/Llama-2-13b-chat-hf"
 BRANCH_NAME = "main"
-QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_one_hop_true_false.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_one_hop_true_false_v2.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 CACHE_DIR = "/data/somank/llm_data/llm_models/huggingface"
 

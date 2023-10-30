@@ -87,7 +87,7 @@ def model(MODEL_NAME, BRANCH_NAME):
                 torch_dtype = torch.bfloat16,
                 device_map = "auto",
                 max_new_tokens = 512,
-                do_sample = False
+                do_sample = True
                 )    
     llm = HuggingFacePipeline(pipeline = pipe,
                               model_kwargs = {"temperature":0, "top_p":1})
