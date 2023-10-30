@@ -25,7 +25,7 @@ def main():
         for entity in entities:
             node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
             node_hits.append(node_search_result[0][0].page_content)
-            score.append(node_search_result[-1])
+            score.append(node_search_result[-1][-1])
         result.append((row["text"], row["label"], node_hits, score))
     mapped_question_df = pd.DataFrame(result, columns=["text", "label", "node_hits", "score"])
     mapped_question_df.to_csv(os.path.join(SAVE_PATH, SAVE_NAME), index=False, header=True)
