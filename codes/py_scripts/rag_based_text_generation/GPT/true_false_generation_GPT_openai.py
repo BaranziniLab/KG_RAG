@@ -9,7 +9,7 @@ VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_al
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
 SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL = "sentence-transformers/all-MiniLM-L6-v2"
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL = "pritamdeka/S-PubMedBert-MS-MARCO"
-QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_one_hop_true_false.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/test_questions_one_hop_true_false_v2.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
 
 save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_PubMedBert_and_entity_recognition_based_node_retrieval_rag_based_true_false_binary_response.csv"
