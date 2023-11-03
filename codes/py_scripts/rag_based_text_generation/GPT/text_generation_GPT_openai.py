@@ -8,7 +8,7 @@ CONTEXT_VOLUME = int(sys.argv[2])
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(sys.argv[3])
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(sys.argv[4])
 
-CHAT_MODEL_ID = "gpt-4"
+CHAT_MODEL_ID = "gpt-35-turbo"
 CHAT_DEPLOYMENT_ID = None
 VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_all_MiniLM_L6_v2_sentence_transformer_model_with_chunk_size_650"
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
