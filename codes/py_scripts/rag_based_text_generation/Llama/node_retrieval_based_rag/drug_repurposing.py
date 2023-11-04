@@ -26,7 +26,7 @@ save_name = "_".join(MODEL_NAME.split("/")[-1].split("-"))+"_entity_recognition_
 
 SYSTEM_PROMPT = """
     You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer by considering the context and your inherent knowledge on the topic. Give your answer in the following JSON format:
-    {{Compounds:<list of compounds>, Diseases:<list of diseases>}}
+    {{Compounds:<list of compounds>}}
 """
 
 INSTRUCTION = "Context:\n\n{context} \n\nQuestion: {question}"
