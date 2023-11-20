@@ -9,8 +9,9 @@ VECTOR_DB_PATH = "/data/somank/llm_data/vectorDB/disease_nodes_chromaDB_using_al
 NODE_CONTEXT_PATH = "/data/somank/llm_data/spoke_data/context_of_disease_which_has_relation_to_genes.csv"
 SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL = "sentence-transformers/all-MiniLM-L6-v2"
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL = "pritamdeka/S-PubMedBert-MS-MARCO"
-QUESTION_PATH = "/data/somank/llm_data/analysis/disease_two_hop_validation_data.csv"
+QUESTION_PATH = "/data/somank/llm_data/analysis/two_hop_graph_traversal_questions.csv"
 SAVE_PATH = "/data/somank/llm_data/analysis"
+SAVE_NAME = "_PubMedBert_node_retrieval_rag_based_two_hop_questions_parameter_tuning_round_{}.csv"
 
 CONTEXT_VOLUME_LIST = [10, 50, 100, 150, 200]
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = 75
@@ -46,7 +47,7 @@ def main():
                 time.sleep(5)
             answer_list.append((row["disease_1"], row["disease_2"], row["central_nodes"], row["text"], output, context_volume))
         answer_df = pd.DataFrame(answer_list, columns=["disease_1", "disease_2", "central_nodes_groundTruth", "text", "llm_answer", "context_volume"])
-        save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_PubMedBert_node_retrieval_rag_based_two_hop_questions_parameter_tuning_round_{}.csv".format(context_index+1)
+        save_name = "_".join(CHAT_MODEL_ID.split("-"))+SAVE_NAME.format(context_index+1)
         answer_df.to_csv(os.path.join(SAVE_PATH, save_name), index=False, header=True)
     print("Completed in {} min".format((time.time()-start_time)/60))
     
