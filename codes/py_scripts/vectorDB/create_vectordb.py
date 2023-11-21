@@ -1,6 +1,6 @@
 import pickle
 import sys
-sys.path.insert(0,"../..")
+sys.path.insert(0, "..")
 from utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings, config_data, time
 
 
