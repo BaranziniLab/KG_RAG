@@ -12,19 +12,17 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
-# from auto_gptq import exllama_set_max_input_length
-
-
+from config_loader import *
 
 
 
 # Config openai library
-config_file = os.path.join(os.path.expanduser('~'), '.gpt_config.env')
+config_file = config_data['GPT_CONFIG_FILE']
 load_dotenv(config_file)
 api_key = os.environ.get('API_KEY')
 api_version = os.environ.get('API_VERSION')
 resource_endpoint = os.environ.get('RESOURCE_ENDPOINT')
-openai.api_type = "azure"
+openai.api_type = config_data['GPT_API_TYPE']
 openai.api_key = api_key
 openai.api_base = resource_endpoint
 openai.api_version = api_version

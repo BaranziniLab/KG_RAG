@@ -1,5 +1,0 @@
----
-# This file takes the paths of the data.
-
-DISEASE_ENTITY_PATH : '../data/disease_with_relation_to_genes.pickle'
-VECTOR_DB_PATH : '../data/vectorDB/disease_nodes_db'

@@ -1,14 +1,11 @@
 import pickle
-import time
 import sys
 sys.path.insert(0,"..")
-from utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings
-from config_loaded import *
+from utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings, config_data, time
 
 
-
-DATA_PATH = file_path_data["DISEASE_ENTITY_PATH"]
-VECTOR_DB_NAME = file_path_data["VECTOR_DB_PATH"]
+DATA_PATH = config_data["VECTOR_DB_DISEASE_ENTITY_PATH"]
+VECTOR_DB_NAME = config_data["VECTOR_DB_PATH"]
 CHUNK_SIZE = int(config_data["VECTOR_DB_CHUNK_SIZE"])
 CHUNK_OVERLAP = int(config_data["VECTOR_DB_CHUNK_OVERLAP"])
 BATCH_SIZE = int(config_data["VECTOR_DB_BATCH_SIZE"])
