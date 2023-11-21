@@ -6,5 +6,5 @@ if [ -d "$VECTOR_DB_PATH" ]; then
     echo "vectorDB already exists!"
 else
     echo "Creating vectorDB ..."
-    python ../py_scripts/vectorDB/create_vectordb.py
+    python py_scripts/vectorDB/create_vectordb.py
 fi
