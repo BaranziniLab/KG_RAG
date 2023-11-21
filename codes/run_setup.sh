@@ -1,4 +1,5 @@
 echo "Starting setting up KG-RAG ..."
+echo ""
 
 echo "Checking vectorDB for disease concepts ..."
 VECTOR_DB_PATH=$(cat "$CONFIG_FILE" | grep "VECTOR_DB_PATH" | cut -d ':' -f2 | tr -d '[:space:]')
