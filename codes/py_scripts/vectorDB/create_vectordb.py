@@ -26,8 +26,8 @@ def create_vectordb():
                          persist_directory=VECTOR_DB_NAME)
     for batch in batches:
         vectorstore.add_documents(documents=batch)
-    end_time = round((time.time() - start_time)/(60*60), 2)
-    print("VectorDB is created in {} hrs".format(end_time))
+    end_time = round((time.time() - start_time)/(60), 2)
+    print("VectorDB is created in {} mins".format(end_time))
 
 
 if __name__ == "__main__":
