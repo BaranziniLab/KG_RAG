@@ -1,7 +1,5 @@
 import pickle
-import sys
-sys.path.insert(0, "..")
-from utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings, config_data, time
+from py_scripts.utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings, config_data, time
 
 
 DATA_PATH = config_data["VECTOR_DB_DISEASE_ENTITY_PATH"]
