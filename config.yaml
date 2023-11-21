@@ -1,7 +1,7 @@
 ---
 
-VECTOR_DB_DISEASE_ENTITY_PATH : '../data/disease_with_relation_to_genes.pickle'
-VECTOR_DB_PATH : '../data/vectorDB/disease_nodes_db'
+VECTOR_DB_DISEASE_ENTITY_PATH : '/data/somank/KG_RAG/data/disease_with_relation_to_genes.pickle'
+VECTOR_DB_PATH : '/data/somank/KG_RAG/data/vectorDB/disease_nodes_db'
 VECTOR_DB_CHUNK_SIZE : 650
 VECTOR_DB_CHUNK_OVERLAP : 200
 VECTOR_DB_BATCH_SIZE : 200
