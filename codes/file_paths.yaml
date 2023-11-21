@@ -1,0 +1,5 @@
+---
+# This file takes the paths of the data. Currently, it is populated based on the default paths.
+
+DISEASE_ENTITY_PATH : '../data/disease_with_relation_to_genes.pickle'
+VECTOR_DB_PATH : ''
