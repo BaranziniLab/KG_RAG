@@ -10,6 +10,7 @@ import torch
 from langchain import HuggingFacePipeline
 from langchain.vectorstores import Chroma
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
 # from auto_gptq import exllama_set_max_input_length
 

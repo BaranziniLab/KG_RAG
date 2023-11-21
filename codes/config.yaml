@@ -1,0 +1,7 @@
+---
+# This file takes all the required hyperparameters
+
+VECTOR_DB_CHUNK_SIZE : 650
+VECTOR_DB_CHUNK_OVERLAP : 200
+VECTOR_DB_BATCH_SIZE : 200
+VECTOR_DB_SENTENCE_EMBEDDING_MODEL : 'sentence-transformers/all-MiniLM-L6-v2'

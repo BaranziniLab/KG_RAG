@@ -1,17 +1,18 @@
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 import pickle
 import time
 import sys
+sys.path.insert(0,"..")
+from utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings
+from config_loaded import *
 
 
-DATA_PATH = sys.argv[1]
-CHUNK_SIZE = int(sys.argv[2])
-CHUNK_OVERLAP = int(sys.argv[3])
-BATCH_SIZE = int(sys.argv[4])
-SENTENCE_EMBEDDING_MODEL = sys.argv[5]
-VECTOR_DB_NAME = sys.argv[6]
+
+DATA_PATH = file_path_data["DISEASE_ENTITY_PATH"]
+VECTOR_DB_NAME = file_path_data["VECTOR_DB_PATH"]
+CHUNK_SIZE = int(config_data["VECTOR_DB_CHUNK_SIZE"])
+CHUNK_OVERLAP = int(config_data["VECTOR_DB_CHUNK_OVERLAP"])
+BATCH_SIZE = int(config_data["VECTOR_DB_BATCH_SIZE"])
+SENTENCE_EMBEDDING_MODEL = config_data["VECTOR_DB_SENTENCE_EMBEDDING_MODEL"]
 
 
 def load_data():
