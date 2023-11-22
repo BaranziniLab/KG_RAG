@@ -10,6 +10,10 @@ Hence, the framework provides context by optimizing the input token space of the
 ## Table of Contents
 [Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
 
+ - [Prompting GPT-3.5-Turbo model without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
+  
+ - [Prompting GPT-3.5-Turbo model with KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-with-kg-rag-about-the-above-mentioned-fda-approved-drug)
+
 ## Example use case of KG-RAG
 Following snippet shows the news from FDA website about the drug **"setmelanotide"** approved by FDA for weight management in patients with *Bardet-Biedl Syndrome*
 
