@@ -89,9 +89,17 @@ python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt mod
 
 Example:
 
+Note: This was run in AWS p3.2xlarge EC2 instance.
+
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/011f8752-1950-40ae-a333-7f07d9ff1b18" controls="controls" style="max-width: 730px;">
 </video>
 
+#### Using Llama
+Note: If you haven't downloaded Llama during [setup](https://github.com/BaranziniLab/KG_RAG#step-5-run-the-setup-script) step, then when you run the following, it may take sometime since it will download the model first.
+
+```
+
+```
 
 
 
