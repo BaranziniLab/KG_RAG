@@ -48,6 +48,7 @@ if user_input == "Y":
             print("Aborting!")
     else:
         print("No problem. Llama will get installed on-the-fly when you run the model for the first time.")
+        print("Congratulations! Setup is completed.")
 else:
     print("As the first step, update config.yaml file and then run this python script again.")
 
