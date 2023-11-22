@@ -62,19 +62,32 @@ pip install -r requirements.txt
 
 Note: There is another yaml file called [system_prompts.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/system_prompts.yaml). This is already populated and it holds all the system prompts used in the KG-RAG framework.
 
-### Step 5: Run setup
+### Step 5: Run the setup script
 Note: Make sure you are in KG_RAG folder
 
-Setup script runs in an interactive fashion. 
+Setup script runs in an interactive fashion.
 
 Running the setup script will: 
 
-- create vector database for the disease concepts
+- create disease vector database for KG-RAG
 - download Llama model in your machine (optional, you can skip this and that is totally fine)
 
 ```
 python -m kg_rag.run_setup
 ```
+
+### Step 6: Run KG-RAG from your terminal
+Note: Make sure you are in KG_RAG folder
+
+You can run KG-RAG using GPT and Llama model. 
+
+#### Using GPT
+
+```
+python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt model - "gpt-4" or "gpt-35-turbo">
+```
+
+
 
 
 
