@@ -31,7 +31,7 @@ def main():
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
     context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
-    print("Here is my answer:")
+    print("Here is the KG-RAG based answer:")
     print("")
     output = llm_chain.run(context=context, question=question)
 
