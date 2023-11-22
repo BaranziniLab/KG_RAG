@@ -35,7 +35,7 @@ def main():
     print("")
     enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
     output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
-    print(output)
+    stream_out(output)
 
                 
 

@@ -120,6 +120,14 @@ def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_
         return None
 
 
+def stream_out(output):
+    CHUNK_SIZE = int(round(len(output)/50))
+    SLEEP_TIME = 0.1
+    for i in range(0, len(output), CHUNK_SIZE):
+        print(output[i:i+CHUNK_SIZE], end='')
+        sys.stdout.flush()
+        time.sleep(SLEEP_TIME)
+    
 def disease_entity_extractor(text):
     chat_deployment_id = 'gpt-35-turbo'
     chat_model_id = 'gpt-35-turbo'
