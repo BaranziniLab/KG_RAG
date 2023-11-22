@@ -47,8 +47,34 @@ Note: Scripts in this repository were run using python 3.10.9
 ```
 conda create -n kg_rag python=3.10.9
 conda activate kg_rag
+cd KG_RAG
 ```
 
+### Step 3: Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### Step 4: Update config.yaml 
+
+[config.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) holds all the necessary information required to run the scripts in your machine. Make sure to populate [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file accordingly.
+
+Note: There is another yaml file called [system_prompts.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/system_prompts.yaml). This is already populated and it holds all the system prompts used in the KG-RAG framework.
+
+### Step 5: Run setup
+Note: Make sure you are in KG_RAG folder
+
+Setup script runs in an interactive fashion. 
+
+Running the setup script will: 
+
+- create vector database for the disease concepts
+- download Llama model in your machine (optional, you can skip this and that is totally fine)
+
+```
+python -m kg_rag.run_setup
+```
 
 
 
