@@ -7,6 +7,9 @@ The main feature of KG-RAG is that it extracts "prompt-aware context" from the K
 
 Hence, the framework provides context by optimizing the input token space of the LLM.
 
+## Table of Contents
+[Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
+
 ## Example use case of KG-RAG
 Following snippet shows the news from FDA website about the drug **"setmelanotide"** approved by FDA for weight management in patients with *Bardet-Biedl Syndrome*
 
