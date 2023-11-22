@@ -1,8 +1,15 @@
+'''
+This script takes a question from the user in an interactive fashion and returns the KG-RAG based response in real time
+Before running this script, make sure to configure config.yaml file.
+Command line argument should be either 'gpt-4' or 'gpt-35-turbo'
+'''
+
 from kg_rag.utility import *
 import sys
 
 CHAT_MODEL_ID = sys.argv[1]
 
+SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
 CONTEXT_VOLUME = int(config_data["CONTEXT_VOLUME"])
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(config_data["QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD"])
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"])
@@ -11,12 +18,9 @@ NODE_CONTEXT_PATH = config_data["NODE_CONTEXT_PATH"]
 SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL = config_data["SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL"]
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL = config_data["SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL"]
 TEMPERATURE = config_data["LLM_TEMPERATURE"]
-SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
+
 
 CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
-
-if not CHAT_DEPLOYMENT_ID:
-    CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
 
 vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
@@ -28,7 +32,7 @@ def main():
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
     context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
-    print("Here is my answer:")
+    print("Here is the KG-RAG based answer:")
     print("")
     enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
     output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
