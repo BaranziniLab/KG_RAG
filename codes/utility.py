@@ -12,7 +12,7 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
-from kg_rag.codes.config_loader import *
+from KG_RAG.codes.config_loader import *
 
 
 

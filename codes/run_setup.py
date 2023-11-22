@@ -1,5 +1,5 @@
 import os
-from kg_rag.codes.utility import config_data
+from KG_RAG.codes.utility import config_data
 
 
 print("")
