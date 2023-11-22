@@ -1,4 +1,15 @@
 # Knowledge Graph-based Retrieval Augmented Generation (KG-RAG)
+
+## Table of Contents
+[What is KG-RAG](https://github.com/BaranziniLab/KG_RAG#what-is-kg-rag?)
+[Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
+
+ - [Prompting GPT-3.5-Turbo model without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
+  
+ - [Prompting GPT-3.5-Turbo model with KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-with-kg-rag-about-the-above-mentioned-fda-approved-drug)
+
+## What is KG-RAG?
+
 KG-RAG is a task agnostic framework that combines the explicit knwoledge of a Knowledge Graph (KG) with the implicit knwoledge of a Large Language Model (LLM). 
 
 The main feature of KG-RAG is that it extracts "prompt-aware context" from the KG, which is defined as: 
@@ -6,13 +17,6 @@ The main feature of KG-RAG is that it extracts "prompt-aware context" from the K
 **the minimal context sufficient enough to respond to the user prompt.** 
 
 Hence, the framework provides context by optimizing the input token space of the LLM.
-
-## Table of Contents
-[Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
-
- - [Prompting GPT-3.5-Turbo model without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
-  
- - [Prompting GPT-3.5-Turbo model with KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-with-kg-rag-about-the-above-mentioned-fda-approved-drug)
 
 ## Example use case of KG-RAG
 Following snippet shows the news from FDA website about the drug **"setmelanotide"** approved by FDA for weight management in patients with *Bardet-Biedl Syndrome*
