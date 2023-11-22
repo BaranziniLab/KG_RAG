@@ -20,7 +20,7 @@ The main feature of KG-RAG is that it extracts "prompt-aware context" from the K
 Hence, the framework provides context by optimizing the input token space of the LLM.
 
 ## Example use case of KG-RAG
-Following snippet shows the news from FDA website about the drug **"setmelanotide"** approved by FDA for weight management in patients with *Bardet-Biedl Syndrome*
+Following snippet shows the news from FDA [website](https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-treatment-weight-management-patients-bardet-biedl-syndrome-aged-6-or-older) about the drug **"setmelanotide"** approved by FDA for weight management in patients with *Bardet-Biedl Syndrome*
 
 <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/fc4d0b8d-0edb-461d-86c5-9d0d191bd97d" width="600" height="350">
 
@@ -86,6 +86,16 @@ You can run KG-RAG using GPT and Llama model.
 ```
 python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt model - "gpt-4" or "gpt-35-turbo">
 ```
+
+Example:
+
+<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/011f8752-1950-40ae-a333-7f07d9ff1b18" controls="controls" style="max-width: 730px;">
+</video>
+
+
+
+
+
 
 
 
