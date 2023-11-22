@@ -43,6 +43,15 @@ TRUE_FALSE_QUESTION: |
   {
     "answer": "False"
   }
+TRUE_FALSE_QUESTION_PROMPT_BASED: |
+    You are an expert biomedical researcher. Please provide your answer in the following JSON format for the Question asked:
+    {
+      "answer": "True"
+    }
+    OR
+    {
+      "answer": "False"
+    }
 
 # MCQ Question
 MCQ_QUESTION: |
@@ -51,3 +60,8 @@ MCQ_QUESTION: |
   {
     "answer": <correct answer>
   }
+MCQ_QUESTION_PROMPT_BASED: |
+    You are an expert biomedical researcher. Please provide your answer in the following JSON format for the Question asked:
+    {{
+      "answer": <correct answer>
+    }}
