@@ -128,6 +128,7 @@ def stream_out(output):
         print(output[i:i+CHUNK_SIZE], end='')
         sys.stdout.flush()
         time.sleep(SLEEP_TIME)
+    print("\n")
     
 def disease_entity_extractor(text):
     chat_deployment_id = 'gpt-35-turbo'
