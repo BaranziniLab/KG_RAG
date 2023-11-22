@@ -2,6 +2,7 @@
 
 ## Table of Contents
 [What is KG-RAG](https://github.com/BaranziniLab/KG_RAG#what-is-kg-rag?)
+
 [Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
 
  - [Prompting GPT-3.5-Turbo model without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
