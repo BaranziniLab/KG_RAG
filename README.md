@@ -12,6 +12,5 @@ Following snippet shows the news from FDA website about the drug **"setmelanotid
 
 <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/fc4d0b8d-0edb-461d-86c5-9d0d191bd97d" width="600" height="350">
 
-Inputting the 
-
+### Prompting GPT-3.5-Turbo model about this FDA approved drug
 
