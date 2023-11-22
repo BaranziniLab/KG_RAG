@@ -37,17 +37,20 @@ if user_input == "Y":
             if user_input_3 == "Y":
                 user_input_4 = input("Did you get access to use the model? Enter Y or N: ")
                 if user_input_4 == "Y":
-                    download_llama()    
+                    download_llama()
+                    print("Congratulations! Setup is completed.")
                 else:
                     print("Aborting!")
             else:
                 download_llama()
+                print("Congratulations! Setup is completed.")
         else:
             print("Aborting!")
     else:
         print("No problem. Llama will get installed on-the-fly when you run the model for the first time.")
 else:
     print("As the first step, update config.yaml file and then run this python script again.")
+
         
             
     
