@@ -1,6 +1,14 @@
 import os
 from kg_rag.utility import config_data
 
+def download_llama():
+    from kg_rag.utility import llama_model
+    try:
+        llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"])
+        print("Model is successfully downloaded to the provided cache directory!")
+    except:
+        print("Model is not downloaded! Make sure the above mentioned conditions are satisfied")
+        
 
 print("")
 print("Starting to set up KG-RAG ...")
@@ -12,3 +20,25 @@ else:
     print("Creating vectorDB ...")
     from kg_rag.vectorDB.create_vectordb import create_vectordb
     create_vectordb()
+    
+print("")
+user_input_1 = input("Do you want to install Llama model? Enter Y or N")
+if user_input == "Y":
+    user_input_2 = input("Did you update the config.yaml file with proper configuration for downloading Llama model? Enter Y or N")
+    if user_input_2 == "Y":
+        user_input_3 == input("Are you using official Llama model from Meta? Enter Y or N")
+        if user_input_3 == "Y"":
+            user_input_4 == input("Did you get access to use the model? Enter Y or N")
+            if user_input_4 == "Y"":
+                download_llama()    
+            else:
+                print("Aborting!")
+        else:
+            download_llama()
+    else:
+        print("Aborting!")
+else:
+    print("No problem. Llama will get installed on-the-fly when you run the model for the first time")
+        
+            
+    
