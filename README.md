@@ -5,9 +5,9 @@
 
 [Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
 
- - [Prompting GPT-3.5-Turbo model without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
+ - [Prompting GPT without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
   
- - [Prompting GPT-3.5-Turbo model with KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-with-kg-rag-about-the-above-mentioned-fda-approved-drug)
+ - [Prompting GPT with KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-with-kg-rag-about-the-above-mentioned-fda-approved-drug)
 
 ## What is KG-RAG?
 
@@ -24,12 +24,12 @@ Following snippet shows the news from FDA website about the drug **"setmelanotid
 
 <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/fc4d0b8d-0edb-461d-86c5-9d0d191bd97d" width="600" height="350">
 
-### Prompting GPT-3.5-Turbo model without KG-RAG about the above mentioned FDA approved drug
+### Prompting GPT-3.5-Turbo model WITHOUT KG-RAG about the above mentioned FDA approved drug
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/9ca7cee1-5f53-4f2f-9b6b-eaeefbc78835" controls="controls" style="max-width: 730px;">
 </video>
 
-### Prompting GPT-3.5-Turbo model with KG-RAG about the above mentioned FDA approved drug
+### Prompting GPT-3.5-Turbo model WITH KG-RAG about the above mentioned FDA approved drug
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/77ec19b6-e84d-4cbb-9d6d-8305e6f31b71" controls="controls" style="max-width: 730px;">
 </video>
