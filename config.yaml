@@ -11,3 +11,10 @@ VECTOR_DB_SENTENCE_EMBEDDING_MODEL : 'sentence-transformers/all-MiniLM-L6-v2'
 # Also, GPT '.env' file should contain values for API_KEY, API_VERSION, RESOURCE_ENDPOINT. We are not including those parameters in this yaml file
 GPT_CONFIG_FILE : '$HOME/.gpt_config.env'
 GPT_API_TYPE : 'azure'
+
+# Llama model name (Refer Hugging face to get the correct name for the model version you would like to use, also make sure you have the right permission to use the model)
+LLAMA_MODEL_NAME : 'meta-llama/Llama-2-13b-chat-hf'
+LLAMA_MODEL_BRANCH : 'main'
+
+# Path for caching LLM model files (When the model gets downloaded from hugging face, it will be saved in this path)
+LLM_CACHE_DIR : '/data/somank/llm_data/llm_models/huggingface'
