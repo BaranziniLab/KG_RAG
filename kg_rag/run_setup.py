@@ -26,9 +26,9 @@ user_input_1 = input("Do you want to install Llama model? Enter Y or N: ")
 if user_input_1 == "Y":
     user_input_2 = input("Did you update the config.yaml file with proper configuration for downloading Llama model? Enter Y or N: ")
     if user_input_2 == "Y":
-        user_input_3 == input("Are you using official Llama model from Meta? Enter Y or N: ")
+        user_input_3 = input("Are you using official Llama model from Meta? Enter Y or N: ")
         if user_input_3 == "Y":
-            user_input_4 == input("Did you get access to use the model? Enter Y or N: ")
+            user_input_4 = input("Did you get access to use the model? Enter Y or N: ")
             if user_input_4 == "Y":
                 download_llama()    
             else:
