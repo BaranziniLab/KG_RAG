@@ -14,31 +14,40 @@ print("")
 print("Starting to set up KG-RAG ...")
 print("")
 
-if os.path.exists(config_data["VECTOR_DB_PATH"]):
-    print("vectorDB already exists!")
-else:
-    print("Creating vectorDB ...")
-    from kg_rag.vectorDB.create_vectordb import create_vectordb
-    create_vectordb()
-    
+user_input = input("Did you update the config.yaml file? Enter Y or N: ")
 print("")
-user_input_1 = input("Do you want to install Llama model? Enter Y or N: ")
-if user_input_1 == "Y":
-    user_input_2 = input("Did you update the config.yaml file with proper configuration for downloading Llama model? Enter Y or N: ")
-    if user_input_2 == "Y":
-        user_input_3 = input("Are you using official Llama model from Meta? Enter Y or N: ")
-        if user_input_3 == "Y":
-            user_input_4 = input("Did you get access to use the model? Enter Y or N: ")
-            if user_input_4 == "Y":
-                download_llama()    
-            else:
-                print("Aborting!")
+if user_input == "Y":
+    print("Checking disease vectorDB ...")
+    try:
+        if os.path.exists(config_data["VECTOR_DB_PATH"]):
+            print("vectorDB already exists!")
         else:
-            download_llama()
+            print("Creating vectorDB ...")
+            from kg_rag.vectorDB.create_vectordb import create_vectordb
+            create_vectordb()
+    except:
+        print("Double check the path that was given in VECTOR_DB_PATH of config.yaml file")
+
+    print("")
+    user_input_1 = input("Do you want to install Llama model? Enter Y or N: ")
+    if user_input_1 == "Y":
+        user_input_2 = input("Did you update the config.yaml file with proper configuration for downloading Llama model? Enter Y or N: ")
+        if user_input_2 == "Y":
+            user_input_3 = input("Are you using official Llama model from Meta? Enter Y or N: ")
+            if user_input_3 == "Y":
+                user_input_4 = input("Did you get access to use the model? Enter Y or N: ")
+                if user_input_4 == "Y":
+                    download_llama()    
+                else:
+                    print("Aborting!")
+            else:
+                download_llama()
+        else:
+            print("Aborting!")
     else:
-        print("Aborting!")
+        print("No problem. Llama will get installed on-the-fly when you run the model for the first time")
 else:
-    print("No problem. Llama will get installed on-the-fly when you run the model for the first time")
+    print("As the first step, update config.yaml file and then run this python script again.")
         
             
     
