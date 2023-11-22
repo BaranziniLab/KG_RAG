@@ -37,7 +37,7 @@ def get_prompt(instruction, new_system_prompt):
     prompt_template =  B_INST + system_prompt + instruction + E_INST
     return prompt_template
 
-def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_new_tokens=512):
+def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_new_tokens=512, stream=False):
     tokenizer = AutoTokenizer.from_pretrained(model_name,
                                              revision=branch_name,
                                              cache_dir=cache_dir)
@@ -47,14 +47,26 @@ def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_
                                         revision=branch_name,
                                         cache_dir=cache_dir
                                         )
-    pipe = pipeline("text-generation",
-                model = model,
-                tokenizer = tokenizer,
-                torch_dtype = torch.bfloat16,
-                device_map = "auto",
-                max_new_tokens = max_new_tokens,
-                do_sample = True
-                )    
+    if not stream:
+        pipe = pipeline("text-generation",
+                    model = model,
+                    tokenizer = tokenizer,
+                    torch_dtype = torch.bfloat16,
+                    device_map = "auto",
+                    max_new_tokens = max_new_tokens,
+                    do_sample = True
+                    )
+    else:
+        streamer = TextStreamer(tokenizer)
+        pipe = pipeline("text-generation",
+                    model = model,
+                    tokenizer = tokenizer,
+                    torch_dtype = torch.bfloat16,
+                    device_map = "auto",
+                    max_new_tokens = max_new_tokens,
+                    do_sample = True,
+                    streamer=streamer
+                    )        
     llm = HuggingFacePipeline(pipeline = pipe,
                               model_kwargs = {"temperature":temperature, "top_p":top_p})
     return llm

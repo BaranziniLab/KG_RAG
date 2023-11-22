@@ -6,7 +6,6 @@ Before running this script, make sure to configure the filepaths in config.yaml 
 
 from langchain import PromptTemplate, LLMChain
 from kg_rag.utility import *
-import sys
 
 
 QUESTION_PATH = config_data["MCQ_PATH"]
