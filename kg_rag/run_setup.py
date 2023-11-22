@@ -14,7 +14,7 @@ print("")
 print("Starting to set up KG-RAG ...")
 print("")
 
-user_input = input("Did you update the config.yaml file with all necessary configurations (such as GPT .env path, vectorDB file paths, other file paths? Enter Y or N: ")
+user_input = input("Did you update the config.yaml file with all necessary configurations (such as GPT .env path, vectorDB file paths, other file paths)? Enter Y or N: ")
 print("")
 if user_input == "Y":
     print("Checking disease vectorDB ...")
