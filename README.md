@@ -36,7 +36,18 @@ Following snippet shows the news from FDA website about the drug **"setmelanotid
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/77ec19b6-e84d-4cbb-9d6d-8305e6f31b71" controls="controls" style="max-width: 730px;">
 </video>
 
+## How to run KG-RAG
 
+### Step 1: Clone the repo
+
+Clone this repository. All Biomedical data used in the paper are uploaded to this repository, hence you don't have to download that separately.
+
+### Step 2: Create a virtual environment
+Note: Scripts in this repository were run using python 3.10.9
+```
+conda create -n kg_rag python=3.10.9
+conda activate kg_rag
+```
 
 
 
