@@ -26,7 +26,7 @@ if user_input == "Y":
             from kg_rag.vectorDB.create_vectordb import create_vectordb
             create_vectordb()
     except:
-        print("Double check the path that was given in VECTOR_DB_PATH of config.yaml file")
+        print("Double check the path that was given in VECTOR_DB_PATH of config.yaml file.")
 
     print("")
     user_input_1 = input("Do you want to install Llama model? Enter Y or N: ")
@@ -45,7 +45,7 @@ if user_input == "Y":
         else:
             print("Aborting!")
     else:
-        print("No problem. Llama will get installed on-the-fly when you run the model for the first time")
+        print("No problem. Llama will get installed on-the-fly when you run the model for the first time.")
 else:
     print("As the first step, update config.yaml file and then run this python script again.")
         
