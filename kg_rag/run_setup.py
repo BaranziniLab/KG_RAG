@@ -29,7 +29,7 @@ if user_input == "Y":
         user_input_3 == input("Are you using official Llama model from Meta? Enter Y or N")
         if user_input_3 == "Y":
             user_input_4 == input("Did you get access to use the model? Enter Y or N")
-            if user_input_4 == "Y"":
+            if user_input_4 == "Y":
                 download_llama()    
             else:
                 print("Aborting!")
