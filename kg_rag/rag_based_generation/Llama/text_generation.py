@@ -26,7 +26,7 @@ node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 def main():
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR) 
+    llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, stream=True) 
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     question = input("Enter your question : ")    
     print("Retrieving context from SPOKE graph...")
