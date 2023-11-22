@@ -5,9 +5,9 @@
 
 [Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
 
- - [Prompting GPT without KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-without-kg-rag-about-the-above-mentioned-fda-approved-drug)
+ - [Prompting GPT without KG-RAG](https://github.com/BaranziniLab/KG_RAG#without-kg-rag)
   
- - [Prompting GPT with KG-RAG](https://github.com/BaranziniLab/KG_RAG#prompting-gpt-35-turbo-model-with-kg-rag-about-the-above-mentioned-fda-approved-drug)
+ - [Prompting GPT with KG-RAG](https://github.com/BaranziniLab/KG_RAG#with-kg-rag)
 
 ## What is KG-RAG?
 
