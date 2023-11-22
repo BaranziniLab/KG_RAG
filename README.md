@@ -12,5 +12,3 @@ Following snippet shows the news from FDA website about the drug **"setmelanotid
 
 <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/407b0d84-c3ef-436a-af6b-089439577df7" width="600" height="350">
 
-
-
