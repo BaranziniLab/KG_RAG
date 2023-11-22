@@ -1,5 +1,5 @@
 import pickle
-from KG_RAG.codes.utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings, config_data, time
+from kg_rag.utility import RecursiveCharacterTextSplitter, Chroma, SentenceTransformerEmbeddings, config_data, time
 
 
 DATA_PATH = config_data["VECTOR_DB_DISEASE_ENTITY_PATH"]
