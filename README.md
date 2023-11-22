@@ -12,7 +12,7 @@ Following snippet shows the news from FDA website about the drug **"setmelanotid
 
 <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/fc4d0b8d-0edb-461d-86c5-9d0d191bd97d" width="600" height="350">
 
-### Prompting GPT-3.5-Turbo model about this FDA approved drug
+### Prompting GPT-3.5-Turbo model (without KG-RAG) about the above mentioned FDA approved drug
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/9ca7cee1-5f53-4f2f-9b6b-eaeefbc78835" controls="controls" style="max-width: 730px;">
 </video>
