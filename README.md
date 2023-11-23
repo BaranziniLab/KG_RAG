@@ -19,13 +19,18 @@
 
 ## What is KG-RAG?
 
-KG-RAG is a task agnostic framework that combines the explicit knwoledge of a Knowledge Graph (KG) with the implicit knwoledge of a Large Language Model (LLM). 
+KG-RAG stands for Knowledge Graph-based Retrieval Augmented Generation. 
 
-The main feature of KG-RAG is that it extracts "prompt-aware context" from the KG, which is defined as: 
+It is a task agnostic framework that combines the explicit knwoledge of a Knowledge Graph (KG) with the implicit knwoledge of a Large Language Model (LLM). 
+
+Here, we utilize a massive biomedical KG called [SPOKE](https://spoke.ucsf.edu/). SPOKE has incorporated over 40 biomedical knowledge repositories from diverse domains, each focusing on biomedical concept like genes, proteins, drugs, compounds, diseases, and their established connections. SPOKE consists of more than 27 million nodes of 21 different types and 53 million edges of 55 types [[Ref](https://doi.org/10.1093/bioinformatics/btad080)]
+
+
+The main feature of KG-RAG is that it extracts "prompt-aware context" from SPOKE KG, which is defined as: 
 
 **the minimal context sufficient enough to respond to the user prompt.** 
 
-Hence, the framework provides context by optimizing the input token space of the LLM.
+Hence, this framework empowers a general-purpose LLM by incorporating an optimized domain-specific 'prompt-aware context' from a biomedical KG.
 
 ## Example use case of KG-RAG
 Following snippet shows the news from FDA [website](https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-treatment-weight-management-patients-bardet-biedl-syndrome-aged-6-or-older) about the drug **"setmelanotide"** approved by FDA for weight management in patients with *Bardet-Biedl Syndrome*
@@ -43,6 +48,8 @@ Following snippet shows the news from FDA [website](https://www.fda.gov/drugs/ne
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/77ec19b6-e84d-4cbb-9d6d-8305e6f31b71" controls="controls" style="max-width: 730px;">
 </video>
+
+You can see that, KG-RAG was able to give the correct information about the FDA approved drug.
 
 ## How to run KG-RAG
 
