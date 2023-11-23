@@ -49,7 +49,7 @@ Following snippet shows the news from FDA [website](https://www.fda.gov/drugs/ne
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/77ec19b6-e84d-4cbb-9d6d-8305e6f31b71" controls="controls" style="max-width: 730px;">
 </video>
 
-You can see that, KG-RAG was able to give the correct information about the FDA approved drug.
+You can see that, KG-RAG was able to give the correct information about the FDA approved [drug](https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-treatment-weight-management-patients-bardet-biedl-syndrome-aged-6-or-older).
 
 ## How to run KG-RAG
 
