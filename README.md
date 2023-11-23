@@ -4,10 +4,18 @@
 [What is KG-RAG](https://github.com/BaranziniLab/KG_RAG#what-is-kg-rag)
 
 [Example use case of KG-RAG](https://github.com/BaranziniLab/KG_RAG#example-use-case-of-kg-rag)
-
- - [Prompting GPT without KG-RAG](https://github.com/BaranziniLab/KG_RAG#without-kg-rag)
-  
+ - [Prompting GPT without KG-RAG](https://github.com/BaranziniLab/KG_RAG#without-kg-rag)  
  - [Prompting GPT with KG-RAG](https://github.com/BaranziniLab/KG_RAG#with-kg-rag)
+
+[How to run KG-RAG](https://github.com/BaranziniLab/KG_RAG#how-to-run-kg-rag)
+ - [Step 1: Clone the repo](https://github.com/BaranziniLab/KG_RAG#step-1-clone-the-repo)
+ - [Step 2: Create a virtual environment](https://github.com/BaranziniLab/KG_RAG#step-2-create-a-virtual-environment)
+ - [Step 3: Install dependencies](https://github.com/BaranziniLab/KG_RAG#step-3-install-dependencies)
+ - [Step 4: Update config.yaml](https://github.com/BaranziniLab/KG_RAG#step-4-update-configyaml)
+ - [Step 5: Run the setup script](https://github.com/BaranziniLab/KG_RAG#step-5-run-the-setup-script)
+ - [Step 6: Run KG-RAG from your terminal](https://github.com/BaranziniLab/KG_RAG#step-6-run-kg-rag-from-your-terminal)
+    - [Using GPT](https://github.com/BaranziniLab/KG_RAG#using-gpt)
+    - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
 
 ## What is KG-RAG?
 
