@@ -25,8 +25,10 @@ api_version = os.environ.get('API_VERSION')
 resource_endpoint = os.environ.get('RESOURCE_ENDPOINT')
 openai.api_type = config_data['GPT_API_TYPE']
 openai.api_key = api_key
-openai.api_base = resource_endpoint
-openai.api_version = api_version
+if resource_endpoint:
+    openai.api_base = resource_endpoint
+if api_version:
+    openai.api_version = api_version
 
 torch.cuda.empty_cache()
 B_INST, E_INST = "[INST]", "[/INST]"
@@ -131,8 +133,8 @@ def stream_out(output):
     print("\n")
     
 def disease_entity_extractor(text):
-    chat_deployment_id = 'gpt-35-turbo'
-    chat_model_id = 'gpt-35-turbo'
+    chat_model_id = 'gpt-35-turbo' if openai.api_type == 'azure' else 'gpt-3.5-turbo'
+    chat_deployment_id = chat_model_id
     temperature = 0
     system_prompt = system_prompts["DISEASE_ENTITY_EXTRACTION"]
     resp = get_GPT_response(text, system_prompt, chat_model_id, chat_deployment_id, temperature=0)
