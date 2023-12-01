@@ -7,7 +7,14 @@ Command line argument should be either 'gpt-4' or 'gpt-35-turbo'
 from kg_rag.utility import *
 import sys
 
+
 CHAT_MODEL_ID = sys.argv[1]
+if len(sys.argv) > 2:
+    INTERACTIVE = sys.argv[2]
+else:
+    INTERACTIVE = None
+
+
 
 SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
 CONTEXT_VOLUME = int(config_data["CONTEXT_VOLUME"])
@@ -28,14 +35,17 @@ embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EM
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 def main():
-    question = input("Enter your question : ")    
-    print("Retrieving context from SPOKE graph...")
-    context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
-    print("Here is the KG-RAG based answer:")
-    print("")
-    enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
-    output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
-    stream_out(output)
+    question = input("Enter your question : ")
+    if not INTERACTIVE:
+        print("Retrieving context from SPOKE graph...")
+        context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+        print("Here is the KG-RAG based answer:")
+        print("")
+        enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
+        output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
+        stream_out(output)
+    else:
+        interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, CHAT_MODEL_ID)
 
                 
 

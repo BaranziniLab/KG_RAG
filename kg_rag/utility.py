@@ -262,7 +262,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         llm = llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], stream=True) 
         llm_chain = LLMChain(prompt=prompt, llm=llm)
         output = llm_chain.run(context=node_context_extracted, question=question)
-    elif llm_type == "gpt":
+    elif "gpt" in llm_type:
         enriched_prompt = "Context: "+ node_context_extracted + "\n" + "Question: " + question
         output = get_GPT_response(enriched_prompt, system_prompts["KG_RAG_BASED_TEXT_GENERATION"], llm_type, llm_type, temperature=config_data["LLM_TEMPERATURE"])
         stream_out(output)
