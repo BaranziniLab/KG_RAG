@@ -153,7 +153,6 @@ def load_chroma(vector_db_path, sentence_embedding_model):
 
 def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold):
     entities = disease_entity_extractor(question)
-    print("Extracted entity is ", entities)
     node_hits = []
     if entities:
         max_number_of_high_similarity_context_per_node = int(context_volume/len(entities))
@@ -177,7 +176,6 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             node_context_extracted += ". "
         return node_context_extracted
     else:
-        print("else statement is activated")
         node_hits = vectorstore.similarity_search_with_score(question, k=5)
         max_number_of_high_similarity_context_per_node = int(context_volume/5)
         question_embedding = embedding_function.embed_query(question)
@@ -199,7 +197,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         return node_context_extracted
     
     
-def interactive(question, llm_type):
+def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type):
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
     entities = disease_entity_extractor(question)

@@ -40,7 +40,7 @@ def main():
         print("")
         output = llm_chain.run(context=context, question=question)
     else:
-        interactive(question, "llama")
+        interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, "llama")
 
 
 
