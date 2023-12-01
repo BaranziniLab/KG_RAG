@@ -203,7 +203,7 @@ def interactive(question, llm_type):
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
     entities = disease_entity_extractor(question)
-    max_number_of_high_similarity_context_per_node = int(CONTEXT_VOLUME/len(entities))
+    max_number_of_high_similarity_context_per_node = int(config_data["CONTEXT_VOLUME"]/len(entities))
     print("Extracted entity from the prompt = '{}'".format(", ".join(entities)))
     print(" ")
     
@@ -233,8 +233,8 @@ def interactive(question, llm_type):
         node_context_embeddings = embedding_function_for_context_retrieval.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
         similarities = sorted([(e, i) for i, e in enumerate(similarities)], reverse=True)
-        percentile_threshold = np.percentile([s[0] for s in similarities], QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD)
-        high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY]
+        percentile_threshold = np.percentile([s[0] for s in similarities], config_data["QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD"])
+        high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"]]
         if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
             high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
