@@ -17,7 +17,7 @@ try:
     print("")
     node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
     extracted_entity = node_search_result[0][0].page_content
-    print("Extracted entity is '{}'", extracted_entity)
+    print("Extracted entity is '{}'".format(extracted_entity))
     print("")
     if extracted_entity == "psoriasis":                
         print("Entity extraction is successful!")
