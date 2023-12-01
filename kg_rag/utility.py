@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+from joblib import Memory
 import json
 import openai
 import os
@@ -15,7 +16,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
 from kg_rag.config_loader import *
 
-
+memory = Memory("cachegpt", verbose=0)
 
 # Config openai library
 config_file = config_data['GPT_CONFIG_FILE']
@@ -99,7 +100,7 @@ def create_mcq(df, source_column, target_column, node_type, predicate):
     return new_df
 
 
-
+@memory.cache
 def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
     try:
         response = openai.ChatCompletion.create(
