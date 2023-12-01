@@ -1,3 +1,4 @@
+kg_rag/cachegpt
 data/vectorDB
 codes/llm_notebooks/benchmark_datasets/two_hop_questions_mcq.ipynb
 codes/llm_notebooks/benchmark_datasets/two_hop_questions.ipynb
