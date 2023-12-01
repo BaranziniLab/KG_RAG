@@ -3,6 +3,10 @@ from kg_rag.utility import *
 import sys
 
 
+if len(sys.argv) > 1:
+    INTERACTIVE = sys.argv[1]
+else:
+    INTERACTIVE = None
 
 SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
 CONTEXT_VOLUME = int(config_data["CONTEXT_VOLUME"])
@@ -24,17 +28,23 @@ embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EM
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 def main():
-    template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
-    prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, stream=True) 
-    llm_chain = LLMChain(prompt=prompt, llm=llm)
     question = input("Enter your question : ")    
-    print("Retrieving context from SPOKE graph...")
-    context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
-    print("Here is the KG-RAG based answer:")
-    print("")
-    output = llm_chain.run(context=context, question=question)
+    if not INTERACTIVE:
+        template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
+        prompt = PromptTemplate(template=template, input_variables=["context", "question"])
+        llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, stream=True) 
+        llm_chain = LLMChain(prompt=prompt, llm=llm)            
+        print("Retrieving context from SPOKE graph...")
+        context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+        print("Here is the KG-RAG based answer:")
+        print("")
+        output = llm_chain.run(context=context, question=question)
+    else:
+        interactive(question, "llama")
 
+
+
+        
 
 
 
