@@ -13,7 +13,7 @@ try:
     print("Testing entity extraction ...")
     print("")
     entity = "psoriasis"
-    print("Inputting '{}' as the entity".format(entity))    
+    print("Inputting '{}' as the entity to test ...".format(entity))    
     print("")
     node_search_result = vectorstore.similarity_search_with_score(entity, k=1)
     extracted_entity = node_search_result[0][0].page_content
