@@ -6,6 +6,7 @@ import json
 import openai
 import os
 import sys
+from tenacity import retry, stop_after_attempt, wait_random_exponential
 import time
 from dotenv import load_dotenv, find_dotenv
 import torch
@@ -99,29 +100,30 @@ def create_mcq(df, source_column, target_column, node_type, predicate):
     new_df.loc[:, "text"] = "Out of the given list, which " + node_type + " " + predicate + " " + new_df.disease_1 + " and " + new_df.disease_2 + ". Given list is: " + new_df.correct_node + ", " + new_df.negative_samples
     return new_df
 
+@retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(5))
+def fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
+    print('Calling OpenAI...')
+    response = openai.ChatCompletion.create(
+        temperature=temperature,
+        deployment_id=chat_deployment_id,
+        model=chat_model_id,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": instruction}
+        ]
+    )
+    if 'choices' in response \
+       and isinstance(response['choices'], list) \
+       and len(response) >= 0 \
+       and 'message' in response['choices'][0] \
+       and 'content' in response['choices'][0]['message']:
+        return response['choices'][0]['message']['content']
+    else:
+        return 'Unexpected response'
 
 @memory.cache
 def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
-    try:
-        response = openai.ChatCompletion.create(
-            temperature=temperature, 
-            deployment_id=chat_deployment_id,
-            model=chat_model_id,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": instruction}
-            ]
-        )
-        if 'choices' in response \
-        and isinstance(response['choices'], list) \
-        and len(response) >= 0 \
-        and 'message' in response['choices'][0] \
-        and 'content' in response['choices'][0]['message']:
-            return response['choices'][0]['message']['content']
-        else:
-            return 'Unexpected response'
-    except:
-        return None
+    return fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature)
 
 
 def stream_out(output):
@@ -132,10 +134,14 @@ def stream_out(output):
         sys.stdout.flush()
         time.sleep(SLEEP_TIME)
     print("\n")
-    
-def disease_entity_extractor(text):
+
+def get_gpt35():
     chat_model_id = 'gpt-35-turbo' if openai.api_type == 'azure' else 'gpt-3.5-turbo'
-    chat_deployment_id = chat_model_id
+    chat_deployment_id = chat_model_id if openai.api_type == 'azure' else None
+    return chat_model_id, chat_deployment_id
+
+def disease_entity_extractor(text):
+    chat_model_id, chat_deployment_id = get_gpt35()
     resp = get_GPT_response(text, system_prompts["DISEASE_ENTITY_EXTRACTION"], chat_model_id, chat_deployment_id, temperature=0)
     try:
         entity_dict = json.loads(resp)
@@ -144,8 +150,7 @@ def disease_entity_extractor(text):
         return None
     
 def disease_entity_extractor_v2(text):
-    chat_model_id = 'gpt-35-turbo' if openai.api_type == 'azure' else 'gpt-3.5-turbo'
-    chat_deployment_id = chat_model_id
+    chat_model_id, chat_deployment_id = get_gpt35()
     prompt_updated = system_prompts["DISEASE_ENTITY_EXTRACTION"] + "\n" + "Sentence : " + text
     resp = get_GPT_response(prompt_updated, system_prompts["DISEASE_ENTITY_EXTRACTION"], chat_model_id, chat_deployment_id, temperature=0)
     try:
