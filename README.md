@@ -15,6 +15,7 @@
  - [Step 5: Run the setup script](https://github.com/BaranziniLab/KG_RAG#step-5-run-the-setup-script)
  - [Step 6: Run KG-RAG from your terminal](https://github.com/BaranziniLab/KG_RAG#step-6-run-kg-rag-from-your-terminal)
     - [Using GPT](https://github.com/BaranziniLab/KG_RAG#using-gpt)
+    - [Using GPT interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-gpt-interactive-mode)
     - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
 
 ## What is KG-RAG?
@@ -114,6 +115,8 @@ Note: The following example was run on AWS p3.8xlarge EC2 instance.
 </video>
 
 #### Using GPT interactive mode
+
+This allows the user to go over each step of the process
 
 ```
 python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt model - "gpt-4" or "gpt-35-turbo"> interactive
