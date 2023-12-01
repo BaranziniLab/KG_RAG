@@ -100,7 +100,7 @@ def create_mcq(df, source_column, target_column, node_type, predicate):
     return new_df
 
 
-# @memory.cache
+@memory.cache
 def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
     try:
         response = openai.ChatCompletion.create(
