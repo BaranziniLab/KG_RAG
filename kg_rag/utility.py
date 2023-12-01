@@ -245,6 +245,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
     input("Press enter for Step 5 - LLM prompting")
     print("Prompting ", llm_type)
     if llm_type == "llama":
+        from langchain import PromptTemplate, LLMChain
         template = get_prompt("Context:\n\n{context} \n\nQuestion: {question}", system_prompts["KG_RAG_BASED_TEXT_GENERATION"])
         prompt = PromptTemplate(template=template, input_variables=["context", "question"])
         llm = llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], stream=True) 
