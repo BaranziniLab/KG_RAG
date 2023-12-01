@@ -17,6 +17,7 @@
     - [Using GPT](https://github.com/BaranziniLab/KG_RAG#using-gpt)
     - [Using GPT interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-gpt-interactive-mode)
     - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
+    - [Using Llama interactive mode]()
 
 ## What is KG-RAG?
 
