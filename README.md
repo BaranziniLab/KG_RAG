@@ -133,10 +133,16 @@ Example:
 
 Note: The following example was run on AWS p3.8xlarge EC2 instance.
 
-<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/697c1311-252d-40ec-8e87-0519138cabbf" controls="controls" style="max-width: 730px;">
+<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/8b991622-2f99-4f91-856c-2d4a8a36578e" controls="controls" style="max-width: 730px;">
 </video>
 
+#### Using Llama interactive mode
 
+This allows the user to go over each step of the process
+
+```
+python -m kg_rag.rag_based_generation.Llama.text_generation interactive
+```
 
 
 
