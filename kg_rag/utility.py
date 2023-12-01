@@ -177,6 +177,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             node_context_extracted += ". "
         return node_context_extracted
     else:
+        print("else statement is activated")
         node_hits = vectorstore.similarity_search_with_score(question, k=5)
         max_number_of_high_similarity_context_per_node = int(context_volume/5)
         question_embedding = embedding_function.embed_query(question)
