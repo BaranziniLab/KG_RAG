@@ -136,9 +136,7 @@ def stream_out(output):
 def disease_entity_extractor(text):
     chat_model_id = 'gpt-35-turbo' if openai.api_type == 'azure' else 'gpt-3.5-turbo'
     chat_deployment_id = chat_model_id
-    temperature = 0
-    system_prompt = system_prompts["DISEASE_ENTITY_EXTRACTION"]
-    resp = get_GPT_response(text, system_prompt, chat_model_id, chat_deployment_id, temperature=0)
+    resp = get_GPT_response(text, system_prompts["DISEASE_ENTITY_EXTRACTION"], chat_model_id, chat_deployment_id, temperature=0)
     try:
         entity_dict = json.loads(resp)
         return entity_dict["Diseases"]
