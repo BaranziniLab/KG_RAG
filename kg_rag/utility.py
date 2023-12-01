@@ -143,6 +143,17 @@ def disease_entity_extractor(text):
     except:
         return None
     
+def disease_entity_extractor_v2(text):
+    chat_model_id = 'gpt-35-turbo' if openai.api_type == 'azure' else 'gpt-3.5-turbo'
+    chat_deployment_id = chat_model_id
+    prompt_updated = system_prompts["DISEASE_ENTITY_EXTRACTION"] + "\n" + "Sentence : " + text
+    resp = get_GPT_response(prompt_updated, system_prompts["DISEASE_ENTITY_EXTRACTION"], chat_model_id, chat_deployment_id, temperature=0)
+    try:
+        entity_dict = json.loads(resp)
+        return entity_dict["Diseases"]
+    except:
+        return None
+    
 
 def load_sentence_transformer(sentence_embedding_model):
     return SentenceTransformerEmbeddings(model_name=sentence_embedding_model)
@@ -200,7 +211,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
 def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type):
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
-    entities = disease_entity_extractor(question)
+    entities = disease_entity_extractor_v2(question)
     max_number_of_high_similarity_context_per_node = int(config_data["CONTEXT_VOLUME"]/len(entities))
     print("Extracted entity from the prompt = '{}'".format(", ".join(entities)))
     print(" ")
