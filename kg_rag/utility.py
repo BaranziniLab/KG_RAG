@@ -153,6 +153,7 @@ def load_chroma(vector_db_path, sentence_embedding_model):
 
 def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold):
     entities = disease_entity_extractor(question)
+    print("Extracted entity is ", entities)
     node_hits = []
     if entities:
         max_number_of_high_similarity_context_per_node = int(context_volume/len(entities))
