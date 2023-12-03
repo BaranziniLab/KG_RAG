@@ -28,7 +28,7 @@ KG-RAG stands for Knowledge Graph-based Retrieval Augmented Generation.
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/a39d8f06-e16e-452d-af17-2e46b8dcdd62" controls="controls" style="max-width: 730px;">
 </video>
 
-It is a task agnostic framework that combines the explicit knowledge of a Knowledge Graph (KG) with the implicit knowledge of a Large Language Model (LLM). 
+It is a task agnostic framework that combines the explicit knowledge of a Knowledge Graph (KG) with the implicit knowledge of a Large Language Model (LLM). Here is the [arXiv preprint](https://arxiv.org/abs/2311.17330) of the work.
 
 Here, we utilize a massive biomedical KG called [SPOKE](https://spoke.ucsf.edu/) as the provider for the biomedical context. SPOKE has incorporated over 40 biomedical knowledge repositories from diverse domains, each focusing on biomedical concept like genes, proteins, drugs, compounds, diseases, and their established connections. SPOKE consists of more than 27 million nodes of 21 different types and 53 million edges of 55 types [[Ref](https://doi.org/10.1093/bioinformatics/btad080)]
 
