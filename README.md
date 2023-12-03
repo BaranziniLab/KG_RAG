@@ -1,4 +1,6 @@
-# Knowledge Graph-based Retrieval Augmented Generation (KG-RAG)
+# <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/0b2f5b42-761e-4d5b-8d6f-77c8b965f017" width="450">
+
+
 
 ## Table of Contents
 [What is KG-RAG](https://github.com/BaranziniLab/KG_RAG#what-is-kg-rag)
