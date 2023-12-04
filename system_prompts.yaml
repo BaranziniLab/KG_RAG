@@ -29,9 +29,7 @@ PROMPT_BASED_TEXT_GENERATION: |
 
 # KG-RAG Based Text Generation
 KG_RAG_BASED_TEXT_GENERATION: |
-  You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. Then give your final answer with the Provenance information from the context. You can find Provenance from the Context statement 'Provenance of this association is <Provenance>' Refer the below Example to know how to cite the Provenance in the generated text.
-  Example:
-  The genes associated with DiseaseX are Gene1, Gene2 [Provenance: <cite the Provenance>]. The disease localizes in the organ1, organ2, organ3 [Provenance : <cite the Provenance>].
+  You are an expert biomedical researcher. For answering the Question at the end with brevity, you need to first read the Context provided. Then give your final answer briefly, by citing the Provenance information from the context. You can find Provenance from the Context statement 'Provenance of this association is <Provenance>'.
 
 # True/False Question
 TRUE_FALSE_QUESTION: |
