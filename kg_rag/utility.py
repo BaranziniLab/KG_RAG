@@ -37,6 +37,90 @@ B_INST, E_INST = "[INST]", "[/INST]"
 B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
 
 
+def get_spoke_api_resp(base_uri, end_point, params=None):
+    uri = base_uri + end_point
+    if params:
+        return requests.get(uri, params=params)
+    else:
+        return requests.get(uri)
+
+@retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(5))
+def get_context_using_spoke_api(node_value):
+    type_end_point = "/api/v1/types"
+    result = get_spoke_api_resp(config_data['BASE_URI'], type_end_point)
+    data_spoke_types = result.json()
+    node_types = list(data_spoke_types["nodes"].keys())
+    edge_types = list(data_spoke_types["edges"].keys())
+    node_types_to_remove = ["DatabaseTimestamp", "Version"]
+    filtered_node_types = [node_type for node_type in node_types if node_type not in node_types_to_remove]
+    api_params = {
+        'node_filters' : filtered_node_types,
+        'edge_filters': edge_types,
+        'cutoff_Compound_max_phase': config_data['cutoff_Compound_max_phase'],
+        'cutoff_Protein_source': config_data['cutoff_Protein_source'],
+        'cutoff_DaG_diseases_sources': config_data['cutoff_DaG_diseases_sources'],
+        'cutoff_DaG_textmining': config_data['cutoff_DaG_textmining'],
+        'cutoff_CtD_phase': config_data['cutoff_CtD_phase'],
+        'cutoff_PiP_confidence': config_data['cutoff_PiP_confidence'],
+        'cutoff_ACTeG_level': config_data['cutoff_ACTeG_level']
+    }
+    node_type = "Disease"
+    attribute = "name"
+    nbr_end_point = "/api/v1/neighborhood/{}/{}/{}".format(node_type, attribute, node_value)
+    result = get_spoke_api_resp(config_data['BASE_URI'], nbr_end_point, params=api_params)
+    node_context = result.json()
+    nbr_nodes = []
+    nbr_edges = []
+    for item in node_context:
+        if "_" not in item["data"]["neo4j_type"]:
+            try:
+                if item["data"]["neo4j_type"] == "Protein":
+                    nbr_nodes.append((item["data"]["neo4j_type"], item["data"]["id"], item["data"]["properties"]["description"]))
+                else:
+                    nbr_nodes.append((item["data"]["neo4j_type"], item["data"]["id"], item["data"]["properties"]["name"]))
+            except:
+                nbr_nodes.append((item["data"]["neo4j_type"], item["data"]["id"], item["data"]["properties"]["identifier"]))
+        elif "_" in item["data"]["neo4j_type"]:
+            try:
+                provenance = ", ".join(item["data"]["properties"]["sources"])
+            except:
+                try:
+                    provenance = item["data"]["properties"]["source"]
+                    if isinstance(provenance, list):
+                        provenance = ", ".join(provenance)                    
+                except:
+                    try:                    
+                        preprint_list = ast.literal_eval(item["data"]["properties"]["preprint_list"])
+                        if len(preprint_list) > 0:                                                    
+                            provenance = ", ".join(preprint_list)
+                        else:
+                            pmid_list = ast.literal_eval(item["data"]["properties"]["pmid_list"])
+                            pmid_list = map(lambda x:"pubmedId:"+x, pmid_list)
+                            if len(pmid_list) > 0:
+                                provenance = ", ".join(pmid_list)
+                            else:
+                                provenance = "Based on data from Institute For Systems Biology (ISB)"
+                    except:                                
+                        provenance = "SPOKE-KG"                                    
+            nbr_edges.append((item["data"]["source"], item["data"]["neo4j_type"], item["data"]["target"], provenance))
+    nbr_nodes_df = pd.DataFrame(nbr_nodes, columns=["node_type", "node_id", "node_name"])
+    nbr_edges_df = pd.DataFrame(nbr_edges, columns=["source", "edge_type", "target", "provenance"])
+    merge_1 = pd.merge(nbr_edges_df, nbr_nodes_df, left_on="source", right_on="node_id").drop("node_id", axis=1)
+    merge_1.loc[:,"node_name"] = merge_1.node_type + " " + merge_1.node_name
+    merge_1.drop(["source", "node_type"], axis=1, inplace=True)
+    merge_1 = merge_1.rename(columns={"node_name":"source"})
+    merge_2 = pd.merge(merge_1, nbr_nodes_df, left_on="target", right_on="node_id").drop("node_id", axis=1)
+    merge_2.loc[:,"node_name"] = merge_2.node_type + " " + merge_2.node_name
+    merge_2.drop(["target", "node_type"], axis=1, inplace=True)
+    merge_2 = merge_2.rename(columns={"node_name":"target"})
+    merge_2 = merge_2[["source", "edge_type", "target", "provenance"]]
+    merge_2.loc[:, "predicate"] = merge_2.edge_type.apply(lambda x:x.split("_")[0])
+    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is from " + merge_2.provenance + "."
+    context = merge_2['context'].str.cat(sep=' ')
+    return context
+
+
+
 def get_prompt(instruction, new_system_prompt):
     system_prompt = B_SYS + new_system_prompt + E_SYS
     prompt_template =  B_INST + system_prompt + instruction + E_INST
@@ -77,28 +161,6 @@ def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_
     return llm
 
 
-
-def create_mcq(df, source_column, target_column, node_type, predicate):
-    disease_pairs = df[source_column].unique()
-    disease_pairs = [(disease1, disease2) for disease1 in disease_pairs for disease2 in disease_pairs if disease1 != disease2]
-
-    new_data = []
-
-    #For each source pair, find a common target and 4 negative samples
-    for disease1, disease2 in disease_pairs:
-        common_gene = set(df[df[source_column] == disease1][target_column]).intersection(set(df[df[source_column] == disease2][target_column]))
-        common_gene = list(common_gene)[0] if common_gene else None
-        # Get 4 random negative samples
-        negative_samples = df[(df[source_column] != disease1) & (df[source_column] != disease2)][target_column].sample(4).tolist()
-        new_data.append(((disease1, disease2), common_gene, negative_samples))
-
-    new_df = pd.DataFrame(new_data, columns=["disease_pair", "correct_node", "negative_samples"])
-    new_df.dropna(subset = ["correct_node"], inplace=True)
-    new_df.loc[:, "disease_1"] = new_df["disease_pair"].apply(lambda x: x[0])
-    new_df.loc[:, "disease_2"] = new_df["disease_pair"].apply(lambda x: x[1])
-    new_df.negative_samples = new_df.negative_samples.apply(lambda x:", ".join(x[0:4]))
-    new_df.loc[:, "text"] = "Out of the given list, which " + node_type + " " + predicate + " " + new_df.disease_1 + " and " + new_df.disease_2 + ". Given list is: " + new_df.correct_node + ", " + new_df.negative_samples
-    return new_df
 
 @retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(5))
 def fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
@@ -167,7 +229,7 @@ def load_chroma(vector_db_path, sentence_embedding_model):
     embedding_function = load_sentence_transformer(sentence_embedding_model)
     return Chroma(persist_directory=vector_db_path, embedding_function=embedding_function)
 
-def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold):
+def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, api=True):
     entities = disease_entity_extractor_v2(question)
     node_hits = []
     if entities:
@@ -178,7 +240,10 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         question_embedding = embedding_function.embed_query(question)
         node_context_extracted = ""
         for node_name in node_hits:
-            node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
+            if not api:
+                node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
+            else:
+                node_context = get_context_using_spoke_api(node_name)
             node_context_list = node_context.split(". ")        
             node_context_embeddings = embedding_function.embed_documents(node_context_list)
             similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -198,7 +263,10 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         node_context_extracted = ""
         for node in node_hits:
             node_name = node[0].page_content
-            node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
+            if not api:
+                node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
+            else:
+                node_context = get_context_using_spoke_api(node_name)
             node_context_list = node_context.split(". ")        
             node_context_embeddings = embedding_function.embed_documents(node_context_list)
             similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -213,7 +281,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         return node_context_extracted
     
     
-def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type):
+def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, api=True):
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
     entities = disease_entity_extractor_v2(question)
@@ -233,7 +301,10 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
     input("Press enter for Step 3 - Context extraction from SPOKE")
     node_context = []
     for node_name in node_hits:
-        node_context.append(node_context_df[node_context_df.node_name == node_name].node_context.values[0])
+        if not api:
+            node_context.append(node_context_df[node_context_df.node_name == node_name].node_context.values[0])
+        else:
+            node_context.append(get_context_using_spoke_api(node_name))
     print("Extracted Context is : ")
     print(". ".join(node_context))
     print(" ")
