@@ -16,6 +16,8 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, TextStreamer, GPTQConfig
 from kg_rag.config_loader import *
+import ast
+import requests
 
 memory = Memory("cachegpt", verbose=0)
 
