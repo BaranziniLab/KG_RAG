@@ -53,14 +53,14 @@ Following snippet shows the news from FDA [website](https://www.fda.gov/drugs/ne
 
 ### WITHOUT KG-RAG
 
-*Note: We are prompting GPT from the terminal, NOT from the chatGPT browser. Temperature parameter is set to 0 for all the analysis. Refer [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file for parameter setting*
+*Note: This example was run using KG-RAG v0.1.0. We are prompting GPT from the terminal, NOT from the chatGPT browser. Temperature parameter is set to 0 for all the analysis. Refer [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file for parameter setting*
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/9ca7cee1-5f53-4f2f-9b6b-eaeefbc78835" controls="controls" style="max-width: 730px;">
 </video>
 
 ### WITH KG-RAG
 
-*Note: Temperature parameter is set to 0 for all the analysis. Refer [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file for parameter setting*
+*Note: This example was run using KG-RAG v0.1.0. Temperature parameter is set to 0 for all the analysis. Refer [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file for parameter setting*
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/13abe937-1ad9-43b3-8cdc-29fbc5fa525b" controls="controls" style="max-width: 730px;">
 </video>
@@ -120,7 +120,7 @@ python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt mod
 
 Example:
 
-Note: The following example was run on AWS p3.8xlarge EC2 instance.
+Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.1.0.
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/13be98d6-92c7-4bb3-b455-d9d76c94e9b3" controls="controls" style="max-width: 730px;">
 </video>
@@ -142,7 +142,7 @@ python -m kg_rag.rag_based_generation.Llama.text_generation
 
 Example:
 
-Note: The following example was run on AWS p3.8xlarge EC2 instance.
+Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.1.0.
 
 <video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/8b991622-2f99-4f91-856c-2d4a8a36578e" controls="controls" style="max-width: 730px;">
 </video>
