@@ -117,9 +117,9 @@ def get_context_using_spoke_api(node_value):
     merge_2 = merge_2.rename(columns={"node_name":"target"})
     merge_2 = merge_2[["source", "edge_type", "target", "provenance"]]
     merge_2.loc[:, "predicate"] = merge_2.edge_type.apply(lambda x:x.split("_")[0])
-    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + "."
+    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
     context = merge_2['context'].str.cat(sep=' ')
-    context = node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"]
+    context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + "."
     return context
 
 
