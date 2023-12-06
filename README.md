@@ -144,7 +144,7 @@ Example:
 
 Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.3.0.
 
-<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/519fdd42-97d5-44d8-89a3-3c3b789b1e26" controls="controls" style="max-width: 730px;">
+<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/94bda923-dafb-451a-943a-1d7c65f3ffd4" controls="controls" style="max-width: 730px;">
 </video>
 
 #### Using Llama interactive mode
