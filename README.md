@@ -127,10 +127,10 @@ Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-
 
 #### Using GPT interactive mode
 
-This allows the user to go over each step of the process
+This allows the user to go over each step of the process in an interactive fashion
 
 ```
-python -m kg_rag.rag_based_generation.GPT.text_generation -i i -g <your favorite gpt model - "gpt-4" or "gpt-35-turbo"> interactive
+python -m kg_rag.rag_based_generation.GPT.text_generation -i True -g <your favorite gpt model - "gpt-4" or "gpt-35-turbo"> interactive
 ```
 
 #### Using Llama
@@ -149,10 +149,10 @@ Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-
 
 #### Using Llama interactive mode
 
-This allows the user to go over each step of the process
+This allows the user to go over each step of the process in an interactive fashion
 
 ```
-python -m kg_rag.rag_based_generation.Llama.text_generation interactive -i i -m <method-1 or method2, if nothing is mentioned it will take 'method-1'>
+python -m kg_rag.rag_based_generation.Llama.text_generation -i True -m <method-1 or method2, if nothing is mentioned it will take 'method-1'>
 ```
 
 
