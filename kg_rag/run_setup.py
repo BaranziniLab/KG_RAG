@@ -42,12 +42,12 @@ if user_input == "Y":
                 else:
                     print("Aborting!")
             else:
-                download_llama(method=1)
+                download_llama(method='method-1')
                 user_input_5 = input("Did you get a message like 'Model is not downloaded!'?  Enter Y or N: ")
                 if user_input_5 == "N":                
                     print("Congratulations! Setup is completed.")
                 else:
-                    download_llama(method=2)
+                    download_llama(method='method-2')
                     user_input_6 = input("Did you get a message like 'Model is not downloaded!'?  Enter Y or N: ")
                     if user_input_6 == "N":                        
                         print("""
@@ -55,7 +55,7 @@ if user_input == "Y":
                         Llama model was downloaded using 'LlamaTokenizer' instead of 'AutoTokenizer' method. 
                         So, when you run text generation script, please provide an extra command line argument 'method-2'.
                         For example:
-                            python -m kg_rag.rag_based_generation.Llama.text_generation method-2
+                            python -m kg_rag.rag_based_generation.Llama.text_generation -m method-2
                         """)
                         print("Congratulations! Setup is completed.")
                     else:
