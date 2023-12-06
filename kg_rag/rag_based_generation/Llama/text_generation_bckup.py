@@ -1,17 +1,12 @@
 from langchain import PromptTemplate, LLMChain
 from kg_rag.utility import *
-import argparse
+import sys
 
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument('-i', type=bool, default=False, help='Flag for interactive mode')
-parser.add_argument('-m', type=str, default='method-1', help='Method to choose for Llama model')
-args = parser.parse_args()
-
-INTERACTIVE = args.i
-METHOD = args.m
-
+if len(sys.argv) > 1:
+    INTERACTIVE = sys.argv[1]
+else:
+    INTERACTIVE = None
 
 SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
 CONTEXT_VOLUME = int(config_data["CONTEXT_VOLUME"])
@@ -37,7 +32,7 @@ def main():
     if not INTERACTIVE:
         template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
         prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-        llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, stream=True, method=METHOD) 
+        llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, stream=True) 
         llm_chain = LLMChain(prompt=prompt, llm=llm)            
         print("Retrieving context from SPOKE graph...")
         context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)

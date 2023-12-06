@@ -1,10 +1,10 @@
 import os
 from kg_rag.utility import config_data
 
-def download_llama():
+def download_llama(method):
     from kg_rag.utility import llama_model
     try:
-        llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"])
+        llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], method=method)
         print("Model is successfully downloaded to the provided cache directory!")
     except:
         print("Model is not downloaded! Make sure the above mentioned conditions are satisfied")
@@ -42,8 +42,24 @@ if user_input == "Y":
                 else:
                     print("Aborting!")
             else:
-                download_llama()
-                print("Congratulations! Setup is completed.")
+                download_llama(method=1)
+                user_input_5 = input("Did you get a message like 'Model is not downloaded!'?  Enter Y or N: ")
+                if user_input_5 == "N":                
+                    print("Congratulations! Setup is completed.")
+                else:
+                    download_llama(method=2)
+                    user_input_6 = input("Did you get a message like 'Model is not downloaded!'?  Enter Y or N: ")
+                    if user_input_6 == "N":                        
+                        print("""
+                        IMPORTANT : 
+                        Llama model was downloaded using 'LlamaTokenizer' instead of 'AutoTokenizer' method. 
+                        So, when you run text generation script, please provide an extra command line argument 'method-2'.
+                        For example:
+                            python -m kg_rag.rag_based_generation.Llama.text_generation method-2
+                        """)
+                        print("Congratulations! Setup is completed.")
+                    else:
+                        print("We have now tried two methods to download Llama. If they both do not work, then please check the Llama configuration requirement in the huggingface model card page. Aborting!")
         else:
             print("Aborting!")
     else:

@@ -129,16 +129,28 @@ def get_prompt(instruction, new_system_prompt):
     prompt_template =  B_INST + system_prompt + instruction + E_INST
     return prompt_template
 
-def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_new_tokens=512, stream=False):
-    tokenizer = AutoTokenizer.from_pretrained(model_name,
-                                             revision=branch_name,
-                                             cache_dir=cache_dir)
-    model = AutoModelForCausalLM.from_pretrained(model_name,                                             
-                                        device_map='auto',
-                                        torch_dtype=torch.float16,
-                                        revision=branch_name,
-                                        cache_dir=cache_dir
-                                        )
+def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_new_tokens=512, stream=False, method=1):
+    if method == 1:
+        tokenizer = AutoTokenizer.from_pretrained(model_name,
+                                                 revision=branch_name,
+                                                 cache_dir=cache_dir)
+        model = AutoModelForCausalLM.from_pretrained(model_name,                                             
+                                            device_map='auto',
+                                            torch_dtype=torch.float16,
+                                            revision=branch_name,
+                                            cache_dir=cache_dir
+                                            )
+    elif method == 2:
+        import transformers
+        tokenizer = transformers.LlamaTokenizer.from_pretrained(model_name, 
+                                                                revision=branch_name, 
+                                                                cache_dir=cache_dir, 
+                                                                legacy=False)
+        model = transformers.LlamaForCausalLM.from_pretrained(model_name, 
+                                                              device_map='auto', 
+                                                              torch_dtype=torch.float16, 
+                                                              revision=branch_name, 
+                                                              cache_dir=cache_dir)        
     if not stream:
         pipe = pipeline("text-generation",
                     model = model,
