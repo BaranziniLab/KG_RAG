@@ -115,14 +115,14 @@ You can run KG-RAG using GPT and Llama model.
 #### Using GPT
 
 ```
-python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt model - "gpt-4" or "gpt-35-turbo">
+python -m kg_rag.rag_based_generation.GPT.text_generation -g <your favorite gpt model - "gpt-4" or "gpt-35-turbo">
 ```
 
 Example:
 
-Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.1.0.
+Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.3.0.
 
-<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/13be98d6-92c7-4bb3-b455-d9d76c94e9b3" controls="controls" style="max-width: 730px;">
+<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/defcbff7-e777-4db6-b028-10f54c76b234" controls="controls" style="max-width: 730px;">
 </video>
 
 #### Using GPT interactive mode
@@ -130,21 +130,21 @@ Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-
 This allows the user to go over each step of the process
 
 ```
-python -m kg_rag.rag_based_generation.GPT.text_generation <your favorite gpt model - "gpt-4" or "gpt-35-turbo"> interactive
+python -m kg_rag.rag_based_generation.GPT.text_generation -i i -g <your favorite gpt model - "gpt-4" or "gpt-35-turbo"> interactive
 ```
 
 #### Using Llama
 Note: If you haven't downloaded Llama during [setup](https://github.com/BaranziniLab/KG_RAG#step-5-run-the-setup-script) step, then when you run the following, it may take sometime since it will download the model first.
 
 ```
-python -m kg_rag.rag_based_generation.Llama.text_generation
+python -m kg_rag.rag_based_generation.Llama.text_generation -m <method-1 or method2, if nothing is mentioned it will take 'method-1'>
 ```
 
 Example:
 
-Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.1.0.
+Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-RAG v0.3.0.
 
-<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/8b991622-2f99-4f91-856c-2d4a8a36578e" controls="controls" style="max-width: 730px;">
+<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/519fdd42-97d5-44d8-89a3-3c3b789b1e26" controls="controls" style="max-width: 730px;">
 </video>
 
 #### Using Llama interactive mode
@@ -152,7 +152,7 @@ Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-
 This allows the user to go over each step of the process
 
 ```
-python -m kg_rag.rag_based_generation.Llama.text_generation interactive
+python -m kg_rag.rag_based_generation.Llama.text_generation interactive -i i -m <method-1 or method2, if nothing is mentioned it will take 'method-1'>
 ```
 
 
