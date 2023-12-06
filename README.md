@@ -30,7 +30,7 @@ KG-RAG stands for Knowledge Graph-based Retrieval Augmented Generation.
 
 ### Start by watching the video of KG-RAG
 
-<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/a39d8f06-e16e-452d-af17-2e46b8dcdd62" controls="controls" style="max-width: 730px;">
+<video src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/86e5b8a3-eb58-4648-95a4-271e9c69b4ed" controls="controls" style="max-width: 730px;">
 </video>
 
 It is a task agnostic framework that combines the explicit knowledge of a Knowledge Graph (KG) with the implicit knowledge of a Large Language Model (LLM). Here is the [arXiv preprint](https://arxiv.org/abs/2311.17330) of the work.
