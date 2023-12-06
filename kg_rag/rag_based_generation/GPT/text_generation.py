@@ -5,15 +5,17 @@ Command line argument should be either 'gpt-4' or 'gpt-35-turbo'
 '''
 
 from kg_rag.utility import *
-import sys
+import argparse
 
 
-CHAT_MODEL_ID = sys.argv[1]
-if len(sys.argv) > 2:
-    INTERACTIVE = sys.argv[2]
-else:
-    INTERACTIVE = None
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-g', type=bool, default='gpt-35-turbo', help='Flag for interactive mode')
+parser.add_argument('-i', type=bool, default=False, help='Flag for interactive mode')
+args = parser.parse_args()
+
+CHAT_MODEL_ID = args.g
+INTERACTIVE = args.i
 
 
 SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
