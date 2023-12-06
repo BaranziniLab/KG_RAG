@@ -53,7 +53,7 @@ if user_input == "Y":
                         print("""
                         IMPORTANT : 
                         Llama model was downloaded using 'LlamaTokenizer' instead of 'AutoTokenizer' method. 
-                        So, when you run text generation script, please provide an extra command line argument 'method-2'.
+                        So, when you run text generation script, please provide an extra command line argument '-m method-2'.
                         For example:
                             python -m kg_rag.rag_based_generation.Llama.text_generation -m method-2
                         """)
