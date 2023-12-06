@@ -1,8 +1,12 @@
 from kg_rag.utility import *
-import sys
+import argparse
 
 
-CHAT_MODEL_ID = sys.argv[1]
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-g', type=bool, default='gpt-35-turbo', help='Flag for interactive mode')
+
+CHAT_MODEL_ID = args.g
 
 SYSTEM_PROMPT = system_prompts["PROMPT_BASED_TEXT_GENERATION"]
 TEMPERATURE = config_data["LLM_TEMPERATURE"]
