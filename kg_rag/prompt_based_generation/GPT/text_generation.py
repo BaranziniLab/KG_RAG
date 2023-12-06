@@ -4,7 +4,7 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-g', type=bool, default='gpt-35-turbo', help='Flag for interactive mode')
+parser.add_argument('-g', type=str, default='gpt-35-turbo', help='Flag for interactive mode')
 args = parser.parse_args()
 
 CHAT_MODEL_ID = args.g
