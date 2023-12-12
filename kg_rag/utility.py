@@ -297,6 +297,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
     
     
 def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, api=True, llama_method="method-1"):
+    print(" ")
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
     entities = disease_entity_extractor_v2(question)
