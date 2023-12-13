@@ -24,6 +24,7 @@ def main():
     template = get_prompt(INSTRUCTION, SYSTEM_PROMPT)
     prompt = PromptTemplate(template=template, input_variables=["question"])    
     llm_chain = LLMChain(prompt=prompt, llm=llm)
+    print(" ")
     question = input("Enter your question : ")
     print("Here is the prompt-based answer:")
     print("")

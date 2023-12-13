@@ -16,6 +16,7 @@ CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
 
 def main():
+    print(" ")
     question = input("Enter your question : ")    
     print("Here is the prompt-based answer:")
     print("")
