@@ -37,6 +37,7 @@ embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EM
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 def main():
+    print(" ")
     question = input("Enter your question : ")
     if not INTERACTIVE:
         print("Retrieving context from SPOKE graph...")
