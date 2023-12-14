@@ -69,6 +69,8 @@ You can see that, KG-RAG was able to give the correct information about the FDA 
 
 ## How to run KG-RAG
 
+**Note: At the moment, KG-RAG is specifically designed for running prompts related to Diseases. We are actively working on improving its versatility.**
+
 ### Step 1: Clone the repo
 
 Clone this repository. All Biomedical data used in the paper are uploaded to this repository, hence you don't have to download that separately.
