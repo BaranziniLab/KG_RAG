@@ -179,7 +179,7 @@ def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_
 
 @retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(5))
 def fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
-    print('Calling OpenAI...')
+    # print('Calling OpenAI...')
     response = openai.ChatCompletion.create(
         temperature=temperature,
         deployment_id=chat_deployment_id,
