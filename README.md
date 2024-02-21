@@ -23,6 +23,8 @@
     - [Using GPT interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-gpt-interactive-mode)
     - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
     - [Using Llama interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-llama-interactive-mode)
+  
+[Citation] ()
 
 ## What is KG-RAG?
 
@@ -157,6 +159,16 @@ This allows the user to go over each step of the process in an interactive fashi
 python -m kg_rag.rag_based_generation.Llama.text_generation -i True -m <method-1 or method2, if nothing is mentioned it will take 'method-1'>
 ```
 
+## Citation
+
+```
+@article{soman2023biomedical,
+  title={Biomedical knowledge graph-enhanced prompt generation for large language models},
+  author={Soman, Karthik and Rose, Peter W and Morris, John H and Akbas, Rabia E and Smith, Brett and Peetoom, Braian and Villouta-Reyes, Catalina and Cerono, Gabriel and Shi, Yongmei and Rizk-Jackson, Angela and others},
+  journal={arXiv preprint arXiv:2311.17330},
+  year={2023}
+}
+```
 
 
 
