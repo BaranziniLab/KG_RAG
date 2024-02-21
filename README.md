@@ -24,7 +24,7 @@
     - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
     - [Using Llama interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-llama-interactive-mode)
   
-[Citation] ()
+[Citation](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#citation)
 
 ## What is KG-RAG?
 
