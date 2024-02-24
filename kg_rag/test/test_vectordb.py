@@ -9,6 +9,11 @@ print("")
 try:
     vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
     print("vectorDB is loaded succesfully!")
+except:
+    print("vectorDB is not loaded. Check the path given in 'VECTOR_DB_PATH' of config.yaml")
+    print("")
+    sys.exit(1)
+try:
     print("")
     print("Testing entity extraction ...")
     print("")
@@ -27,10 +32,7 @@ try:
         print("Entity extraction is not successful. Make sure vectorDB is populated correctly. Refer 'How to run KG-RAG' Step 5")
         print("")
         sys.exit(1)
-except:
-    print("vectorDB is not loaded. Check the path given in 'VECTOR_DB_PATH' of config.yaml")
-    print("")
-    sys.exit(1)
+
     
     
     
