@@ -32,6 +32,10 @@ try:
         print("Entity extraction is not successful. Make sure vectorDB is populated correctly. Refer 'How to run KG-RAG' Step 5")
         print("")
         sys.exit(1)
+except:
+    print("Entity extraction is not successful. Make sure vectorDB is populated correctly. Refer 'How to run KG-RAG' Step 5")
+    print("")
+    sys.exit(1)
 
     
     
