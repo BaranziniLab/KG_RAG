@@ -47,7 +47,7 @@ def get_spoke_api_resp(base_uri, end_point, params=None):
         return requests.get(uri)
 
 @retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(5))
-def get_context_using_spoke_api(node_value, edge_evidence=False):
+def get_context_using_spoke_api(node_value, edge_evidence):
     type_end_point = "/api/v1/types"
     result = get_spoke_api_resp(config_data['BASE_URI'], type_end_point)
     data_spoke_types = result.json()
@@ -251,7 +251,7 @@ def load_chroma(vector_db_path, sentence_embedding_model):
     embedding_function = load_sentence_transformer(sentence_embedding_model)
     return Chroma(persist_directory=vector_db_path, embedding_function=embedding_function)
 
-def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, api=True):
+def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, edge_evidence, api=True):
     entities = disease_entity_extractor_v2(question)
     node_hits = []
     if entities:
@@ -265,7 +265,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             if not api:
                 node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
             else:
-                node_context = get_context_using_spoke_api(node_name)
+                node_context = get_context_using_spoke_api(node_name, edge_evidence=edge_evidence)
             node_context_list = node_context.split(". ")        
             node_context_embeddings = embedding_function.embed_documents(node_context_list)
             similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -303,7 +303,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         return node_context_extracted
     
     
-def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, api=True, llama_method="method-1"):
+def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, edge_evidence, api=True, llama_method="method-1"):
     print(" ")
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
@@ -327,7 +327,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         if not api:
             node_context.append(node_context_df[node_context_df.node_name == node_name].node_context.values[0])
         else:
-            node_context.append(get_context_using_spoke_api(node_name))
+            node_context.append(get_context_using_spoke_api(node_name, edge_evidence))
     print("Extracted Context is : ")
     print(". ".join(node_context))
     print(" ")
