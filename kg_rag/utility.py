@@ -339,7 +339,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         if not api:
             node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
         else:
-            node_context = get_context_using_spoke_api(node_name)
+            node_context = get_context_using_spoke_api(node_name, edge_evidence)
         node_context_list = node_context.split(". ")        
         node_context_embeddings = embedding_function_for_context_retrieval.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
