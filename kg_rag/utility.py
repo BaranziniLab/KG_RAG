@@ -368,7 +368,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         high_similarity_context = list(map(lambda x:x+'. ', high_similarity_context))        
         if edge_evidence:
             print('contex table is ...')
-            print(context_table)            
+            print(context_table.context.values[0])            
             context_table = context_table[context_table.context.isin(high_similarity_context)]
             print(high_similarity_context[0])                        
             context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
