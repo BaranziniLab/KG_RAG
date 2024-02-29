@@ -279,7 +279,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > context_sim_min_threshold]
             if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
                 high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
-            high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
+            high_similarity_context = [node_context_list[index] for index in high_similarity_indices]            
             if edge_evidence:
                 context_table = context_table[context_table.context.isin(high_similarity_context)]
                 context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
@@ -367,6 +367,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
         if edge_evidence:
             context_table = context_table[context_table.context.isin(high_similarity_context)]
+            print(context_table)
             context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
             node_context_extracted = context_table.context.str.cat(sep=' ')
         else:
