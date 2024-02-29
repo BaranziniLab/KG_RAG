@@ -64,7 +64,8 @@ def get_context_using_spoke_api(node_value):
         'cutoff_DaG_textmining': config_data['cutoff_DaG_textmining'],
         'cutoff_CtD_phase': config_data['cutoff_CtD_phase'],
         'cutoff_PiP_confidence': config_data['cutoff_PiP_confidence'],
-        'cutoff_ACTeG_level': config_data['cutoff_ACTeG_level']
+        'cutoff_ACTeG_level': config_data['cutoff_ACTeG_level'],
+        'depth' : 2
     }
     node_type = "Disease"
     attribute = "name"
