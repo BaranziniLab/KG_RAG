@@ -109,29 +109,30 @@ def get_context_using_spoke_api(node_value):
             except:
                 evidence = None
             nbr_edges.append((item["data"]["source"], item["data"]["neo4j_type"], item["data"]["target"], provenance, evidence))
-        nbr_nodes_df = pd.DataFrame(nbr_nodes, columns=["node_type", "node_id", "node_name"])
-        nbr_edges_df = pd.DataFrame(nbr_edges, columns=["source", "edge_type", "target", "provenance", "evidence"])
-        merge_1 = pd.merge(nbr_edges_df, nbr_nodes_df, left_on="source", right_on="node_id").drop("node_id", axis=1)
-        merge_1.loc[:,"node_name"] = merge_1.node_type + " " + merge_1.node_name
-        merge_1.drop(["source", "node_type"], axis=1, inplace=True)
-        merge_1 = merge_1.rename(columns={"node_name":"source"})
-        merge_2 = pd.merge(merge_1, nbr_nodes_df, left_on="target", right_on="node_id").drop("node_id", axis=1)
-        merge_2.loc[:,"node_name"] = merge_2.node_type + " " + merge_2.node_name
-        merge_2.drop(["target", "node_type"], axis=1, inplace=True)
-        merge_2 = merge_2.rename(columns={"node_name":"target"})
-        merge_2 = merge_2[["source", "edge_type", "target", "provenance", "evidence"]]
-        merge_2.loc[:, "predicate"] = merge_2.edge_type.apply(lambda x:x.split("_")[0])
-        merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
-        context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
-        return context, merge_2
+    nbr_nodes_df = pd.DataFrame(nbr_nodes, columns=["node_type", "node_id", "node_name"])
+    nbr_edges_df = pd.DataFrame(nbr_edges, columns=["source", "edge_type", "target", "provenance", "evidence"])
+    merge_1 = pd.merge(nbr_edges_df, nbr_nodes_df, left_on="source", right_on="node_id").drop("node_id", axis=1)
+    merge_1.loc[:,"node_name"] = merge_1.node_type + " " + merge_1.node_name
+    merge_1.drop(["source", "node_type"], axis=1, inplace=True)
+    merge_1 = merge_1.rename(columns={"node_name":"source"})
+    merge_2 = pd.merge(merge_1, nbr_nodes_df, left_on="target", right_on="node_id").drop("node_id", axis=1)
+    merge_2.loc[:,"node_name"] = merge_2.node_type + " " + merge_2.node_name
+    merge_2.drop(["target", "node_type"], axis=1, inplace=True)
+    merge_2 = merge_2.rename(columns={"node_name":"target"})
+    merge_2 = merge_2[["source", "edge_type", "target", "provenance", "evidence"]]
+    merge_2.loc[:, "predicate"] = merge_2.edge_type.apply(lambda x:x.split("_")[0])
+    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
+    context = merge_2.context.str.cat(sep=' ')
+    context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
+    return context, merge_2
         
-        if edge_evidence:
-            merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + " and attributes associated with this association is in the following JSON format:\n " + merge_2.evidence.astype('str') + "\n\n"
-        else:
-            merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
-        context = merge_2.context.str.cat(sep=' ')
-        context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
-    return context
+#         if edge_evidence:
+#             merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + " and attributes associated with this association is in the following JSON format:\n " + merge_2.evidence.astype('str') + "\n\n"
+#         else:
+#             merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
+#         context = merge_2.context.str.cat(sep=' ')
+#         context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
+#     return context
 
 
 
