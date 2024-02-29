@@ -121,7 +121,7 @@ def get_context_using_spoke_api(node_value):
     merge_2 = merge_2.rename(columns={"node_name":"target"})
     merge_2 = merge_2[["source", "edge_type", "target", "provenance", "evidence"]]
     merge_2.loc[:, "predicate"] = merge_2.edge_type.apply(lambda x:x.split("_")[0])
-    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
+    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + "."
     context = merge_2.context.str.cat(sep=' ')
     context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
     return context, merge_2
@@ -365,7 +365,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
             high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
         high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-        high_similarity_context = list(map(lambda x:x+'. ', high_similarity_context))        
+#         high_similarity_context = list(map(lambda x:x+'.', high_similarity_context))        
         if edge_evidence:
             print('contex table is ...')
             print(context_table.context.values[0])            
