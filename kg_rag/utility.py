@@ -281,6 +281,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
                 high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
             high_similarity_context = [node_context_list[index] for index in high_similarity_indices]            
             if edge_evidence:
+                high_similarity_context = list(map(lambda x:x+'.', high_similarity_context)) 
                 context_table = context_table[context_table.context.isin(high_similarity_context)]
                 context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
                 node_context_extracted = context_table.context.str.cat(sep=' ')
@@ -309,6 +310,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
                 high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
             high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
             if edge_evidence:
+                high_similarity_context = list(map(lambda x:x+'.', high_similarity_context))
                 context_table = context_table[context_table.context.isin(high_similarity_context)]
                 context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
                 node_context_extracted = context_table.context.str.cat(sep=' ')
@@ -364,13 +366,10 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"]]
         if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
             high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
-        high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-        high_similarity_context = list(map(lambda x:x+'.', high_similarity_context))        
+        high_similarity_context = [node_context_list[index] for index in high_similarity_indices]               
         if edge_evidence:
-            print('contex table is ...')
-            print(context_table.context.values[0])            
+            high_similarity_context = list(map(lambda x:x+'.', high_similarity_context)) 
             context_table = context_table[context_table.context.isin(high_similarity_context)]
-            print(high_similarity_context[0])                        
             context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
             node_context_extracted = context_table.context.str.cat(sep=' ')
         else:
