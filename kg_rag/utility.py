@@ -356,6 +356,8 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
             node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
         else:
             node_context, context_table = get_context_using_spoke_api(node_name)
+            print('contex table is ...')
+            print(context_table)
         node_context_list = node_context.split(". ")        
         node_context_embeddings = embedding_function_for_context_retrieval.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -368,8 +370,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         high_similarity_context = list(map(lambda x:x+'. ', high_similarity_context))        
         if edge_evidence:
             context_table = context_table[context_table.context.isin(high_similarity_context)]
-            print(high_similarity_context[0])
-            print(context_table.context.values[0])
+            print(high_similarity_context[0])            
             print(context_table)
             context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
             node_context_extracted = context_table.context.str.cat(sep=' ')
