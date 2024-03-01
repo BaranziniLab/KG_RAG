@@ -30,7 +30,7 @@ LLAMA_MODEL_BRANCH : 'main'
 
 # Path for caching LLM model files (When the model gets downloaded from hugging face, it will be saved in this path)
 LLM_CACHE_DIR : '/data/somank/llm_data/llm_models/huggingface'
-LLM_TEMPERATURE : 0
+LLM_TEMPERATURE : 0.7
 
 # Path to save results
 SAVE_RESULTS_PATH : '/data/somank/KG_RAG/data/analysis_results'
