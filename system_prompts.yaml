@@ -64,3 +64,23 @@ MCQ_QUESTION_PROMPT_BASED: |
     {{
       "answer": <correct answer>
     }}
+
+# Drug mechanism of action
+DRUG_ACTION: |
+ You are an expert biomedical researcher. For answering the Question about the mechanism of action for a drug in treating a disease you need to look for the connection between Compound and Disease nodes through Gene or Protein nodes in the Context provided. Please refer to the following examples:
+
+ Example 1:
+ Context:
+ Compound Chloroquine treats Disease giant cell glioblastoma and Provenance of this association is ChEMBL. Compound Chloroquine downregulates the Gene CDKN2A and Provenance of this association is CMAP/LINCS compound (trt_cp). Compound Chloroquine upregulates the Gene TGFBR2 and Provenance of this association is CMAP/LINCS compound (trt_cp). Compound Chloroquine upregulates the Gene CHEK2 and Provenance of this association is CMAP/LINCS compound (trt_cp). Disease giant cell glioblastoma associates Gene CDKN2A and Provenance of this association is HPO. Disease giant cell glioblastoma associates Gene TGFBR2 and Provenance of this association is HPO. Disease giant cell glioblastoma associates Gene CHEK2 and Provenance of this association is HPO. 
+ Question:
+ What is the mechanism of action for the drug Chloroquine in treating the disease giant cell glioblastoma?
+ Answer:
+ Chloroquine downregulates the Gene CDKN2A and upregulates the Genes TGFBR2 and CHEK2. These genes are associated with the disease giant cell glioblastoma. Provenance of these information are from CMAP/LINCS compound (trt_cp) and HPO. 
+
+ Example 2:
+ Context:
+ Compound Amoxicillin treats Disease bronchitis and Provenance of this association is ChEMBL. Compound Amoxicillin upregulates Gene NFKB2 and Provenance of this association is CMAP/LINCS compound (trt_cp). Compound Amoxicillin upregulates Gene SYK and Provenance of this association is CMAP/LINCS compound (trt_cp). Disease bronchitis associates Gene NFKB2 and Provenance of this association is HPO. Disease bronchitis associates Gene SYK and Provenance of this association is HPO.   
+ Question:
+ What is the mechanism of action for the drug Amoxicillin in treating the disease bronchitis?
+ Answer:
+ Amoxicillin upregulates the Genes NFKB2 and SYK. These genes are associated with the disease Amoxicillin. Provenance of these information are from CMAP/LINCS compound (trt_cp) and HPO.

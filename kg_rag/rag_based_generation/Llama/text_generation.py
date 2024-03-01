@@ -48,7 +48,7 @@ def main():
         print("")
         output = llm_chain.run(context=context, question=question)
     else:
-        interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, "llama", EDGE_EVIDENCE, llama_method=METHOD)
+        interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, "llama", EDGE_EVIDENCE, SYSTEM_PROMPT, llama_method=METHOD)
 
 
 

@@ -321,7 +321,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
         return node_context_extracted
     
     
-def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, edge_evidence, api=True, llama_method="method-1"):
+def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, edge_evidence, system_prompt, api=True, llama_method="method-1"):
     print(" ")
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
@@ -384,12 +384,12 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
     print("Prompting ", llm_type)
     if llm_type == "llama":
         from langchain import PromptTemplate, LLMChain
-        template = get_prompt("Context:\n\n{context} \n\nQuestion: {question}", system_prompts["KG_RAG_BASED_TEXT_GENERATION"])
+        template = get_prompt("Context:\n\n{context} \n\nQuestion: {question}", system_prompt)
         prompt = PromptTemplate(template=template, input_variables=["context", "question"])
         llm = llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], stream=True, method=llama_method) 
         llm_chain = LLMChain(prompt=prompt, llm=llm)
         output = llm_chain.run(context=node_context_extracted, question=question)
     elif "gpt" in llm_type:
         enriched_prompt = "Context: "+ node_context_extracted + "\n" + "Question: " + question
-        output = get_GPT_response(enriched_prompt, system_prompts["KG_RAG_BASED_TEXT_GENERATION"], llm_type, llm_type, temperature=config_data["LLM_TEMPERATURE"])
+        output = get_GPT_response(enriched_prompt, system_prompt, llm_type, llm_type, temperature=config_data["LLM_TEMPERATURE"])
         stream_out(output)
