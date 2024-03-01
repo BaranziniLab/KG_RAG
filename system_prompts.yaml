@@ -25,7 +25,7 @@ DRUG_REPURPOSING: |
 
 # Prompt Based Text Generation
 PROMPT_BASED_TEXT_GENERATION: |
-  You are an expert biomedical researcher. Answer the Question at the end
+  You are an expert biomedical researcher. Answer the Question at the end with brevity.
 
 # KG-RAG Based Text Generation
 KG_RAG_BASED_TEXT_GENERATION: |
