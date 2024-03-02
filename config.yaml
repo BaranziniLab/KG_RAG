@@ -52,5 +52,5 @@ cutoff_CtD_phase : 3
 cutoff_PiP_confidence : 0.7
 cutoff_ACTeG_level : ['Low', 'Medium', 'High']
 depth : 1
-cutoff_DpL_average_prevalence : 0
+cutoff_DpL_average_prevalence : 1
 

@@ -65,6 +65,7 @@ def get_context_using_spoke_api(node_value):
         'cutoff_CtD_phase': config_data['cutoff_CtD_phase'],
         'cutoff_PiP_confidence': config_data['cutoff_PiP_confidence'],
         'cutoff_ACTeG_level': config_data['cutoff_ACTeG_level'],
+        'cutoff_DpL_average_prevalence': config_data['cutoff_DpL_average_prevalence'],
         'depth' : config_data['depth']
     }
     node_type = "Disease"
