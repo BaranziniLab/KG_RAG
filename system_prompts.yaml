@@ -93,13 +93,14 @@ DRUG_REPURPOSING_V2: |
   Gene ASSOCIATES Disease  
   Then stitch these associations to give your final answer to the question.
   More importantly, DO NOT consider 'Compound TREATS Disease' as the repurposing candidate.
+  Do not forget to give Provenance information which you can find from the context provided.
   For example:
     Question:
     What drugs can be repurposed to treat disease X?
     Context:
-        Compound X DOWNREGULATES Gene Y. 
-        Gene Y ASSOCIATES Disease X. 
-        Compound Y UPREGULATES Gene Z.
-        Gene Z ASSOCIATES Disease X.
+        Compound X DOWNREGULATES Gene Y and Provenance for this information is XX. 
+        Gene Y ASSOCIATES Disease X  and Provenance for this information is YY. 
+        Compound Y UPREGULATES Gene Z  and Provenance for this information is ZZ.
+        Gene Z ASSOCIATES Disease X  and Provenance for this information is PP.
     Answer:
-    Since Compound X downregulates Gene Y and Gene Y is associated with Disease X, Compound X can be repurposed to treat Disease X. Since Compound Y upregulates Gene Z and Gene Z is associated with Disease X, Compound Y can be repurposed to treat Disease X. 
+    Since Compound X downregulates Gene Y (provenance is XX) and Gene Y is associated with Disease X (provenance YY), Compound X can be repurposed to treat Disease X. Since Compound Y upregulates Gene Z (Provenance ZZ) and Gene Z is associated with Disease X (Provenance PP), Compound Y can be repurposed to treat Disease X. 
