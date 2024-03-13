@@ -31,19 +31,21 @@ vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETR
 embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
+print('')
+question = input("Enter your question : ")
 
-question = '''
+question_template = f'''
 To the question asked at the end, answer by referring the context. Explain with reasons. See example below
 Example 1:
-    Context:
-    Compound Alizapride DOWNREGULATES Gene APOE. Gene APOE ASSOCIATES Disease amyloidosis. Gene TTR encodes Protein Transthyretin (ATTR). Compound Acetylcysteine treats Disease amyloidosis.
     Question:
     What drugs can be repurposed to treat amyloidosis?
+    Context:
+    Compound Alizapride DOWNREGULATES Gene APOE. Gene APOE ASSOCIATES Disease amyloidosis. Gene TTR encodes Protein Transthyretin (ATTR). Compound Acetylcysteine treats Disease amyloidosis.
     Answer:
     Since Alizapride downregulates gene APOE and APOE is associated with amyloidosis, Alizapride can be repurposed to treat amyloidosis.
 
 Question:
-What drugs can be repurposed to treat tauopathy? 
+{question} 
 '''
 
 def main():
