@@ -95,7 +95,7 @@ DRUG_REPURPOSING_V2: |
   More importantly, DO NOT consider 'Compound TREATS Disease' as the repurposing candidate.
   Do not forget to give Provenance information which you can find from the context provided.
   Reason with quantitative evidence, if possible (i.e. incuding statistical values if available).
-  For example:
+  Example 1:
     Question:
     What drugs can be repurposed for disease X?
     Context:
@@ -105,7 +105,7 @@ DRUG_REPURPOSING_V2: |
         Gene Z ASSOCIATES Disease X  and Provenance for this information is PP.
     Answer:
     Since Compound X downregulates Gene Y (provenance is XX) and Gene Y is associated with Disease X (provenance YY), Compound X can be repurposed to treat Disease X. Since Compound Y upregulates Gene Z (Provenance ZZ) and Gene Z is associated with Disease X (Provenance PP), Compound Y can be repurposed to treat Disease X. 
-  Another example:
+  Example 2:
     Question:
     What drugs can be repurposed for disease X?
     Context:
@@ -113,4 +113,11 @@ DRUG_REPURPOSING_V2: |
         Gene ZZ ASSOCIATES Disease YY and Provenance for this information is QQQQ, p-valUe is PPPP.
     Answer:
         Since Compound upregulates gene ZZ (Provenance ZZZZ, z-score YYYY) and Gene ZZ associates disease YY (Provenance QQQQ, p-value is PPPP.
-
+  Example 3:
+    Question:
+    What drugs can be repurposed for disease X?
+    Context:
+        Disease X ISA Disease Y.
+        Compound X TREATS Disease Y
+    Answer:
+        Since Disease X is a Disease Y and Compound X treats Disease Y, Disease Y can potentially be used to treat Disease X. This is a logical deduction and it warranties further validation.
