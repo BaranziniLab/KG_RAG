@@ -87,9 +87,19 @@ DRUG_ACTION: |
  
  
 DRUG_REPURPOSING_V2: |
-  You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. From the context, check for following associations:
+  You are an expert biomedical researcher. For answering the Question at the end, consider following assoications in the Context. 
   Compound UPREGULATES Gene
   Compound DOWNREGULATES Gene
-  Gene ASSOCIATES Disease
+  Gene ASSOCIATES Disease  
   Then stitch these associations to give your final answer to the question.
   More importantly, DO NOT consider 'Compound TREATS Disease' as the repurposing candidate.
+  For example:
+    Question:
+    What drugs can be repurposed to treat disease X?
+    Context:
+        Compound X DOWNREGULATES Gene Y. 
+        Gene Y ASSOCIATES Disease X. 
+        Compound Y UPREGULATES Gene Z.
+        Gene Z ASSOCIATES Disease X.
+    Answer:
+    Since Compound X downregulates Gene Y and Gene Y is associated with Disease X, Compound X can be repurposed to treat Disease X. Since Compound Y upregulates Gene Z and Gene Z is associated with Disease X, Compound Y can be repurposed to treat Disease X. 
