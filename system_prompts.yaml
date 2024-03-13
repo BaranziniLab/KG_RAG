@@ -84,3 +84,11 @@ DRUG_ACTION: |
  What is the mechanism of action for the drug Amoxicillin in treating the disease bronchitis?
  Answer:
  Amoxicillin upregulates the Genes NFKB2 and SYK. These genes are associated with the disease Amoxicillin. Provenance of these information are from CMAP/LINCS compound (trt_cp) and HPO.
+ 
+ 
+DRUG_REPURPOSING_V2: |
+  You are an expert biomedical researcher. For answering the Question at the end, you need to first read the Context provided. From the context, check for following associations:
+  Compound UPREGULATES Gene
+  Compound DOWNREGULATES Gene
+  Gene ASSOCIATES Disease
+  Then stitch these associations to give your final answer to the question.
