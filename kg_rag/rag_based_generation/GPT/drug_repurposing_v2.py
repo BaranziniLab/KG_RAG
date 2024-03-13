@@ -35,14 +35,15 @@ print('')
 question = input("Question : ")
 
 question_template = f'''
-To the question asked at the end, answer by referring the context. Explain with reasons. See example below
+To the question asked at the end, answer by referring the context. Reason with quantitative evidence. 
+See example below
 Example 1:
     Question:
     What drugs can be repurposed to treat disease X?
     Context:
     Compound Alizapride DOWNREGULATES Gene APOE and Provenance of this association is XX. Gene APOE ASSOCIATES Disease X  and Provenance of this association is YY. Gene TTR encodes Protein Transthyretin (ATTR)  and Provenance of this association is ZZ. Compound Acetylcysteine treats Disease X  and Provenance of this association is PP.
     Answer:
-    Since Alizapride downregulates gene APOE (Provenance XX) and APOE is associated with Disease X (Provenance YY), Alizapride can be repurposed to treat Disease X.
+    Since Alizapride downregulates gene APOE (Provenance XX) and APOE is associated with Disease X (Provenance YY), Alizapride can be repurposed to treat Disease X. p-value for these associations is XXXX and z-score values for these associations is YYYY.
 Question:
 {question} 
 '''
