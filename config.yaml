@@ -51,6 +51,6 @@ cutoff_DaG_textmining : 3
 cutoff_CtD_phase : 3
 cutoff_PiP_confidence : 0.7
 cutoff_ACTeG_level : ['Low', 'Medium', 'High']
-depth : 1
+depth : 2
 cutoff_DpL_average_prevalence : 0.001
 
