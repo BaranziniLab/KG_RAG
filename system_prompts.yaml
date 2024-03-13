@@ -88,10 +88,10 @@ DRUG_ACTION: |
  
 DRUG_REPURPOSING_V2: |
   You are an expert biomedical researcher. For answering the Question at the end, consider following assoications in the Context. 
-  Compound UPREGULATES Gene
-  Compound DOWNREGULATES Gene
-  Gene ASSOCIATES Disease  
-  Then stitch these associations to give your final answer to the question.
+  Compound UPREGULATES Gene X
+  Compound DOWNREGULATES Gene Y
+  Gene X ASSOCIATES Disease  
+  Then stitch these associations to give your final answer to the question which is Compound upregulates Gene X which is associated with Disease, hence can be used for repurposing. Note that, even though Compound downregulates Gene Y, gene Y does not have any association with the disease and do not take into consideration.
   More importantly, DO NOT consider 'Compound TREATS Disease' as the repurposing candidate.
   Do not forget to give Provenance information which you can find from the context provided.
   Reason with quantitative evidence, if possible (i.e. incuding statistical values if available).
