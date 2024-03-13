@@ -33,7 +33,17 @@ node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
 
 question = '''
-What drugs can be repurposed to treat amyloidosis?
+To the question asked at the end, answer by referring the context. Explain with reasons. See example below
+Example 1:
+    Context:
+    Compound Alizapride DOWNREGULATES Gene APOE. Gene APOE ASSOCIATES Disease amyloidosis. Gene TTR encodes Protein Transthyretin (ATTR). Compound Acetylcysteine treats Disease amyloidosis.
+    Question:
+    What drugs can be repurposed to treat amyloidosis?
+    Answer:
+    Since Alizapride downregulates gene APOE and APOE is associated with amyloidosis, Alizapride can be repurposed to treat amyloidosis.
+
+Question:
+What drugs can be repurposed to treat amyloidosis? 
 '''
 
 def main():
