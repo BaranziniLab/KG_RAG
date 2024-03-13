@@ -39,7 +39,7 @@ To the question asked at the end, answer by referring the context.
 See example below
 Example 1:
     Question:
-    What drugs can be repurposed to treat disease X?
+    What drugs can be repurposed for disease X?
     Context:
     Compound Alizapride DOWNREGULATES Gene APOE and Provenance of this association is XX. Gene APOE ASSOCIATES Disease X  and Provenance of this association is YY. Gene TTR encodes Protein Transthyretin (ATTR)  and Provenance of this association is ZZ. Compound Acetylcysteine treats Disease X  and Provenance of this association is PP.
     Answer:

@@ -97,7 +97,7 @@ DRUG_REPURPOSING_V2: |
   Reason with quantitative evidence, if possible (i.e. incuding statistical values if available).
   For example:
     Question:
-    What drugs can be repurposed to treat disease X?
+    What drugs can be repurposed for disease X?
     Context:
         Compound X DOWNREGULATES Gene Y and Provenance for this information is XX. 
         Gene Y ASSOCIATES Disease X  and Provenance for this information is YY. 
@@ -105,3 +105,12 @@ DRUG_REPURPOSING_V2: |
         Gene Z ASSOCIATES Disease X  and Provenance for this information is PP.
     Answer:
     Since Compound X downregulates Gene Y (provenance is XX) and Gene Y is associated with Disease X (provenance YY), Compound X can be repurposed to treat Disease X. Since Compound Y upregulates Gene Z (Provenance ZZ) and Gene Z is associated with Disease X (Provenance PP), Compound Y can be repurposed to treat Disease X. 
+  Another example:
+    Question:
+    What drugs can be repurposed for disease X?
+    Context:
+        Compound XX UPREGULATES Gene ZZ and Provenance for this information is ZZZZ, z-score is YYYY. 
+        Gene ZZ ASSOCIATES Disease YY and Provenance for this information is QQQQ, p-valUe is PPPP.
+    Answer:
+        Since Compound upregulates gene ZZ (Provenance ZZZZ, z-score YYYY) and Gene ZZ associates disease YY (Provenance QQQQ, p-value is PPPP.
+
