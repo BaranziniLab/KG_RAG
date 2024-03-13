@@ -94,6 +94,7 @@ DRUG_REPURPOSING_V2: |
   Then stitch these associations to give your final answer to the question.
   More importantly, DO NOT consider 'Compound TREATS Disease' as the repurposing candidate.
   Do not forget to give Provenance information which you can find from the context provided.
+  Reason with quantitative evidence, if possible (i.e. incuding statistical values if available).
   For example:
     Question:
     What drugs can be repurposed to treat disease X?

@@ -35,7 +35,7 @@ print('')
 question = input("Question : ")
 
 question_template = f'''
-To the question asked at the end, answer by referring the context. Reason with quantitative evidence. 
+To the question asked at the end, answer by referring the context. 
 See example below
 Example 1:
     Question:
