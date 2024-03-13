@@ -50,7 +50,7 @@ Question:
 def main():
     if not INTERACTIVE:
         print("Retrieving context from SPOKE graph...")
-        context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, EDGE_EVIDENCE)
+        context = retrieve_context(question_template, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, EDGE_EVIDENCE)
         print("Here is the KG-RAG based answer:")
         print("")
         enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
