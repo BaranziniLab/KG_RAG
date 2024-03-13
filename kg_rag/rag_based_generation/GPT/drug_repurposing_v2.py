@@ -43,7 +43,7 @@ Example 1:
     Since Alizapride downregulates gene APOE and APOE is associated with amyloidosis, Alizapride can be repurposed to treat amyloidosis.
 
 Question:
-What drugs can be repurposed to treat amyloidosis? 
+What drugs can be repurposed to treat tauopathy? 
 '''
 
 def main():
