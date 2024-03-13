@@ -38,11 +38,11 @@ question_template = f'''
 To the question asked at the end, answer by referring the context. Explain with reasons. See example below
 Example 1:
     Question:
-    What drugs can be repurposed to treat amyloidosis?
+    What drugs can be repurposed to treat disease X?
     Context:
-    Compound Alizapride DOWNREGULATES Gene APOE. Gene APOE ASSOCIATES Disease amyloidosis. Gene TTR encodes Protein Transthyretin (ATTR). Compound Acetylcysteine treats Disease amyloidosis.
+    Compound Alizapride DOWNREGULATES Gene APOE. Gene APOE ASSOCIATES Disease X. Gene TTR encodes Protein Transthyretin (ATTR). Compound Acetylcysteine treats Disease X.
     Answer:
-    Since Alizapride downregulates gene APOE and APOE is associated with amyloidosis, Alizapride can be repurposed to treat amyloidosis.
+    Since Alizapride downregulates gene APOE and APOE is associated with Disease X, Alizapride can be repurposed to treat Disease X.
 
 Question:
 {question} 
