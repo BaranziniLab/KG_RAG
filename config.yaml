@@ -37,7 +37,7 @@ SAVE_RESULTS_PATH : '/data/somank/KG_RAG/data/analysis_results'
 
 # File paths for test questions
 MCQ_PATH : '/data/somank/KG_RAG/data/benchmark_data/test_questions_two_hop_mcq_from_monarch_and_robokop.csv'
-TRUE_FALSE_PATH : '/data/somank/KG_RAG/data/benchmark_data/test_questions_one_hop_true_false_v2.csv'
+TRUE_FALSE_PATH : '/data/somank/KG_RAG/data/benchmark_data/test_questions_one_hop_true_false_v3.csv'
 ONE_HOP_GRAPH_TRAVERSAL : '/data/somank/KG_RAG/data/hyperparam_tuning_data/one_hop_graph_traversal_questions_v2.csv'
 TWO_HOP_GRAPH_TRAVERSAL : '/data/somank/KG_RAG/data/hyperparam_tuning_data/two_hop_graph_traversal_questions.csv'
 
