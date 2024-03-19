@@ -26,8 +26,8 @@
 24,Familial Mediterranean Fever associates Gene MEFV,True
 25,Disease ontology identifier for Wiskott-Aldrich syndrome is DOID:9169,True
 26,Tay-Sachs disease is not a eye degenerative disorder,False
-27,ibuprofen treats cystic fibrosis,True
 28,Juvenile Myoclonic Epilepsy is not associated with Gene EFHC1,False
+29,Costello syndrome (disorder) is not associated with Gene HRAS,False
 30,Very long chain acyl-CoA dehydrogenase deficiency is not associated with Gene ACADVL,False
 31,Wolman disease is a lysosomal acid lipase deficiency,True
 32,Fibrodysplasia Ossificans Progressiva associates Gene ACVR1,True
@@ -38,8 +38,8 @@
 37,Pheochromocytoma is not associated with Gene RET,False
 38,"Xeroderma pigmentosum, group B associates Gene ERCC3",True
 39,Acute intermittent porphyria is not associated with Gene HMBS,False
-40,melphalan treats melanoma,True
 41,piebaldism is a autosomal dominant disease,True
+42,vitelliform macular dystrophy is not a macular degeneration,False
 43,Spinocerebellar Ataxia Type 5 associates Gene SPTBN2,True
 44,Disease ontology identifier for Pelizaeus-Merzbacher disease is DOID:5688,False
 45,"Robinow syndrome, autosomal recessive associates Gene ROR2",True
@@ -51,8 +51,8 @@
 51,Unverricht-Lundborg syndrome is a movement disorder,True
 52,Denys-Drash syndrome is a autosomal dominant disease,True
 53,factor ix treats hemophilia b,True
-54,adrenal cortex hormones treats crohn's disease,True
 55,Mucopolysaccharidosis VI associates Gene ARSB,True
+56,"HEMOCHROMATOSIS, TYPE 4 associates Gene SLC40A1",True
 57,"Charcot-Marie-Tooth Disease, Type Ib associates Gene MPZ",True
 58,Disease ontology identifier for Timothy syndrome is DOID:0060173,True
 59,Denys-Drash Syndrome is not associated with Gene WT1,False
@@ -118,14 +118,14 @@
 119,Pseudopseudohypoparathyroidism associates Gene GNAS,True
 120,alveolar rhabdomyosarcoma is not a rhabdomyosarcoma,False
 121,Disease ontology identifier for Norrie disease is DOID:0060599,False
-122,vaccines treats melanoma,True
 123,argipressin treats central diabetes insipidus,True
+124,Omenn Syndrome associates Gene RAG2,True
 125,adenine phosphoribosyltransferase deficiency is a inborn disorder of amino acid metabolism,True
 126,Progeria associates Gene LMNA,True
 127,mercaptopurine treats crohn's disease,True
 128,Peutz-Jeghers Syndrome associates Gene STK11,True
-129,penicillamine treats cystinuria,True
 130,Noonan syndrome is a multiple congenital anomalies/dysmorphic syndrome-variable intellectual disability syndrome,True
+131,RAPP-HODGKIN SYNDROME associates Gene TP63,True
 132,Bernard-Soulier Syndrome associates Gene GP1BA,True
 133,Spinocerebellar Ataxia Type 6 (disorder) associates Gene CACNA1A,True
 134,Werner Syndrome associates Gene WRN,True
@@ -149,10 +149,10 @@
 152,Hyperkalemic periodic paralysis is not associated with Gene SCN4A,False
 153,Disease ontology identifier for ataxia telangiectasia is DOID:0060010,False
 154,"Xeroderma pigmentosum, group A associates Gene XPA",True
-155,antibiotics treats obesity,True
 156,antineoplastic agents treats osteosarcoma,True
-158,insulin treats obesity,True
+157,Jervell-Lange Nielsen Syndrome is not associated with Gene KCNQ1,False
 159,Pitt-Hopkins syndrome is a syndromic disease,True
+160,POLYCYSTIC KIDNEY DISEASE 1 associates Gene PKD1,True
 161,Disease ontology identifier for Tangier disease is DOID:1388,True
 162,Disease ontology identifier for Smith-Lemli-Opitz syndrome is DOID:0080026,False
 163,alpha-d-galactosidase enzyme treats fabry disease,True
@@ -166,8 +166,8 @@
 171,Smith-Lemli-Opitz Syndrome is not associated with Gene DHCR7,False
 172,Biotinidase Deficiency is not associated with Gene BTD,False
 173,Allan-Herndon-Dudley syndrome (AHDS) is not associated with Gene SLC16A2,False
-174,enoxaparin treats obesity,True
 175,Li-Fraumeni syndrome is a autosomal dominant disease,True
+176,WHIM syndrome is not associated with Gene CXCR4,False
 177,multiple endocrine neoplasia type 2B is a autosomal dominant disease,True
 178,Alstrom Syndrome associates Gene ALMS1,True
 179,Gyrate Atrophy associates Gene OAT,True
@@ -180,8 +180,8 @@
 186,BIETTI CRYSTALLINE CORNEORETINAL DYSTROPHY is not associated with Gene CYP4V2,False
 187,Disease ontology identifier for juvenile myoclonic epilepsy is DOID:4890,True
 188,"XERODERMA PIGMENTOSUM, COMPLEMENTATION GROUP E associates Gene DDB2",True
-189,anesthetics treats pheochromocytoma,True
 190,Disease ontology identifier for ornithine carbamoyltransferase deficiency is DOID:9271,True
+191,Saethre-Chotzen Syndrome is not associated with Gene TWIST1,False
 192,prothrombin complex concentrates treats hemophilia b,True
 193,Disease ontology identifier for ethylmalonic encephalopathy is DOID:0060640,True
 194,Alexander disease is a leukodystrophy,True
@@ -232,8 +232,8 @@
 239,Refsum Disease associates Gene PHYH,True
 240,Achondroplasia is not associated with Gene FGFR3,False
 241,pseudoachondroplasia is a osteochondrodysplasia,True
-242,prasterone treats obesity,True
 243,LATE-ONSET RETINAL DEGENERATION (disorder) associates Gene C1QTNF5,True
+244,immunosuppressive agents treats crohn's disease,True
 245,nail-patella syndrome is a autosomal dominant disease,True
 246,Mulibrey Nanism is not associated with Gene TRIM37,False
 247,"Xeroderma pigmentosum, group G is not associated with Gene ERCC5",False
@@ -290,8 +290,8 @@
 298,Lafora Disease associates Gene EPM2A,True
 299,Pseudoachondroplasia associates Gene COMP,True
 300,"Charcot-Marie-Tooth disease, Type 4B1 associates Gene MTMR2",True
-301,dehydroepiandrosterone treats obesity,True
 302,Hartnup disease is a inborn disorder of amino acid transport,True
+303,Farber Lipogranulomatosis is not associated with Gene ASAH1,False
 304,Disease ontology identifier for Lesch-Nyhan syndrome is DOID:1919,True
 305,Polycythemia Vera is not associated with Gene JAK2,False
 306,hyperkalemic periodic paralysis is not a familial periodic paralysis,False

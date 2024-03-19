@@ -33,10 +33,10 @@ LLM_CACHE_DIR : '/data/somank/llm_data/llm_models/huggingface'
 LLM_TEMPERATURE : 0
 
 # Path to save results
-SAVE_RESULTS_PATH : '/data/somank/KG_RAG/data/analysis_results'
+SAVE_RESULTS_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/results'
 
 # File paths for test questions
-MCQ_PATH : '/data/somank/KG_RAG/data/benchmark_data/mcq_questions.csv'
+MCQ_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/benchmark_data/mcq_questions.csv'
 TRUE_FALSE_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/benchmark_data/true_false_questions.csv'
 SINGLE_DISEASE_ENTITY_FILE : '/data/somank/KG_RAG/data/hyperparam_tuning_data/single_disease_entity_prompts.csv'
 TWO_DISEASE_ENTITY_FILE : '/data/somank/KG_RAG/data/hyperparam_tuning_data/two_disease_entity_prompts.csv'

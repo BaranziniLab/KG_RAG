@@ -1,0 +1,1139 @@
+question,label,llm_answer
+enhanced S-cone syndrome is not a vitreoretinal degeneration,False,"  {
+""answer"": ""True""
+}"
+metronidazole treats crohn's disease,True,"  {
+""answer"": True
+}"
+KLEEFSTRA SYNDROME 1 is not associated with Gene EHMT1,False,"  {
+""answer"": ""False""
+}"
+Juvenile polyposis syndrome associates Gene SMAD4,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for congenital generalized lipodystrophy type 2 is DOID:10588,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for Marfan syndrome is DOID:0060055,False,"  {
+""answer"": ""True""
+}"
+cystic fibrosis is a respiratory system disorder,True,"  {
+""answer"": True
+}"
+alpha-Mannosidosis associates Gene MAN2B1,True,"  {
+""answer"": ""True""
+}"
+Wolcott-Rallison syndrome associates Gene EIF2AK3,True,"  {
+""answer"": ""True""
+}"
+Neurofibromatosis 2 is not associated with Gene NF2,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Neurofibromatosis 2 (NF2) is a disease that is associated with the NF2 gene, as mentioned in the context. Therefore, the statement ""Neurofibromatosis 2 is not associated with Gene NF2"" is false."
+Angelman syndrome is a syndromic disease,True,"  {
+""answer"": ""True""
+}"
+colchicine treats familial mediterranean fever,True,"  {
+""answer"": ""True""
+}"
+Marfan Syndrome associates Gene FBN1,True,"  {
+""answer"": ""True""
+}"
+Mowat-Wilson syndrome is a syndromic intellectual disability,True,"  {
+""answer"": ""True""
+}"
+mulibrey nanism is a syndromic disease,True,"  Sure, I'd be happy to help! Based on the context you provided, the answer to the question ""Is mulibrey nanism a syndromic disease?"" is:
+
+{
+""answer"": ""True""
+}
+
+Mulibrey nanism is a syndromic disease because it presents with a combination of symptoms affecting multiple systems, including the nervous system, cardiovascular system, liver, mouth, genitourinary system, hand, and movement. The symptoms include speech disorders, dysarthria, abnormality of the nervous system, cardiovascular system, liver, mouth, genitourinary system, and hand, among others. The disease is also known to be autosomal recessive, which further supports its classification as a syndromic disease."
+Disease ontology identifier for pheochromocytoma is DOID:14692,False,"  {
+""answer"": ""True""
+}"
+Tangier Disease is not associated with Gene ABCA1,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for central diabetes insipidus is DOID:350,False,"  Sure! Based on the context you provided, the answer is:
+
+{
+  ""answer"": ""False""
+}
+
+The disease ontology identifier for central diabetes insipidus is DOID:0081055, not DOID:350."
+Ulnar-mammary syndrome is not associated with Gene TBX3,False,"  {
+""answer"": ""False""
+}"
+bevacizumab treats hereditary hemorrhagic telangiectasia,True,"  {
+""answer"": ""True""
+}"
+Liver carcinoma is not associated with Gene MET,False,"  Sure, I'd be happy to help! Based on the context you provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+MET gene mutations have been associated with various types of cancer, including liver cancer, but not specifically with liver carcinoma."
+Antithrombin III Deficiency is not associated with Gene SERPINC1,False,"  {
+""answer"": ""False""
+}"
+Mastocytosis is not associated with Gene KIT,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for Farber lipogranulomatosis is DOID:0050464,True,"  {
+""answer"": ""True""
+}"
+Familial Mediterranean Fever associates Gene MEFV,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for Wiskott-Aldrich syndrome is DOID:9169,True,"  {
+""answer"": ""True""
+}"
+Tay-Sachs disease is not a eye degenerative disorder,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Tay-Sachs disease is not an eye degenerative disorder."
+ibuprofen treats cystic fibrosis,True,"  {
+""answer"": False
+}"
+Juvenile Myoclonic Epilepsy is not associated with Gene EFHC1,False,"  {
+""answer"": ""False""
+}"
+Costello syndrome (disorder) is not associated with Gene HRAS,False,"  {
+""answer"": ""False""
+}"
+Very long chain acyl-CoA dehydrogenase deficiency is not associated with Gene ACADVL,False,"  Based on the provided Context, the answer is False. None of the variants mentioned are associated with Very long chain acyl-CoA dehydrogenase deficiency."
+Wolman disease is a lysosomal acid lipase deficiency,True,"  {
+""answer"": ""True""
+}"
+Fibrodysplasia Ossificans Progressiva associates Gene ACVR1,True,"  {
+""answer"": ""True""
+}"
+Canavan Disease associates Gene ASPA,True,"  {
+""answer"": ""True""
+}"
+Chediak-Higashi syndrome is a congenital nervous system disorder,True,"  {
+""answer"": ""False""
+}
+
+Chediak-Higashi syndrome is not a congenital nervous system disorder, but rather an autosomal recessive disease that affects various systems, including the nervous system, immune system, and skin. The symptoms of the disease include abnormalities of the nervous system, such as seizures, intellectual disability, and behavioral abnormalities, as well as abnormalities of the skin, such as albinism, and inflammatory abnormalities. The disease is caused by mutations in the LYST gene and is associated with a variety of symptoms, including those mentioned above."
+Hereditary hemorrhagic telangiectasia associates Gene ENG,True,"  {
+""answer"": ""True""
+}"
+Lafora Disease is not associated with Gene NHLRC1,False,"  {
+""answer"": ""False""
+}"
+Pheochromocytoma is not associated with Gene RET,False,"  {
+""answer"": ""False""
+}"
+"Xeroderma pigmentosum, group B associates Gene ERCC3",True,"  {
+""answer"": ""True""
+}"
+Acute intermittent porphyria is not associated with Gene HMBS,False,"  {
+""answer"": ""False""
+}"
+melphalan treats melanoma,True,"  {
+""answer"": True
+}"
+piebaldism is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+vitelliform macular dystrophy is not a macular degeneration,False,"  {
+""answer"": ""False""
+}"
+Spinocerebellar Ataxia Type 5 associates Gene SPTBN2,True,"  {
+  ""answer"": ""True""
+}"
+Disease ontology identifier for Pelizaeus-Merzbacher disease is DOID:5688,False,"  {
+""answer"": ""False""
+}
+
+The disease ontology identifier for Pelizaeus-Merzbacher disease is DOID:3210, not DOID:5688."
+"Robinow syndrome, autosomal recessive associates Gene ROR2",True,"  Sure! Based on the context you provided, the answer to the question is:
+
+{
+""answer"": ""True""
+}"
+Disease ontology identifier for Loeys-Dietz syndrome is DOID:0060745,False,"  {
+""answer"": ""True""
+}"
+Cystic Fibrosis associates Gene CFTR,True,"  {
+""answer"": ""True""
+}"
+Greig cephalopolysyndactyly syndrome associates Gene GLI3,True,"  {
+""answer"": ""True""
+}"
+alkaptonuria is not a disorder of tyrosine metabolism,False,"  {
+  ""answer"": ""False""
+}"
+Timothy syndrome associates Gene CACNA1C,True,"  {
+""answer"": ""True""
+}"
+Unverricht-Lundborg syndrome is a movement disorder,True,"  {
+""answer"": ""True""
+}"
+Denys-Drash syndrome is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+factor ix treats hemophilia b,True,"  Based on the provided context, the answer to the question ""factor ix treats hemophilia b"" is:
+
+{
+""answer"": ""True""
+}"
+adrenal cortex hormones treats crohn's disease,True,"  {
+""answer"": False
+}
+
+Explanation:
+
+There is no mention of adrenal cortex hormones in the provided context. The context only discusses various compounds and genes associated with Crohn's disease, but there is no mention of adrenal cortex hormones being used to treat the disease. Therefore, the answer is False."
+Mucopolysaccharidosis VI associates Gene ARSB,True,"  {
+""answer"": ""True""
+}"
+"HEMOCHROMATOSIS, TYPE 4 associates Gene SLC40A1",True,"  {
+""answer"": ""True""
+}"
+"Charcot-Marie-Tooth Disease, Type Ib associates Gene MPZ",True,"  {
+""answer"": True
+}"
+Disease ontology identifier for Timothy syndrome is DOID:0060173,True,"  {
+""answer"": ""True""
+}"
+Denys-Drash Syndrome is not associated with Gene WT1,False,"  {
+  ""answer"": ""False""
+}"
+Cherubism associates Gene SH3BP2,True,"  {
+""answer"": ""True""
+}"
+PITT-HOPKINS SYNDROME is not associated with Gene TCF4,False,"  {
+""answer"": ""False""
+}"
+Greig cephalopolysyndactyly syndrome is not a syndromic disease,False,"  {
+""answer"": ""False""
+}"
+Paroxysmal Nonkinesigenic Dyskinesia 1 is not associated with Gene PNKD,False,"  {
+""answer"": ""False""
+}"
+Enhanced S-Cone Syndrome is not associated with Gene NR2E3,False,"  {
+""answer"": ""False""
+}"
+Canavan disease is a inborn aminoacylase deficiency,True,"  {
+""answer"": ""True""
+}"
+Episodic ataxia type 2 (disorder) is not associated with Gene CACNA1A,False,"  {
+  ""answer"": ""False""
+}"
+Aniridia is not associated with Gene PAX6,False,"  {
+""answer"": ""False""
+}"
+Congenital contractural arachnodactyly associates Gene FBN2,True,  True
+Muenke Syndrome associates Gene FGFR3,True,"  {
+""answer"": ""True""
+}"
+Carney complex is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+Borjeson-Forssman-Lehmann syndrome is not a X-linked syndromic intellectual disability,False,"  {
+  ""answer"": ""False""
+}"
+Johanson-Blizzard syndrome associates Gene UBR1,True,"  {
+  ""answer"": ""True""
+}"
+MASA SYNDROME (disorder) is not associated with Gene L1CAM,False,"  Based on the context provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+The context states that variant rs137852519, rs137852522, rs2064751060, rs137852523, rs137852524, and rs879253714 are associated with MASA syndrome, which is a disease. Additionally, the context states that MASA syndrome is associated with the gene L1CAM. Therefore, the answer is ""False"" as MASA syndrome is associated with Gene L1CAM."
+Autosomal dominant hypophosphatemic rickets associates Gene FGF23,True,"  {
+""answer"": ""True""
+}"
+Acrodermatitis enteropathica associates Gene SLC39A4,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}"
+Rothmund-Thomson syndrome is not associated with Gene RECQL4,False,"  {
+  ""answer"": ""False""
+}"
+Cleidocranial Dysplasia associates Gene RUNX2,True,"  {
+""answer"": ""True""
+}"
+LONG QT SYNDROME 3 associates Gene SCN5A,True,"  {
+""answer"": ""True""
+}"
+Infantile hypophosphatasia associates Gene ALPL,True,"  Sure! I'd be happy to help. Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}
+
+Infantile hypophosphatasia is a rare genetic disorder that is caused by mutations in the ALPL gene, which encodes an enzyme involved in the metabolism of phosphatidylserine and phosphatidylethanolamine. The ALPL gene is specifically associated with infantile hypophosphatasia, so the statement ""Infantile hypophosphatasia associates Gene ALPL"" is true."
+acrodermatitis enteropathica is not a inborn metal metabolism disorder,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Acrodermatitis enteropathica is a genetic disease that affects the skin, nervous system, mouth, and gastrointestinal tract. It is caused by a defect in the gene that codes for the enzyme zinc ultramicroembryonic protein (ZUMP), which is essential for the absorption and transport of zinc in the body. Zinc deficiency is a hallmark of this condition, and it can lead to a range of symptoms, including inflammatory abnormalities of the skin, nervous system, mouth, and gastrointestinal tract.
+
+Therefore, acrodermatitis enteropathica is not a inborn metal metabolism disorder, but rather a genetic disorder that affects the body's ability to absorb and utilize zinc."
+Ataxia Telangiectasia associates Gene ATM,True,"  {
+""answer"": ""True""
+}"
+alpha-galactosidase treats fabry disease,True,"  {
+""answer"": ""True""
+}"
+Laron syndrome is a autosomal recessive disease,True,"  {
+""answer"": ""True""
+}"
+Piebaldism associates Gene KIT,True,"  {
+""answer"": ""True""
+}"
+Pfeiffer Syndrome associates Gene FGFR2,True,"  {
+""answer"": ""True""
+}"
+"Bernard-Soulier syndrome is a inherited bleeding disorder, platelet-type",True,"  {
+  ""answer"": ""True""
+}"
+Burkitt Lymphoma is not associated with Gene MYC,False,"  {
+  ""answer"": ""False""
+}"
+Ornithine carbamoyltransferase deficiency associates Gene OTC,True,"  {
+""answer"": ""True""
+}"
+Nail-Patella Syndrome associates Gene LMX1B,True,"  {
+""answer"": ""True""
+}"
+Tetralogy of Fallot associates Gene ZFPM2,True,"  {
+""answer"": ""True""
+}"
+Hartnup Disease is not associated with Gene SLC6A19,False,"  Based on the context provided, the answer is:
+
+{
+""answer"": ""False""
+}"
+Disease ontology identifier for fibrodysplasia ossificans progressiva is DOID:13374,True,"  {
+""answer"": ""True""
+}"
+familial Mediterranean fever is not a primary immunodeficiency due to a genetic defect in innate immunity,False,"  {
+""answer"": ""False""
+}"
+Hemophilia B is not associated with Gene F9,False,"  {
+""answer"": ""False""
+}"
+Rapp-Hodgkin syndrome is a autosomal dominant disease,True,"  Sure, I'd be happy to help! Based on the context you provided, the answer to the question is:
+
+{
+""answer"": ""True""
+}
+
+Rapp-Hodgkin syndrome is an autosomal dominant disease, as stated in the context."
+Borjeson-Forssman-Lehmann syndrome is not associated with Gene PHF6,False,"  {
+""answer"": ""False""
+}"
+Multiple Endocrine Neoplasia Type 2b associates Gene RET,True,"  {
+""answer"": ""True""
+}"
+Choroideremia is not associated with Gene CHM,False,"  {
+""answer"": ""False""
+}"
+Wolman Disease associates Gene LIPA,True,"  {
+""answer"": ""True""
+}"
+Adenine phosphoribosyltransferase deficiency associates Gene APRT,True,"  {
+""answer"": ""True""
+}"
+Holt-Oram syndrome is not associated with Gene TBX5,False,"  {
+  ""answer"": ""False""
+}"
+tetralogy of fallot is not a hereditary disease,False,"  {
+""answer"": ""False""
+}
+
+Explanation:
+
+Tetralogy of Fallot is a congenital heart disease that is associated with several genetic mutations. Variants in genes such as PTCH1, FGFR1, SHH, NKX2-5, FLT4, CITED2, DISP1, SLC37A4, FANCG, FANCC, FANCE, FANCI, FANCB, VPS37D, ELN, GATA4, RERE, FANCL, GATA1, CHUK, JAG1, EHMT1, KCNAB2, and WT1 have been identified as risk factors for developing tetralogy of Fallot. Additionally, genetic syndromes such as velo-cardio-facial syndrome and DiGeorge syndrome have also been associated with an increased risk of developing tetralogy of Fallot. Therefore, tetralogy of Fallot can be considered a hereditary disease."
+Disease ontology identifier for mosaic variegated aneuploidy syndrome 1 is DOID:0080141,True,"  Based on the provided Context, the answer is:
+
+True"
+hemophilia B is a hemorrhagic disease,True,"  {
+""answer"": ""True""
+}"
+fatal familial insomnia is not a insomnia,False,"  Sure, I'd be happy to help! Based on the context you provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Fatal familial insomnia is not a type of insomnia, as it presents with a range of symptoms beyond difficulty sleeping, including cognitive impairment, hyperhidrosis, dementia, abnormalities of the nervous system, and apnea."
+Disease ontology identifier for mastocytosis is DOID:0060768,False,"  {
+""answer"": ""True""
+}"
+osteosarcoma is a sarcoma,True,"  {
+""answer"": ""True""
+}"
+immune checkpoint inhibitors treats melanoma,True,"  {
+""answer"": True
+}"
+Johanson-Blizzard syndrome is a congenital nervous system disorder,True,"  {
+""answer"": ""True""
+}"
+Achondroplasia is not a osteochondrodysplasia,False,"  {
+""answer"": ""False""
+}"
+KUFOR-RAKEB SYNDROME associates Gene ATP13A2,True,"  {
+""answer"": ""True""
+}"
+Loeys-Dietz Syndrome associates Gene TGFBR1,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for Rothmund-Thomson syndrome is DOID:2732,True,"  {
+""answer"": ""True""
+}"
+Angelman Syndrome is not associated with Gene UBE3A,False,"  {
+""answer"": ""False""
+}"
+biotinidase deficiency is not a multiple carboxylase deficiency,False,"  {
+""answer"": ""False""
+}"
+6-mercaptopurine treats crohn's disease,True,"  {
+""answer"": True
+}"
+Wolcott-Rallison syndrome is a syndromic disease,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for spinocerebellar ataxia type 5 is DOID:0050882,False,"  {
+  ""answer"": ""True""
+}"
+Pseudopseudohypoparathyroidism associates Gene GNAS,True,"  {
+""answer"": ""True""
+}"
+alveolar rhabdomyosarcoma is not a rhabdomyosarcoma,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Alveolar rhabdomyosarcoma is indeed a type of rhabdomyosarcoma, as stated in several sentences in the context."
+Disease ontology identifier for Norrie disease is DOID:0060599,False,"  Based on the context provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+The disease ontology identifier for Norrie disease is DOID:0060844, not DOID:0060599."
+vaccines treats melanoma,True,"  {
+""answer"": ""False""
+}
+
+Explanation:
+
+None of the compounds listed are vaccines. Vaccines are not used to treat melanoma. The compounds listed are various drugs and therapies used to treat melanoma, such as IPILIMUMAB, INTERFERON ALFA-2B, and PEGINTERFERON ALFA-2B."
+argipressin treats central diabetes insipidus,True,"  Sure, I'd be happy to help! Based on the context you provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Argipressin is not a treatment for central diabetes insipidus (CDI). CDI is a rare disease that affects the pituitary gland's ability to produce vasopressin (also known as argipressin), leading to excessive thirst and urination. While vasopressin replacement therapy is a common treatment for CDI, argipressin is not a specific treatment for this condition."
+Omenn Syndrome associates Gene RAG2,True,"  Sure! Based on the context provided, the answer is:
+
+{
+""answer"": ""True""
+}
+
+Omenn Syndrome is associated with the RAG2 gene, as mentioned in the context."
+adenine phosphoribosyltransferase deficiency is a inborn disorder of amino acid metabolism,True,"  {
+""answer"": ""True""
+}"
+Progeria associates Gene LMNA,True,"  {
+""answer"": ""True""
+}"
+mercaptopurine treats crohn's disease,True,"  {
+""answer"": True
+}"
+Peutz-Jeghers Syndrome associates Gene STK11,True,"  {
+""answer"": ""True""
+}"
+penicillamine treats cystinuria,True,"  {
+""answer"": ""True""
+}"
+Noonan syndrome is a multiple congenital anomalies/dysmorphic syndrome-variable intellectual disability syndrome,True,"  {
+""answer"": ""True""
+}"
+RAPP-HODGKIN SYNDROME associates Gene TP63,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}"
+Bernard-Soulier Syndrome associates Gene GP1BA,True,"  {
+  ""answer"": ""True""
+}"
+Spinocerebellar Ataxia Type 6 (disorder) associates Gene CACNA1A,True,"  {
+  ""answer"": ""True""
+}"
+Werner Syndrome associates Gene WRN,True,"  {
+""answer"": ""True""
+}"
+sarcoma is a cancer,True,"  {
+""answer"": ""True""
+}"
+brachydactyly type C is a brachydactyly,True,"  {
+""answer"": ""True""
+}"
+Alveolar rhabdomyosarcoma associates Gene PAX3,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}"
+CHARGE Syndrome is not associated with Gene CHD7,False,"  {
+""answer"": ""False""
+}"
+Ellis-van Creveld syndrome is not a heart disorder,False,"  {
+""answer"": ""False""
+}"
+Pelizaeus-Merzbacher Disease associates Gene PLP1,True,"  {
+""answer"": ""True""
+}"
+Microvillus inclusion disease is not associated with Gene MYO5B,False,"  Sure, I'd be happy to help! Based on the context you provided, the answer to the question is:
+
+{
+""answer"": ""False""
+}
+
+Microvillus inclusion disease is associated with Gene STX3, but not with Gene MYO5B."
+DiGeorge syndrome is a congenital T-cell immunodeficiency,True,"  {
+""answer"": ""False""
+}"
+melanoma associates Gene BRAF,True,"  {
+""answer"": ""True""
+}"
+"Basal ganglia disease, biotin-responsive associates Gene SLC19A3",True,"  {
+""answer"": ""True""
+}"
+Coffin-Siris syndrome associates Gene ARID1B,True,"  {
+""answer"": ""True""
+}"
+Sitosterolemia is not associated with Gene ABCG8,False,"  {
+  ""answer"": ""False""
+}"
+Alexander Disease associates Gene GFAP,True,"  {
+""answer"": ""True""
+}"
+pembrolizumab treats melanoma,True,"  {
+""answer"": ""True""
+}"
+congenital contractural arachnodactyly is not a congenital nervous system disorder,False,  True
+cherubism is not a autosomal dominant disease,False,"  {
+""answer"": ""False""
+}"
+Norrie disease associates Gene NDP,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}"
+Hyperkalemic periodic paralysis is not associated with Gene SCN4A,False,  False
+Disease ontology identifier for ataxia telangiectasia is DOID:0060010,False,"  {
+""answer"": ""True""
+}"
+"Xeroderma pigmentosum, group A associates Gene XPA",True,"  {
+""answer"": ""True""
+}"
+antibiotics treats obesity,True,"  {
+""answer"": ""False""
+}"
+antineoplastic agents treats osteosarcoma,True,"  {
+""answer"": ""True""
+}"
+Jervell-Lange Nielsen Syndrome is not associated with Gene KCNQ1,False,"  Based on the context provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Jervell-Lange Nielsen syndrome is associated with Gene KCNQ1, as stated in the context."
+insulin treats obesity,True,"  {
+""answer"": ""False""
+}"
+Pitt-Hopkins syndrome is a syndromic disease,True,"  {
+""answer"": ""True""
+}"
+POLYCYSTIC KIDNEY DISEASE 1 associates Gene PKD1,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+  ""answer"": ""True""
+}"
+Disease ontology identifier for Tangier disease is DOID:1388,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for Smith-Lemli-Opitz syndrome is DOID:0080026,False,"  {
+  ""answer"": ""True""
+}"
+alpha-d-galactosidase enzyme treats fabry disease,True,"  {
+""answer"": True
+}"
+Burkitt lymphoma is a neoplasm of mature B-cells,True,"  {
+""answer"": ""True""
+}"
+Vitelliform Macular Dystrophy associates Gene BEST1,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}"
+Disease ontology identifier for Smith-Magenis syndrome is DOID:12271,False,"  {
+""answer"": ""True""
+}"
+Noonan Syndrome associates Gene RAF1,True,"  {
+""answer"": ""True""
+}"
+Bernard-Soulier Syndrome associates Gene GP1BB,True,"  {
+  ""answer"": ""True""
+}"
+Neurofibromatosis 1 associates Gene NF1,True,"  {
+""answer"": ""True""
+}"
+Brugada Syndrome (disorder) associates Gene SCN5A,True,"  {
+""answer"": True
+}"
+Smith-Lemli-Opitz Syndrome is not associated with Gene DHCR7,False,  False
+Biotinidase Deficiency is not associated with Gene BTD,False,"  {
+""answer"": ""False""
+}"
+Allan-Herndon-Dudley syndrome (AHDS) is not associated with Gene SLC16A2,False,"  {
+""answer"": ""False""
+}"
+enoxaparin treats obesity,True,"  {
+""answer"": ""False""
+}"
+Li-Fraumeni syndrome is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+WHIM syndrome is not associated with Gene CXCR4,False,"  Based on the context provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+WHIM syndrome is associated with the gene CXCR4, as stated in the context."
+multiple endocrine neoplasia type 2B is a autosomal dominant disease,True,"  {
+  ""answer"": ""True""
+}"
+Alstrom Syndrome associates Gene ALMS1,True,"  {
+""answer"": ""True""
+}"
+Gyrate Atrophy associates Gene OAT,True,"  {
+""answer"": ""True""
+}"
+tuberous sclerosis is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+Fabry disease is not a developmental anomaly of metabolic origin,False,"  {
+""answer"": ""False""
+}"
+"Xeroderma Pigmentosum, Complementation Group D associates Gene ERCC2",True,"  {
+""answer"": ""True""
+}"
+Argininosuccinic Aciduria associates Gene ASL,True,"  {
+""answer"": ""True""
+}"
+Lesch-Nyhan Syndrome associates Gene HPRT1,True,"  {
+""answer"": ""True""
+}"
+Creutzfeldt-Jakob disease is not associated with Gene PRNP,False,"  {
+""answer"": ""False""
+}"
+BIETTI CRYSTALLINE CORNEORETINAL DYSTROPHY is not associated with Gene CYP4V2,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for juvenile myoclonic epilepsy is DOID:4890,True,"  {
+""answer"": ""True""
+}"
+"XERODERMA PIGMENTOSUM, COMPLEMENTATION GROUP E associates Gene DDB2",True,"  {
+""answer"": ""True""
+}"
+anesthetics treats pheochromocytoma,True,"  Based on the provided Context, the answer is False. There is no mention of anesthetics treating pheochromocytoma in the provided text. The text only mentions various compounds and their associations with pheochromocytoma, but does not mention anesthetics. Therefore, the answer is False."
+Disease ontology identifier for ornithine carbamoyltransferase deficiency is DOID:9271,True,"  {
+""answer"": ""True""
+}"
+Saethre-Chotzen Syndrome is not associated with Gene TWIST1,False,"  {
+""answer"": ""False""
+}"
+prothrombin complex concentrates treats hemophilia b,True,"  Based on the provided Context, the answer is:
+
+{
+""answer"": ""True""
+}
+
+Prothrombin complex concentrates are used to treat hemophilia B, as mentioned in the Context."
+Disease ontology identifier for ethylmalonic encephalopathy is DOID:0060640,True,"  {
+""answer"": ""True""
+}"
+Alexander disease is a leukodystrophy,True,"  {
+""answer"": ""True""
+}"
+Variant rs2476601 associates Rheumatoid Arthritis,True,"  {
+""answer"": ""True""
+}"
+Carney Complex is not associated with Gene PRKAR1A,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for Werner syndrome is DOID:0050466,False,"  {
+""answer"": ""True""
+}"
+very long chain acyl-CoA dehydrogenase deficiency is not a disorder of fatty acid oxidation and ketogenesis,False,"  False.
+
+Based on the provided Context, very long chain acyl-CoA dehydrogenase deficiency is a disorder of fatty acid oxidation and ketogenesis."
+DOYNE HONEYCOMB RETINAL DYSTROPHY associates Gene EFEMP1,True,"  {
+  ""answer"": ""True""
+}"
+Central Diabetes Insipidus associates Gene AVP,True,"  Sure, I'd be happy to help! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}
+
+Central diabetes insipidus (CDI) is a rare disorder that affects the pituitary gland's ability to produce vasopressin (also known as antidiuretic hormone or AVP), leading to excessive thirst and urination. The AVP gene has been associated with central diabetes insipidus, so the statement ""Central Diabetes Insipidus associates Gene AVP"" is true."
+Disease ontology identifier for popliteal pterygium syndrome is DOID:0050756,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+The correct disease ontology identifier for popliteal pterygium syndrome is DOID:0060055, not DOID:0050756."
+Fragile X Syndrome associates Gene FMR1,True,"  {
+""answer"": ""True""
+}"
+Loeys-Dietz Syndrome associates Gene TGFBR2,True,"  {
+""answer"": ""True""
+}"
+"XERODERMA PIGMENTOSUM, COMPLEMENTATION GROUP C associates Gene XPC",True,"  {
+""answer"": ""True""
+}"
+"CHARCOT-MARIE-TOOTH DISEASE, TYPE 4C associates Gene SH3TC2",True,"  {
+""answer"": ""True""
+}"
+hereditary hemorrhagic telangiectasia is a autosomal dominant disease,True,  True
+Sandhoff disease is a eye degenerative disorder,True,"  Based on the provided context, the answer to the question ""Sandhoff disease is a eye degenerative disorder"" is:
+
+{
+""answer"": ""True""
+}"
+Disease ontology identifier for aniridia is DOID:12704,False,"  {
+""answer"": ""False""
+}
+
+The disease ontology identifier for aniridia is DOID:12271, not DOID:12704."
+Congenital Generalized Lipodystrophy Type 2 associates Gene BSCL2,True,"  {
+""answer"": ""True""
+}"
+Noonan Syndrome associates Gene PTPN11,True,"  {
+""answer"": True
+}"
+Juvenile Spinal Muscular Atrophy associates Gene SMN1,True,"  {
+""answer"": ""True""
+}"
+"CHARCOT-MARIE-TOOTH DISEASE, TYPE 4J associates Gene FIG4",True,"  {
+""answer"": ""True""
+}"
+Alkaptonuria associates Gene HGD,True,"  {
+""answer"": ""True""
+}"
+Cystinuria is not associated with Gene SLC7A9,False,"  {
+""answer"": ""False""
+}"
+Popliteal pterygium syndrome is not associated with Gene IRF6,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Popliteal pterygium syndrome is associated with Gene IRF6, as stated in the context."
+Aspartylglucosaminuria is not associated with Gene AGA,False,"  {
+""answer"": ""False""
+}"
+Nijmegen Breakage Syndrome is not associated with Gene NBN,False,  False
+Mowat-Wilson syndrome is not associated with Gene ZEB2,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for fragile X syndrome is DOID:14261,True,"  {
+  ""answer"": ""True""
+}"
+Sarcoma associates Gene TP53,True,"  {
+""answer"": ""False""
+}"
+Alstrom syndrome is a ciliopathy,True,"  {
+""answer"": ""True""
+}"
+Gray Platelet Syndrome is not associated with Gene NBEAL2,False,"  {
+""answer"": ""False""
+}"
+Ethylmalonic encephalopathy is not associated with Gene ETHE1,False,"  {
+""answer"": ""False""
+}"
+L-2-HYDROXYGLUTARIC ACIDURIA associates Gene L2HGDH,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for campomelic dysplasia is DOID:0050463,True,"  {
+""answer"": ""True""
+}"
+choroideremia is not a X-linked disease,False,"  Based on the information provided, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Choroideremia is a X-linked disease, as stated in the information provided: ""Disease choroideremia presents Symptom Abnormality of the cardiovascular system. Variant rs138374611 associates Disease choroideremia."" and ""Variant rs374880482 associates Disease choroideremia.""
+
+Therefore, the statement ""choroideremia is not a X-linked disease"" is false."
+Coffin-Siris syndrome is a syndromic disease,True,"  {
+""answer"": ""True""
+}"
+Nance-Horan syndrome associates Gene NHS,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for cystinuria is DOID:9266,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for gray platelet syndrome is DOID:0111044,True,"  {
+""answer"": ""True""
+}"
+Maple Syrup Urine Disease associates Gene DBT,True,"  {
+""answer"": ""True""
+}"
+Spinocerebellar Ataxia Type 1 is not associated with Gene ATXN1,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+The context states that Spinocerebellar Ataxia Type 1 (SCA1) is associated with the ATXN1 gene, and provides several specific variants (rs199744696, rs1760808820, rs201030692, rs751421308, and rs193922926) that are also associated with SCA1. Therefore, the statement ""Spinocerebellar Ataxia Type 1 is not associated with Gene ATXN1"" is false."
+Holt-Oram syndrome is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+agalsidase alfa treats fabry disease,True,"  {
+""answer"": True
+}"
+Disease ontology identifier for pseudopseudohypoparathyroidism is DOID:4183,True,"  {
+""answer"": ""True""
+}"
+agalsidase beta treats fabry disease,True,"  {
+""answer"": True
+}"
+Unverricht-Lundborg Syndrome is not associated with Gene CSTB,False,"  {
+""answer"": ""False""
+}"
+L-2-hydroxyglutaric aciduria is not a 2-hydroxyglutaric aciduria,False,"  {
+""answer"": ""False""
+}"
+Refsum Disease associates Gene PHYH,True,"  {
+""answer"": ""True""
+}"
+Achondroplasia is not associated with Gene FGFR3,False,"  {
+""answer"": ""False""
+}"
+pseudoachondroplasia is a osteochondrodysplasia,True,"  {
+""answer"": ""True""
+}"
+prasterone treats obesity,True,"  Based on the provided Context, the answer to the question ""Does prasterone treat obesity?"" is:
+
+{
+""answer"": ""False""
+}
+
+Prasterone is not listed as a compound that treats obesity in the provided Context."
+LATE-ONSET RETINAL DEGENERATION (disorder) associates Gene C1QTNF5,True,"  {
+""answer"": ""True""
+}"
+immunosuppressive agents treats crohn's disease,True,"  {
+""answer"": True
+}"
+nail-patella syndrome is a autosomal dominant disease,True,"  {
+""answer"": ""True""
+}"
+Mulibrey Nanism is not associated with Gene TRIM37,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+Mulibrey nanism is associated with Gene TRIM37, as stated in the context."
+"Xeroderma pigmentosum, group G is not associated with Gene ERCC5",False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for Lafora disease is DOID:3534,True,"  {
+""answer"": ""True""
+}"
+Brachydactyly type C is not associated with Gene GDF5,False,"  Sure, I'd be happy to help! Based on the context you provided, the answer to the question is:
+
+{
+""answer"": ""False""
+}
+
+Gene GDF5 is associated with brachydactyly type C, as stated in the context."
+Cystinuria is not associated with Gene SLC3A1,False,"  {
+""answer"": ""False""
+}"
+Obesity is not associated with Gene MC4R,False,"  {
+""answer"": ""False""
+}"
+Kleefstra syndrome 1 is a Kleefstra syndrome,True,"  {
+""answer"": ""True""
+}"
+everolimus treats tuberous sclerosis,True,"  {
+""answer"": True
+}"
+Autosomal Recessive Polycystic Kidney Disease associates Gene PKHD1,True,"  {
+""answer"": ""True""
+}"
+amiloride treats cystic fibrosis,True,"  {
+""answer"": False
+}"
+Liver carcinoma associates Gene TP53,True,"  Sure, I'd be happy to help!
+
+Based on the context you provided, the answer is:
+
+{
+  ""answer"": ""True""
+}
+
+The disease ontology identifier DOID:686 corresponds to liver carcinoma, and this disease is associated with the gene TP53."
+Adrenoleukodystrophy associates Gene ABCD1,True,"  {
+  ""answer"": ""True""
+}"
+Tuberous Sclerosis associates Gene TSC2,True,"  {
+""answer"": ""True""
+}"
+Myoclonic dystonia is not associated with Gene SGCE,False,"  Sure, I'd be happy to help! Based on the context you provided, my answer is:
+
+{
+  ""answer"": ""False""
+}
+
+Myoclonic dystonia is not associated with the gene SGCE."
+Long QT Syndrome 1 associates Gene KCNQ1,True,"  {
+""answer"": ""True""
+}"
+Smith-Magenis syndrome associates Gene RAI1,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for autosomal dominant hypophosphatemic rickets is DOID:0050948,True,"  {
+""answer"": ""True""
+}"
+nitisinone treats alkaptonuria,True,"  Based on the provided Context, the answer to the question ""nitisinone treats alkaptonuria"" is:
+
+{
+""answer"": ""True""
+}"
+immune checkpoint inhibitor treats melanoma,True,"  {
+""answer"": ""True""
+}"
+Li-Fraumeni Syndrome is not associated with Gene TP53,False,"  {
+""answer"": ""False""
+}"
+argininosuccinic aciduria is a amino acid metabolism disease,True,"  {
+""answer"": ""True""
+}"
+Hyperargininemia is not associated with Gene ARG1,False,"  {
+""answer"": ""False""
+}"
+Fabry Disease associates Gene GLA,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for beta-mannosidosis is DOID:0111136,False,"  Sure, I can help you with that!
+
+After reviewing the context you provided, I can confirm that the disease ontology identifier for beta-mannosidosis is not DOID:0111136, but rather DOID:3633.
+
+Therefore, my answer is:
+
+{
+""answer"": ""True""
+}"
+Disease ontology identifier for spinocerebellar ataxia type 1 is DOID:0050954,True,"  {
+""answer"": ""True""
+}"
+Waardenburg Syndrome Type 1 associates Gene PAX3,True,"  {
+""answer"": ""True""
+}"
+Osteosarcoma is not associated with Gene TP53,False,"  {
+""answer"": ""False""
+}"
+Mucopolysaccharidosis II associates Gene IDS,True,"  {
+""answer"": ""True""
+}"
+"Xeroderma pigmentosum, group F associates Gene ERCC4",True,"  {
+""answer"": ""True""
+}"
+Pierson syndrome is not a autosomal recessive disease,False,"  {
+""answer"": ""False""
+}"
+Nijmegen breakage syndrome is a autosomal recessive disease,True,"  {
+  ""answer"": ""True""
+}"
+Ellis-Van Creveld Syndrome associates Gene EVC2,True,"  {
+  ""answer"": ""True""
+}"
+X-linked agammaglobulinemia associates Gene BTK,True,"  {
+""answer"": ""True""
+}"
+azithromycin treats cystic fibrosis,True,"  {
+""answer"": ""False""
+}"
+liraglutide treats obesity,True,"  {
+""answer"": True
+}"
+Chediak-Higashi Syndrome associates Gene LYST,True,"  {
+""answer"": ""True""
+}"
+"FANCONI ANEMIA, COMPLEMENTATION GROUP D2 is not associated with Gene FANCD2",False,"  {
+""answer"": ""False""
+}"
+Wiskott-Aldrich Syndrome is not associated with Gene WAS,False,"  {
+""answer"": ""False""
+}"
+Pseudoxanthoma Elasticum associates Gene ABCC6,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for Omenn syndrome is DOID:3633,False,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+The disease ontology identifier for Omenn syndrome is DOID:0060010, not DOID:3633."
+Hajdu-Cheney Syndrome associates Gene NOTCH2,True,"  {
+""answer"": ""True""
+}"
+Disease ontology identifier for adrenoleukodystrophy is DOID:0060844,False,"  {
+""answer"": ""True""
+}"
+antibiotics treats cystic fibrosis,True,"  {
+""answer"": ""True""
+}"
+Mosaic variegated aneuploidy syndrome 1 associates Gene BUB1B,True,"  {
+""answer"": ""True""
+}"
+Noonan Syndrome associates Gene KRAS,True,"  {
+""answer"": ""True""
+}"
+Coffin-Lowry syndrome associates Gene RPS6KA3,True,"  {
+""answer"": ""True""
+}"
+Laron Syndrome associates Gene GHR,True,"  {
+""answer"": ""True""
+}"
+Leigh Disease associates Gene SURF1,True,"  {
+""answer"": ""True""
+}"
+DiGeorge Syndrome is not associated with Gene TBX1,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for Nance-Horan syndrome is DOID:0050771,False,"  {
+  ""answer"": ""False""
+}"
+"TIBIAL MUSCULAR DYSTROPHY, TARDIVE associates Gene TTN",True,"  {
+""answer"": ""True""
+}"
+protein-tyrosine kinase inhibitor treats sarcoma,True,"  Based on the provided context, the answer is:
+
+{
+""answer"": ""True""
+}
+
+Sarcoma is a type of cancer that is associated with genetic variants, such as rs11540652, rs137852791, and rs137852790. These variants have been linked to the disease ontology identifier DOID:1115. Additionally, sarcoma has been associated with specific cell types, such as spindle cell sarcoma, bone sarcoma, mast-cell sarcoma, and rhabdomyosarcoma.
+
+Protein-tyrosine kinase inhibitors have been shown to be effective in treating sarcoma. For example, the protein-tyrosine kinase inhibitor imatinib has been used to treat certain types of sarcoma, such as chronic myelogenous leukemia and gastrointestinal stromal tumors. Other protein-tyrosine kinase inhibitors, such as sunitinib and pazopanib, have also been used to treat sarcoma.
+
+Therefore, based on the provided context, the answer to the question is ""True"" - protein-tyrosine kinase inhibitors can be used to treat sarcoma."
+Lafora Disease associates Gene EPM2A,True,"  {
+""answer"": ""True""
+}"
+Pseudoachondroplasia associates Gene COMP,True,"  Sure! Based on the context you provided, the answer is:
+
+{
+""answer"": ""True""
+}
+
+Pseudoachondroplasia is a disease that associates with the Gene COMP, as stated in the context."
+"Charcot-Marie-Tooth disease, Type 4B1 associates Gene MTMR2",True,"  {
+""answer"": ""True""
+}"
+dehydroepiandrosterone treats obesity,True,"  {
+""answer"": ""False""
+}"
+Hartnup disease is a inborn disorder of amino acid transport,True,"  {
+""answer"": ""True""
+}"
+Farber Lipogranulomatosis is not associated with Gene ASAH1,False,"  {
+  ""answer"": ""False""
+}"
+Disease ontology identifier for Lesch-Nyhan syndrome is DOID:1919,True,"  {
+""answer"": ""True""
+}"
+Polycythemia Vera is not associated with Gene JAK2,False,"  {
+""answer"": ""False""
+}"
+hyperkalemic periodic paralysis is not a familial periodic paralysis,False,"  {
+""answer"": ""False""
+}"
+Coffin-Lowry syndrome is not a X-linked syndromic intellectual disability,False,"  {
+""answer"": ""False""
+}"
+macrolide antibiotics treats cystic fibrosis,True,"  {
+""answer"": True
+}"
+Pierson syndrome is not associated with Gene LAMB2,False,"  {
+""answer"": ""False""
+}"
+CAMPOMELIC DYSPLASIA associates Gene SOX9,True,"  {
+  ""answer"": ""True""
+}"
+Fatal Familial Insomnia is not associated with Gene PRNP,False,"  Based on the provided Context, the answer is:
+
+{
+""answer"": ""False""
+}
+
+The Context states that Disease fatal familial insomnia associates Gene PRNP and Variant rs28933385 associates Disease fatal familial insomnia. Therefore, it is not correct to say that Fatal Familial Insomnia is not associated with Gene PRNP."
+Disease ontology identifier for sitosterolemia is DOID:0090019,True,"  {
+""answer"": ""True""
+}"
+Tay-Sachs Disease associates Gene HEXA,True,"  {
+""answer"": ""True""
+}"
+beta-Mannosidosis is not associated with Gene MANBA,False,"  Based on the provided context, the answer is:
+
+{
+  ""answer"": ""False""
+}
+
+beta-Mannosidosis is associated with Gene MANBA, as stated in the context."
+Noonan Syndrome associates Gene SOS1,True,"  {
+""answer"": True
+}"
+Obesity is not associated with Gene PPARG,False,"  {
+""answer"": ""False""
+}"
+Congenital amegakaryocytic thrombocytopenia is not associated with Gene MPL,False,"  {
+""answer"": ""False""
+}"
+Leigh Disease associates Gene NDUFS4,True,"  {
+""answer"": True
+}"
+Sandhoff Disease is not associated with Gene HEXB,False,"  {
+""answer"": ""False""
+}"
+Disease ontology identifier for Doyne honeycomb retinal dystrophy is DOID:0081055,False,"  {
+""answer"": ""False""
+}"
+Juvenile polyposis syndrome associates Gene BMPR1A,True,"  {
+""answer"": ""True""
+}"
