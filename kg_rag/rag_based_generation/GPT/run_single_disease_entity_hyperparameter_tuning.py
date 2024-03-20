@@ -31,6 +31,7 @@ CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
 vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
+edge_evidence = False
 
 def main():
     start_time = time.time()
@@ -41,7 +42,7 @@ def main():
             answer_list = []
             for index, row in question_df.iterrows():
                 question = row["text"]
-                context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, context_volume, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+                context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, context_volume, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence)
                 enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
                 output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
                 if not output:

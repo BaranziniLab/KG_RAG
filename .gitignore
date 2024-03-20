@@ -1,3 +1,4 @@
+logs/
 data/results/cypher_rag_output_2M_spoke.csv
 test_notebooks/create_node_context_file_for_2M_spoke_graph.ipynb
 notebooks/cypher_rag_using_langchain_2M.ipynb
