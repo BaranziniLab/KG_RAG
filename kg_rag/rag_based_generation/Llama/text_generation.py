@@ -7,10 +7,12 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', type=bool, default=False, help='Flag for interactive mode')
 parser.add_argument('-m', type=str, default='method-1', help='Method to choose for Llama model')
+parser.add_argument('-e', type=bool, default=False, help='Flag for showing evidence of association from the graph')
 args = parser.parse_args()
 
 INTERACTIVE = args.i
 METHOD = args.m
+EDGE_EVIDENCE = bool(args.e)
 
 
 SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
@@ -41,12 +43,12 @@ def main():
         llm = llama_model(MODEL_NAME, BRANCH_NAME, CACHE_DIR, stream=True, method=METHOD) 
         llm_chain = LLMChain(prompt=prompt, llm=llm)            
         print("Retrieving context from SPOKE graph...")
-        context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+        context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, EDGE_EVIDENCE)
         print("Here is the KG-RAG based answer using Llama:")
         print("")
         output = llm_chain.run(context=context, question=question)
     else:
-        interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, "llama", llama_method=METHOD)
+        interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, "llama", EDGE_EVIDENCE, SYSTEM_PROMPT, llama_method=METHOD)
 
 
 

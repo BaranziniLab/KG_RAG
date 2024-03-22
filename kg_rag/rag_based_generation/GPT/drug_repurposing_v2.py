@@ -1,9 +1,3 @@
-'''
-This script takes a question from the user in an interactive fashion and returns the KG-RAG based response in real time
-Before running this script, make sure to configure config.yaml file.
-Command line argument should be either 'gpt-4' or 'gpt-35-turbo'
-'''
-
 from kg_rag.utility import *
 import argparse
 
@@ -15,12 +9,12 @@ parser.add_argument('-i', type=bool, default=False, help='Flag for interactive m
 parser.add_argument('-e', type=bool, default=False, help='Flag for showing evidence of association from the graph')
 args = parser.parse_args()
 
+
 CHAT_MODEL_ID = args.g
 INTERACTIVE = args.i
 EDGE_EVIDENCE = bool(args.e)
 
-
-SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
+SYSTEM_PROMPT = system_prompts["DRUG_REPURPOSING_V2"]
 CONTEXT_VOLUME = int(config_data["CONTEXT_VOLUME"])
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(config_data["QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD"])
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"])
@@ -33,14 +27,28 @@ TEMPERATURE = config_data["LLM_TEMPERATURE"]
 
 CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
-
 vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
 embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
 
+print('')
+question = input("Question : ")
+
+question_template = f'''
+To the question asked at the end, answer by referring the context. 
+See example below
+Example 1:
+    Question:
+    What drugs can be repurposed for disease X?
+    Context:
+    Compound Alizapride DOWNREGULATES Gene APOE and Provenance of this association is XX. Gene APOE ASSOCIATES Disease X  and Provenance of this association is YY. Gene TTR encodes Protein Transthyretin (ATTR)  and Provenance of this association is ZZ. Compound Acetylcysteine treats Disease X  and Provenance of this association is PP.
+    Answer:
+    Since Alizapride downregulates gene APOE (Provenance XX) and APOE is associated with Disease X (Provenance YY), Alizapride can be repurposed to treat Disease X. p-value for these associations is XXXX and z-score values for these associations is YYYY.
+Question:
+{question} 
+'''
+
 def main():
-    print(" ")
-    question = input("Enter your question : ")
     if not INTERACTIVE:
         print("Retrieving context from SPOKE graph...")
         context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, EDGE_EVIDENCE)
@@ -56,6 +64,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 

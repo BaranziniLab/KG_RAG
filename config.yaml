@@ -33,14 +33,13 @@ LLM_CACHE_DIR : '/data/somank/llm_data/llm_models/huggingface'
 LLM_TEMPERATURE : 0
 
 # Path to save results
-SAVE_RESULTS_PATH : '/data/somank/KG_RAG/data/analysis_results'
+SAVE_RESULTS_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/results'
 
 # File paths for test questions
-DRUG_REPURPOSING_PATH : '/data/somank/KG_RAG/data/drug_repurposing_questions_v2.csv'
-MCQ_PATH : '/data/somank/KG_RAG/data/test_questions_two_hop_mcq_from_monarch_and_robokop.csv'
-TRUE_FALSE_PATH : '/data/somank/KG_RAG/data/test_questions_one_hop_true_false_v2.csv'
-ONE_HOP_GRAPH_TRAVERSAL : '/data/somank/KG_RAG/data/one_hop_graph_traversal_questions_v2.csv'
-TWO_HOP_GRAPH_TRAVERSAL : '/data/somank/KG_RAG/data/two_hop_graph_traversal_questions.csv'
+MCQ_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/benchmark_data/mcq_questions.csv'
+TRUE_FALSE_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/benchmark_data/true_false_questions.csv'
+SINGLE_DISEASE_ENTITY_FILE : '/data/somank/KG_RAG/data/hyperparam_tuning_data/single_disease_entity_prompts.csv'
+TWO_DISEASE_ENTITY_FILE : '/data/somank/KG_RAG/data/hyperparam_tuning_data/two_disease_entity_prompts.csv'
 
 # SPOKE-API params
 BASE_URI : 'https://spoke.rbvi.ucsf.edu'
@@ -51,4 +50,6 @@ cutoff_DaG_textmining : 3
 cutoff_CtD_phase : 3
 cutoff_PiP_confidence : 0.7
 cutoff_ACTeG_level : ['Low', 'Medium', 'High']
+depth : 1
+cutoff_DpL_average_prevalence : 0.001
 

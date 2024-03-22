@@ -18,8 +18,8 @@ CONTEXT_VOLUME_LIST = [10, 50, 100, 150, 200]
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL_LIST = ["pritamdeka/S-PubMedBert-MS-MARCO", "sentence-transformers/all-MiniLM-L6-v2"]
 SAVE_NAME_LIST = ["pubmedBert_based_two_hop_questions_parameter_tuning_round_{}.csv", "miniLM_based_two_hop_questions_parameter_tuning_round_{}.csv"]
 
-QUESTION_PATH = config_data["TWO_HOP_GRAPH_TRAVERSAL"]
-SYSTEM_PROMPT = system_prompts["TWO_HOP_VALIDATION"]
+QUESTION_PATH = config_data["TWO_DISEASE_ENTITY_FILE"]
+SYSTEM_PROMPT = system_prompts["TWO_DISEASE_ENTITY_VALIDATION"]
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(config_data["QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD"])
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"])
 VECTOR_DB_PATH = config_data["VECTOR_DB_PATH"]
@@ -31,6 +31,7 @@ SAVE_PATH = config_data["SAVE_RESULTS_PATH"]
 vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
 embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
 node_context_df = pd.read_csv(NODE_CONTEXT_PATH)
+edge_evidence = False
 
 def main():
     start_time = time.time()
@@ -40,7 +41,7 @@ def main():
             answer_list = []
             for index, row in question_df.iterrows():
                 question = row["text"]
-                context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, context_volume, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY)
+                context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, context_volume, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence)
                 enriched_prompt = "Context: "+ context + "\n" + "Question: " + question
                 output = get_GPT_response(enriched_prompt, system_prompt, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=temperature)
                 if not output:

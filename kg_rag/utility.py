@@ -64,7 +64,9 @@ def get_context_using_spoke_api(node_value):
         'cutoff_DaG_textmining': config_data['cutoff_DaG_textmining'],
         'cutoff_CtD_phase': config_data['cutoff_CtD_phase'],
         'cutoff_PiP_confidence': config_data['cutoff_PiP_confidence'],
-        'cutoff_ACTeG_level': config_data['cutoff_ACTeG_level']
+        'cutoff_ACTeG_level': config_data['cutoff_ACTeG_level'],
+        'cutoff_DpL_average_prevalence': config_data['cutoff_DpL_average_prevalence'],
+        'depth' : config_data['depth']
     }
     node_type = "Disease"
     attribute = "name"
@@ -103,10 +105,14 @@ def get_context_using_spoke_api(node_value):
                             else:
                                 provenance = "Based on data from Institute For Systems Biology (ISB)"
                     except:                                
-                        provenance = "SPOKE-KG"                                    
-            nbr_edges.append((item["data"]["source"], item["data"]["neo4j_type"], item["data"]["target"], provenance))
+                        provenance = "SPOKE-KG"     
+            try:
+                evidence = item["data"]["properties"]
+            except:
+                evidence = None
+            nbr_edges.append((item["data"]["source"], item["data"]["neo4j_type"], item["data"]["target"], provenance, evidence))
     nbr_nodes_df = pd.DataFrame(nbr_nodes, columns=["node_type", "node_id", "node_name"])
-    nbr_edges_df = pd.DataFrame(nbr_edges, columns=["source", "edge_type", "target", "provenance"])
+    nbr_edges_df = pd.DataFrame(nbr_edges, columns=["source", "edge_type", "target", "provenance", "evidence"])
     merge_1 = pd.merge(nbr_edges_df, nbr_nodes_df, left_on="source", right_on="node_id").drop("node_id", axis=1)
     merge_1.loc[:,"node_name"] = merge_1.node_type + " " + merge_1.node_name
     merge_1.drop(["source", "node_type"], axis=1, inplace=True)
@@ -115,12 +121,20 @@ def get_context_using_spoke_api(node_value):
     merge_2.loc[:,"node_name"] = merge_2.node_type + " " + merge_2.node_name
     merge_2.drop(["target", "node_type"], axis=1, inplace=True)
     merge_2 = merge_2.rename(columns={"node_name":"target"})
-    merge_2 = merge_2[["source", "edge_type", "target", "provenance"]]
+    merge_2 = merge_2[["source", "edge_type", "target", "provenance", "evidence"]]
     merge_2.loc[:, "predicate"] = merge_2.edge_type.apply(lambda x:x.split("_")[0])
-    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
-    context = merge_2['context'].str.cat(sep=' ')
-    context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this association is " + node_context[0]["data"]["properties"]["source"] + "."
-    return context
+    merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + "."
+    context = merge_2.context.str.cat(sep=' ')
+    context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
+    return context, merge_2
+        
+#         if edge_evidence:
+#             merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + " and attributes associated with this association is in the following JSON format:\n " + merge_2.evidence.astype('str') + "\n\n"
+#         else:
+#             merge_2.loc[:, "context"] =  merge_2.source + " " + merge_2.predicate.str.lower() + " " + merge_2.target + " and Provenance of this association is " + merge_2.provenance + ". "
+#         context = merge_2.context.str.cat(sep=' ')
+#         context += node_value + " has a " + node_context[0]["data"]["properties"]["source"] + " identifier of " + node_context[0]["data"]["properties"]["identifier"] + " and Provenance of this is from " + node_context[0]["data"]["properties"]["source"] + "."
+#     return context
 
 
 
@@ -244,7 +258,7 @@ def load_chroma(vector_db_path, sentence_embedding_model):
     embedding_function = load_sentence_transformer(sentence_embedding_model)
     return Chroma(persist_directory=vector_db_path, embedding_function=embedding_function)
 
-def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, api=True):
+def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, edge_evidence, api=True):
     entities = disease_entity_extractor_v2(question)
     node_hits = []
     if entities:
@@ -258,7 +272,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             if not api:
                 node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
             else:
-                node_context = get_context_using_spoke_api(node_name)
+                node_context,context_table = get_context_using_spoke_api(node_name)
             node_context_list = node_context.split(". ")        
             node_context_embeddings = embedding_function.embed_documents(node_context_list)
             similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -267,9 +281,15 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > context_sim_min_threshold]
             if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
                 high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
-            high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-            node_context_extracted += ". ".join(high_similarity_context)
-            node_context_extracted += ". "
+            high_similarity_context = [node_context_list[index] for index in high_similarity_indices]            
+            if edge_evidence:
+                high_similarity_context = list(map(lambda x:x+'.', high_similarity_context)) 
+                context_table = context_table[context_table.context.isin(high_similarity_context)]
+                context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
+                node_context_extracted = context_table.context.str.cat(sep=' ')
+            else:
+                node_context_extracted += ". ".join(high_similarity_context)
+                node_context_extracted += ". "
         return node_context_extracted
     else:
         node_hits = vectorstore.similarity_search_with_score(question, k=5)
@@ -281,7 +301,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             if not api:
                 node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
             else:
-                node_context = get_context_using_spoke_api(node_name)
+                node_context, context_table = get_context_using_spoke_api(node_name)
             node_context_list = node_context.split(". ")        
             node_context_embeddings = embedding_function.embed_documents(node_context_list)
             similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -291,12 +311,18 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
             if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
                 high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
             high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-            node_context_extracted += ". ".join(high_similarity_context)
-            node_context_extracted += ". "
+            if edge_evidence:
+                high_similarity_context = list(map(lambda x:x+'.', high_similarity_context))
+                context_table = context_table[context_table.context.isin(high_similarity_context)]
+                context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
+                node_context_extracted = context_table.context.str.cat(sep=' ')
+            else:
+                node_context_extracted += ". ".join(high_similarity_context)
+                node_context_extracted += ". "
         return node_context_extracted
     
     
-def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, api=True, llama_method="method-1"):
+def interactive(question, vectorstore, node_context_df, embedding_function_for_context_retrieval, llm_type, edge_evidence, system_prompt, api=True, llama_method="method-1"):
     print(" ")
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
@@ -320,7 +346,8 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         if not api:
             node_context.append(node_context_df[node_context_df.node_name == node_name].node_context.values[0])
         else:
-            node_context.append(get_context_using_spoke_api(node_name))
+            context, context_table = get_context_using_spoke_api(node_name)
+            node_context.append(context)
     print("Extracted Context is : ")
     print(". ".join(node_context))
     print(" ")
@@ -332,7 +359,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         if not api:
             node_context = node_context_df[node_context_df.node_name == node_name].node_context.values[0]
         else:
-            node_context = get_context_using_spoke_api(node_name)
+            node_context, context_table = get_context_using_spoke_api(node_name)                        
         node_context_list = node_context.split(". ")        
         node_context_embeddings = embedding_function_for_context_retrieval.embed_documents(node_context_list)
         similarities = [cosine_similarity(np.array(question_embedding).reshape(1, -1), np.array(node_context_embedding).reshape(1, -1)) for node_context_embedding in node_context_embeddings]
@@ -341,9 +368,15 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
         high_similarity_indices = [s[1] for s in similarities if s[0] > percentile_threshold and s[0] > config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"]]
         if len(high_similarity_indices) > max_number_of_high_similarity_context_per_node:
             high_similarity_indices = high_similarity_indices[:max_number_of_high_similarity_context_per_node]
-        high_similarity_context = [node_context_list[index] for index in high_similarity_indices]
-        node_context_extracted += ". ".join(high_similarity_context)
-        node_context_extracted += ". "
+        high_similarity_context = [node_context_list[index] for index in high_similarity_indices]               
+        if edge_evidence:
+            high_similarity_context = list(map(lambda x:x+'.', high_similarity_context)) 
+            context_table = context_table[context_table.context.isin(high_similarity_context)]
+            context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
+            node_context_extracted = context_table.context.str.cat(sep=' ')
+        else:
+            node_context_extracted += ". ".join(high_similarity_context)
+            node_context_extracted += ". "
     print("Pruned Context is : ")
     print(node_context_extracted)
     print(" ")
@@ -352,12 +385,12 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
     print("Prompting ", llm_type)
     if llm_type == "llama":
         from langchain import PromptTemplate, LLMChain
-        template = get_prompt("Context:\n\n{context} \n\nQuestion: {question}", system_prompts["KG_RAG_BASED_TEXT_GENERATION"])
+        template = get_prompt("Context:\n\n{context} \n\nQuestion: {question}", system_prompt)
         prompt = PromptTemplate(template=template, input_variables=["context", "question"])
         llm = llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], stream=True, method=llama_method) 
         llm_chain = LLMChain(prompt=prompt, llm=llm)
         output = llm_chain.run(context=node_context_extracted, question=question)
     elif "gpt" in llm_type:
         enriched_prompt = "Context: "+ node_context_extracted + "\n" + "Question: " + question
-        output = get_GPT_response(enriched_prompt, system_prompts["KG_RAG_BASED_TEXT_GENERATION"], llm_type, llm_type, temperature=config_data["LLM_TEMPERATURE"])
+        output = get_GPT_response(enriched_prompt, system_prompt, llm_type, llm_type, temperature=config_data["LLM_TEMPERATURE"])
         stream_out(output)

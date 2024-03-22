@@ -1,0 +1,101 @@
+disease_name,gene_name,gwas_pvalue,question,question_perturbed
+childhood-onset asthma,RORA,2e-37,What is the GWAS p-value for the association between childhood-onset asthma and RORA?,What is the GWAS p-value for the association between childhood-onset asthma and rora?
+skin benign neoplasm,SHANK2,5e-08,What is the GWAS p-value for the association between SHANK2 and skin benign neoplasm?,What is the GWAS p-value for the association between shank2 and skin benign neoplasm?
+hypertrophic cardiomyopathy,AMBRA1,1e-16,Is hypertrophic cardiomyopathy associated with AMBRA1?,Is hypertrophic cardiomyopathy associated with ambra1?
+lung adenocarcinoma,CYP2A6,8e-11,What is the GWAS p-value for the association between CYP2A6 and lung adenocarcinoma?,What is the GWAS p-value for the association between cyp2a6 and lung adenocarcinoma?
+idiopathic generalized epilepsy,RYR2,3e-09,Is idiopathic generalized epilepsy associated with RYR2?,Is idiopathic generalized epilepsy associated with ryr2?
+gastric fundus cancer,PLCE1,2e-22,What is the GWAS p-value for the association between PLCE1 and gastric fundus cancer?,What is the GWAS p-value for the association between plce1 and gastric fundus cancer?
+hypertrophic cardiomyopathy,VTI1A,4e-12,Is VTI1A associated with hypertrophic cardiomyopathy?,Is vti1a associated with hypertrophic cardiomyopathy?
+peptic ulcer disease,TTC33,5e-25,Is peptic ulcer disease associated with TTC33?,Is peptic ulcer disease associated with ttc33?
+multiple sclerosis,TSPAN31,2e-09,Is multiple sclerosis associated with TSPAN31?,Is multiple sclerosis associated with tspan31?
+large intestine cancer,ABHD12B,7e-09,What is the GWAS p-value for the association between ABHD12B and large intestine cancer?,What is the GWAS p-value for the association between abhd12b and large intestine cancer?
+prostate carcinoma,ESR2,7e-12,What is the GWAS p-value for the association between ESR2 and prostate carcinoma?,What is the GWAS p-value for the association between esr2 and prostate carcinoma?
+inflammatory bowel disease,SH2B3,1e-09,What is the GWAS p-value for the association between inflammatory bowel disease and SH2B3?,What is the GWAS p-value for the association between inflammatory bowel disease and sh2b3?
+mastocytosis,FTCD,1e-09,What is the GWAS p-value for the association between mastocytosis and FTCD?,What is the GWAS p-value for the association between mastocytosis and ftcd?
+major depressive disorder,FURIN,3e-19,What is the GWAS p-value for the association between FURIN and major depressive disorder?,What is the GWAS p-value for the association between furin and major depressive disorder?
+testicular cancer,TERT,8e-15,Is testicular cancer associated with TERT?,Is testicular cancer associated with tert?
+type 2 diabetes mellitus,SLC24A3,3e-17,Is SLC24A3 associated with type 2 diabetes mellitus?,Is slc24a3 associated with type 2 diabetes mellitus?
+celiac disease,PLEK,8e-09,Is celiac disease associated with PLEK?,Is celiac disease associated with plek?
+endometrial carcinoma,CPVL,2e-08,What is the GWAS p-value for the association between endometrial carcinoma and CPVL?,What is the GWAS p-value for the association between endometrial carcinoma and cpvl?
+allergic disease,ZNF652,1e-15,Is allergic disease associated with ZNF652?,Is allergic disease associated with znf652?
+systemic lupus erythematosus,ELF3,4e-09,What is the GWAS p-value for the association between systemic lupus erythematosus and ELF3?,What is the GWAS p-value for the association between systemic lupus erythematosus and elf3?
+hemorrhoid,GMDS,2e-31,Is GMDS associated with hemorrhoid?,Is gmds associated with hemorrhoid?
+rheumatoid arthritis,DPP4,2e-21,What is the GWAS p-value for the association between rheumatoid arthritis and DPP4?,What is the GWAS p-value for the association between rheumatoid arthritis and dpp4?
+colon carcinoma,SMAD7,3e-08,What is the GWAS p-value for the association between SMAD7 and colon carcinoma?,What is the GWAS p-value for the association between smad7 and colon carcinoma?
+pulmonary hypertension,PKIA,2e-09,What is the GWAS p-value for the association between PKIA and pulmonary hypertension?,What is the GWAS p-value for the association between pkia and pulmonary hypertension?
+autoimmune thyroiditis,TNFRSF14,2e-11,What is the GWAS p-value for the association between autoimmune thyroiditis and TNFRSF14?,What is the GWAS p-value for the association between autoimmune thyroiditis and tnfrsf14?
+psoriatic arthritis,CNTNAP2,5e-28,Is psoriatic arthritis associated with CNTNAP2?,Is psoriatic arthritis associated with cntnap2?
+primary biliary cholangitis,CCDC88B,1e-10,Is primary biliary cholangitis associated with CCDC88B?,Is primary biliary cholangitis associated with ccdc88b?
+otosclerosis,MARK3,3e-18,Is MARK3 associated with otosclerosis?,Is mark3 associated with otosclerosis?
+large intestine cancer,RHPN2,4e-41,What is the GWAS p-value for the association between RHPN2 and large intestine cancer?,What is the GWAS p-value for the association between rhpn2 and large intestine cancer?
+anxiety disorder,NTRK2,7e-09,Is anxiety disorder associated with NTRK2?,Is anxiety disorder associated with ntrk2?
+atopic dermatitis,RERE,6e-16,Is atopic dermatitis associated with RERE?,Is atopic dermatitis associated with rere?
+asthma,PRR5L,6e-12,Is PRR5L associated with asthma?,Is prr5l associated with asthma?
+gastric fundus cancer,GON4L,1e-15,What is the GWAS p-value for the association between gastric fundus cancer and GON4L?,What is the GWAS p-value for the association between gastric fundus cancer and gon4l?
+type 2 diabetes mellitus,DNAH1,7e-21,Is type 2 diabetes mellitus associated with DNAH1?,Is type 2 diabetes mellitus associated with dnah1?
+schizophrenia,SLC17A3,3e-20,What is the GWAS p-value for the association between schizophrenia and SLC17A3?,What is the GWAS p-value for the association between schizophrenia and slc17a3?
+inflammatory bowel disease,FADS2,2e-15,What is the GWAS p-value for the association between inflammatory bowel disease and FADS2?,What is the GWAS p-value for the association between inflammatory bowel disease and fads2?
+opiate dependence,ADGRV1,2e-09,Is opiate dependence associated with ADGRV1?,Is opiate dependence associated with adgrv1?
+attention deficit hyperactivity disorder,ST3GAL3,8e-14,What is the GWAS p-value for the association between attention deficit hyperactivity disorder and ST3GAL3?,What is the GWAS p-value for the association between attention deficit hyperactivity disorder and st3gal3?
+cataract,C3orf49,2e-11,Is C3orf49 associated with cataract?,Is c3orf49 associated with cataract?
+duodenal ulcer,PLD1,5e-08,What is the GWAS p-value for the association between PLD1 and duodenal ulcer?,What is the GWAS p-value for the association between pld1 and duodenal ulcer?
+chronic obstructive pulmonary disease,CHRNA3,5e-28,What is the GWAS p-value for the association between CHRNA3 and chronic obstructive pulmonary disease?,What is the GWAS p-value for the association between chrna3 and chronic obstructive pulmonary disease?
+pancreatic carcinoma,CCDC68,5e-09,What is the GWAS p-value for the association between pancreatic carcinoma and CCDC68?,What is the GWAS p-value for the association between pancreatic carcinoma and ccdc68?
+primary biliary cholangitis,HLA-DPB1,2e-22,Is HLA-DPB1 associated with primary biliary cholangitis?,Is hla-dpb1 associated with primary biliary cholangitis?
+atopic dermatitis,GABPB2,2e-88,Is atopic dermatitis associated with GABPB2?,Is atopic dermatitis associated with gabpb2?
+systemic lupus erythematosus,HIP1,6e-62,What is the GWAS p-value for the association between HIP1 and systemic lupus erythematosus?,What is the GWAS p-value for the association between hip1 and systemic lupus erythematosus?
+hypothyroidism,TIMMDC1,3e-09,Is hypothyroidism associated with TIMMDC1?,Is hypothyroidism associated with timmdc1?
+degenerative myopia,MIPEP,2e-16,What is the GWAS p-value for the association between degenerative myopia and MIPEP?,What is the GWAS p-value for the association between degenerative myopia and mipep?
+alcoholic pancreatitis,CASP9,6e-09,Is alcoholic pancreatitis associated with CASP9?,Is alcoholic pancreatitis associated with casp9?
+lung squamous cell carcinoma,PDS5B,9e-12,Is lung squamous cell carcinoma associated with PDS5B?,Is lung squamous cell carcinoma associated with pds5b?
+common variable immunodeficiency,CLEC16A,2e-09,What is the GWAS p-value for the association between CLEC16A and common variable immunodeficiency?,What is the GWAS p-value for the association between clec16a and common variable immunodeficiency?
+lung non-small cell carcinoma,TERT,1e-42,Is TERT associated with lung non-small cell carcinoma?,Is tert associated with lung non-small cell carcinoma?
+cardiovascular system disease,PSMD3,1e-20,Is PSMD3 associated with cardiovascular system disease?,Is psmd3 associated with cardiovascular system disease?
+gestational diabetes,CCND2,3e-12,What is the GWAS p-value for the association between gestational diabetes and CCND2?,What is the GWAS p-value for the association between gestational diabetes and ccnd2?
+major depressive disorder,TMEM106B,8e-24,Is TMEM106B associated with major depressive disorder?,Is tmem106b associated with major depressive disorder?
+keratoconus,COL6A1,9e-12,What is the GWAS p-value for the association between COL6A1 and keratoconus?,What is the GWAS p-value for the association between col6a1 and keratoconus?
+chronic lymphocytic leukemia,RREB1,1e-08,Is chronic lymphocytic leukemia associated with RREB1?,Is chronic lymphocytic leukemia associated with rreb1?
+prostate carcinoma,PARPBP,3e-13,Is PARPBP associated with prostate carcinoma?,Is parpbp associated with prostate carcinoma?
+testicular germ cell cancer,ZFP64,3e-12,What is the GWAS p-value for the association between testicular germ cell cancer and ZFP64?,What is the GWAS p-value for the association between testicular germ cell cancer and zfp64?
+psoriasis,KLF13,9e-10,What is the GWAS p-value for the association between KLF13 and psoriasis?,What is the GWAS p-value for the association between klf13 and psoriasis?
+coronary artery disease,ADGRL3,3e-23,Is coronary artery disease associated with ADGRL3?,Is coronary artery disease associated with adgrl3?
+abdominal obesity-metabolic syndrome 1,JMJD1C,2e-14,What is the GWAS p-value for the association between abdominal obesity-metabolic syndrome 1 and JMJD1C?,What is the GWAS p-value for the association between abdominal obesity-metabolic syndrome 1 and jmjd1c?
+type 1 diabetes mellitus,CUX2,1e-16,Is CUX2 associated with type 1 diabetes mellitus?,Is cux2 associated with type 1 diabetes mellitus?
+type 2 diabetes mellitus,KCNK16,4e-17,What is the GWAS p-value for the association between KCNK16 and type 2 diabetes mellitus?,What is the GWAS p-value for the association between kcnk16 and type 2 diabetes mellitus?
+type 1 diabetes mellitus,DGKQ,6e-09,Is type 1 diabetes mellitus associated with DGKQ?,Is type 1 diabetes mellitus associated with dgkq?
+refractive error,SIX6,2e-16,What is the GWAS p-value for the association between SIX6 and refractive error?,What is the GWAS p-value for the association between six6 and refractive error?
+Parkinson's disease,MAP4K4,8e-13,What is the GWAS p-value for the association between MAP4K4 and Parkinson's disease?,What is the GWAS p-value for the association between map4k4 and parkinson's disease?
+autism spectrum disorder,DCC,3e-08,Is autism spectrum disorder associated with DCC?,Is autism spectrum disorder associated with dcc?
+multiple sclerosis,NR1D1,9e-14,Is multiple sclerosis associated with NR1D1?,Is multiple sclerosis associated with nr1d1?
+coronary artery disease,SMAD3,1e-19,Is coronary artery disease associated with SMAD3?,Is coronary artery disease associated with smad3?
+prostate carcinoma,ANO7,8e-43,What is the GWAS p-value for the association between ANO7 and prostate carcinoma?,What is the GWAS p-value for the association between ano7 and prostate carcinoma?
+ovarian carcinoma,FGFR2,4e-254,What is the GWAS p-value for the association between FGFR2 and ovarian carcinoma?,What is the GWAS p-value for the association between fgfr2 and ovarian carcinoma?
+lymphoid leukemia,BMF,1e-10,What is the GWAS p-value for the association between BMF and lymphoid leukemia?,What is the GWAS p-value for the association between bmf and lymphoid leukemia?
+skin melanoma,CYP1B1,3e-16,Is skin melanoma associated with CYP1B1?,Is skin melanoma associated with cyp1b1?
+myositis,ATP6V1G2,6e-49,What is the GWAS p-value for the association between myositis and ATP6V1G2?,What is the GWAS p-value for the association between myositis and atp6v1g2?
+melanoma,SPG7,9e-26,What is the GWAS p-value for the association between SPG7 and melanoma?,What is the GWAS p-value for the association between spg7 and melanoma?
+type 2 diabetes mellitus,EYA2,6e-19,Is EYA2 associated with type 2 diabetes mellitus?,Is eya2 associated with type 2 diabetes mellitus?
+carpal tunnel syndrome,SERPINA1,3e-24,What is the GWAS p-value for the association between SERPINA1 and carpal tunnel syndrome?,What is the GWAS p-value for the association between serpina1 and carpal tunnel syndrome?
+substance-related disorder,FUT2,3e-19,What is the GWAS p-value for the association between substance-related disorder and FUT2?,What is the GWAS p-value for the association between substance-related disorder and fut2?
+open-angle glaucoma,PLEKHA7,9e-15,Is open-angle glaucoma associated with PLEKHA7?,Is open-angle glaucoma associated with plekha7?
+myocardial infarction,ZNF831,1e-08,What is the GWAS p-value for the association between myocardial infarction and ZNF831?,What is the GWAS p-value for the association between myocardial infarction and znf831?
+squamous cell carcinoma,IRF4,1e-169,Is IRF4 associated with squamous cell carcinoma?,Is irf4 associated with squamous cell carcinoma?
+Parkinson's disease,WDHD1,4e-16,What is the GWAS p-value for the association between WDHD1 and Parkinson's disease?,What is the GWAS p-value for the association between wdhd1 and parkinson's disease?
+cataract,TOP1,1e-11,Is cataract associated with TOP1?,Is cataract associated with top1?
+atrial fibrillation,AGBL4,3e-09,What is the GWAS p-value for the association between atrial fibrillation and AGBL4?,What is the GWAS p-value for the association between atrial fibrillation and agbl4?
+otosclerosis,SEMA4D,4e-09,What is the GWAS p-value for the association between otosclerosis and SEMA4D?,What is the GWAS p-value for the association between otosclerosis and sema4d?
+hypothyroidism,RAD51B,2e-11,What is the GWAS p-value for the association between hypothyroidism and RAD51B?,What is the GWAS p-value for the association between hypothyroidism and rad51b?
+childhood-onset asthma,SPSB1,4e-18,What is the GWAS p-value for the association between SPSB1 and childhood-onset asthma?,What is the GWAS p-value for the association between spsb1 and childhood-onset asthma?
+major depressive disorder,ATG7,5e-08,Is major depressive disorder associated with ATG7?,Is major depressive disorder associated with atg7?
+alopecia,WNT10A,2e-16,Is WNT10A associated with alopecia?,Is wnt10a associated with alopecia?
+inflammatory bowel disease,IL27,1e-21,Is inflammatory bowel disease associated with IL27?,Is inflammatory bowel disease associated with il27?
+tonsillitis,TNFRSF13B,8e-26,What is the GWAS p-value for the association between tonsillitis and TNFRSF13B?,What is the GWAS p-value for the association between tonsillitis and tnfrsf13b?
+cleft lip,SFI1,3e-08,What is the GWAS p-value for the association between cleft lip and SFI1?,What is the GWAS p-value for the association between cleft lip and sfi1?
+multiple sclerosis,INAVA,6e-21,What is the GWAS p-value for the association between multiple sclerosis and INAVA?,What is the GWAS p-value for the association between multiple sclerosis and inava?
+esophageal carcinoma,CASP8,1e-08,Is esophageal carcinoma associated with CASP8?,Is esophageal carcinoma associated with casp8?
+skin melanoma,GPRC5A,8e-15,Is skin melanoma associated with GPRC5A?,Is skin melanoma associated with gprc5a?
+lung squamous cell carcinoma,BRCA2,1e-15,Is lung squamous cell carcinoma associated with BRCA2?,Is lung squamous cell carcinoma associated with brca2?
+systemic lupus erythematosus,HLA-DRA,2e-60,What is the GWAS p-value for the association between HLA-DRA and systemic lupus erythematosus?,What is the GWAS p-value for the association between hla-dra and systemic lupus erythematosus?
+type 2 diabetes mellitus,UBE2E2,2e-42,Is type 2 diabetes mellitus associated with UBE2E2?,Is type 2 diabetes mellitus associated with ube2e2?
+allergic rhinitis,HLA-DQA1,1e-43,What is the GWAS p-value for the association between HLA-DQA1 and allergic rhinitis?,What is the GWAS p-value for the association between hla-dqa1 and allergic rhinitis?
+systemic lupus erythematosus,HLA-DQA1,1e-54,What is the GWAS p-value for the association between systemic lupus erythematosus and HLA-DQA1?,What is the GWAS p-value for the association between systemic lupus erythematosus and hla-dqa1?

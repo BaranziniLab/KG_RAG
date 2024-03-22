@@ -1,9 +1,3 @@
-'''
-This script takes a question from the user in an interactive fashion and returns the KG-RAG based response in real time
-Before running this script, make sure to configure config.yaml file.
-Command line argument should be either 'gpt-4' or 'gpt-35-turbo'
-'''
-
 from kg_rag.utility import *
 import argparse
 
@@ -20,7 +14,7 @@ INTERACTIVE = args.i
 EDGE_EVIDENCE = bool(args.e)
 
 
-SYSTEM_PROMPT = system_prompts["KG_RAG_BASED_TEXT_GENERATION"]
+SYSTEM_PROMPT = system_prompts["DRUG_ACTION"]
 CONTEXT_VOLUME = int(config_data["CONTEXT_VOLUME"])
 QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD = float(config_data["QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD"])
 QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY = float(config_data["QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY"])
@@ -32,7 +26,6 @@ TEMPERATURE = config_data["LLM_TEMPERATURE"]
 
 
 CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
-
 
 vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
 embedding_function_for_context_retrieval = load_sentence_transformer(SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL)
@@ -56,6 +49,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
 
