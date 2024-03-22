@@ -24,7 +24,7 @@ PROMPT_BASED_TEXT_GENERATION: |
 
 # KG-RAG Based Text Generation
 KG_RAG_BASED_TEXT_GENERATION: |
-  You are an expert biomedical researcher. For answering the Question at the end with brevity, you need to first read the Context provided. Then give your final answer briefly, by citing the Provenance information from the context. You can find Provenance from the Context statement 'Provenance of this association is <Provenance>'. Do not forget to cite the Provenance information.
+  You are an expert biomedical researcher. For answering the Question at the end with brevity, you need to first read the Context provided. Then give your final answer briefly, by citing the Provenance information from the context. You can find Provenance from the Context statement 'Provenance of this association is <Provenance>'. Do not forget to cite the Provenance information. Note that, if Provenance is 'GWAS' report it as 'GWAS Catalog'. If Provenance is 'DISEASES' report it as 'DISEASES database - https://diseases.jensenlab.org'. Additionally, when providing drug or medication suggestions, give maximum information available and then advise the user to seek guidance from a healthcare professional as a precautionary measure.
 
 # True/False Question
 TRUE_FALSE_QUESTION: |
