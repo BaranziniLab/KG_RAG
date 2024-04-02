@@ -163,7 +163,7 @@ python -m kg_rag.rag_based_generation.Llama.text_generation -i True -m <method-1
 
 ### Command line arguments for KG-RAG
 
-| Argument | Default         | Definition                                               | Allowed Options                     | Notes                                                            |
+| Argument | Default Value         | Definition                                               | Allowed Options                     | Notes                                                            |
 |----------|-----------------|----------------------------------------------------------|------------------------------------|------------------------------------------------------------------|
 | -g       | gpt-35-turbo    | GPT model selection                                      | gpt models provided by OpenAI     | Use only for GPT models                                          |
 | -i       | False           | Flag for interactive mode (shows step-by-step)           | True or False                      | Can be used for both GPT and Llama models                        |
