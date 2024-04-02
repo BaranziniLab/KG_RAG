@@ -24,6 +24,7 @@
     - [Using GPT interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-gpt-interactive-mode)
     - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
     - [Using Llama interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-llama-interactive-mode)
+  - [Command line arguments for KG-RAG]
   
 [Citation](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#citation)
 
@@ -159,6 +160,17 @@ This allows the user to go over each step of the process in an interactive fashi
 ```
 python -m kg_rag.rag_based_generation.Llama.text_generation -i True -m <method-1 or method2, if nothing is mentioned it will take 'method-1'>
 ```
+
+### Command line arguments for KG-RAG
+
+| Argument | Default         | Definition                                               | Allowed Options                     | Notes                                                            |
+|----------|-----------------|----------------------------------------------------------|------------------------------------|------------------------------------------------------------------|
+| -g       | gpt-35-turbo    | GPT model selection                                      | gpt models provided by OpenAI     | Use only for GPT models                                          |
+| -i       | False           | Flag for interactive mode (shows step-by-step)           | True or False                      | Can be used for both GPT and Llama models                        |
+| -e       | False           | Flag for showing evidence of association from the graph | True or False                      | Can be used for both GPT and Llama models                        |
+| -m       | method-1        | Which tokenizer method to use                            | method-1 or method-2. method-1 uses AutoTokenizer and method-2 uses LlamaTokenizer and with an additional 'legacy' flag set to False while initiating the tokenizer              | Use only for Llama models|
+
+
 
 ## Citation
 
