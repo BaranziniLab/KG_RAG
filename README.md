@@ -121,7 +121,10 @@ You can run KG-RAG using GPT and Llama model.
 #### Using GPT
 
 ```
+# GPT_API_TYPE='azure'
 python -m kg_rag.rag_based_generation.GPT.text_generation -g <your favorite gpt model - "gpt-4" or "gpt-35-turbo">
+# GPT_API_TYPE='openai'
+python -m kg_rag.rag_based_generation.GPT.text_generation -g <your favorite gpt model - "gpt-4" or "gpt-3.5-turbo">
 ```
 
 Example:
@@ -136,7 +139,10 @@ Note: The following example was run on AWS p3.8xlarge EC2 instance and using KG-
 This allows the user to go over each step of the process in an interactive fashion
 
 ```
+# GPT_API_TYPE='azure'
 python -m kg_rag.rag_based_generation.GPT.text_generation -i True -g <your favorite gpt model - "gpt-4" or "gpt-35-turbo">
+# GPT_API_TYPE='openai'
+python -m kg_rag.rag_based_generation.GPT.text_generation -i True -g <your favorite gpt model - "gpt-4" or "gpt-3.5-turbo">
 ```
 
 #### Using Llama
