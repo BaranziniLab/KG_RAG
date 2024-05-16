@@ -286,7 +286,7 @@ def retrieve_context(question, vectorstore, embedding_function, node_context_df,
                 high_similarity_context = list(map(lambda x:x+'.', high_similarity_context)) 
                 context_table = context_table[context_table.context.isin(high_similarity_context)]
                 context_table.loc[:, "context"] =  context_table.source + " " + context_table.predicate.str.lower() + " " + context_table.target + " and Provenance of this association is " + context_table.provenance + " and attributes associated with this association is in the following JSON format:\n " + context_table.evidence.astype('str') + "\n\n"                
-                node_context_extracted = context_table.context.str.cat(sep=' ')
+                node_context_extracted += context_table.context.str.cat(sep=' ')
             else:
                 node_context_extracted += ". ".join(high_similarity_context)
                 node_context_extracted += ". "
