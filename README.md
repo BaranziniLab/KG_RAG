@@ -15,11 +15,12 @@
 
 [How to run KG-RAG](https://github.com/BaranziniLab/KG_RAG#how-to-run-kg-rag)
  - [Step 1: Clone the repo](https://github.com/BaranziniLab/KG_RAG#step-1-clone-the-repo)
- - [Step 2: Create a virtual environment](https://github.com/BaranziniLab/KG_RAG#step-2-create-a-virtual-environment)
- - [Step 3: Install dependencies](https://github.com/BaranziniLab/KG_RAG#step-3-install-dependencies)
- - [Step 4: Update config.yaml](https://github.com/BaranziniLab/KG_RAG#step-4-update-configyaml)
- - [Step 5: Run the setup script](https://github.com/BaranziniLab/KG_RAG#step-5-run-the-setup-script)
- - [Step 6: Run KG-RAG from your terminal](https://github.com/BaranziniLab/KG_RAG#step-6-run-kg-rag-from-your-terminal)
+ - [Step 2: Setup Dev Container](https://github.com/BaranziniLab/KG_RAG#step-0-setup-devcontainers) 
+ - [Step 3: Create a virtual environment](https://github.com/BaranziniLab/KG_RAG#step-2-create-a-virtual-environment)
+ - [Step 4: Install dependencies](https://github.com/BaranziniLab/KG_RAG#step-3-install-dependencies)
+ - [Step 5: Update config.yaml](https://github.com/BaranziniLab/KG_RAG#step-4-update-configyaml)
+ - [Step 6: Run the setup script](https://github.com/BaranziniLab/KG_RAG#step-5-run-the-setup-script)
+ - [Step 7: Run KG-RAG from your terminal](https://github.com/BaranziniLab/KG_RAG#step-6-run-kg-rag-from-your-terminal)
     - [Using GPT](https://github.com/BaranziniLab/KG_RAG#using-gpt)
     - [Using GPT interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-gpt-interactive-mode)
     - [Using Llama](https://github.com/BaranziniLab/KG_RAG#using-llama)
@@ -75,11 +76,16 @@ You can see that, KG-RAG was able to give the correct information about the FDA 
 
 **Note: At the moment, KG-RAG is specifically designed for running prompts related to Diseases. We are actively working on improving its versatility.**
 
+
 ### Step 1: Clone the repo
 
 Clone this repository. All Biomedical data used in the paper are uploaded to this repository, hence you don't have to download that separately.
 
-### Step 2: Create a virtual environment
+### Step 2: Setup Devcontainers
+
+Setup dev containers to create a linux environment to run your code if using macOS. Click on the Remote Host button on VSCode (a button on the left-bottom of the VSCode) and select "Reopen in Container". For more information on setting this up refer to [official documentation](https://code.visualstudio.com/docs/devcontainers/containers). 
+
+### Step 3: Create a virtual environment
 Note: Scripts in this repository were run using python 3.10.9
 ```
 conda create -n kg_rag python=3.10.9
@@ -87,19 +93,19 @@ conda activate kg_rag
 cd KG_RAG
 ```
 
-### Step 3: Install dependencies
+### Step 4: Install dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
-### Step 4: Update config.yaml 
+### Step 5: Update config.yaml 
 
 [config.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) holds all the necessary information required to run the scripts in your machine. Make sure to populate [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file accordingly.
 
 Note: There is another yaml file called [system_prompts.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/system_prompts.yaml). This is already populated and it holds all the system prompts used in the KG-RAG framework.
 
-### Step 5: Run the setup script
+### Step 6: Run the setup script
 Note: Make sure you are in KG_RAG folder
 
 Setup script runs in an interactive fashion.
@@ -113,7 +119,7 @@ Running the setup script will:
 python -m kg_rag.run_setup
 ```
 
-### Step 6: Run KG-RAG from your terminal
+### Step 7: Run KG-RAG from your terminal
 Note: Make sure you are in KG_RAG folder
 
 You can run KG-RAG using GPT and Llama model. 

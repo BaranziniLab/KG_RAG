@@ -6,8 +6,9 @@ def download_llama(method):
     try:
         llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], method=method)
         print("Model is successfully downloaded to the provided cache directory!")
-    except:
+    except Exception as e:
         print("Model is not downloaded! Make sure the above mentioned conditions are satisfied")
+        raise ValueError(e)
         
 
 print("")
