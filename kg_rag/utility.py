@@ -144,6 +144,10 @@ def get_prompt(instruction, new_system_prompt):
     return prompt_template
 
 def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_new_tokens=512, stream=False, method='method-1'):
+    if not os.path.exists(cache_dir):
+        print("Cache directory does not exist. Creating a new one.")
+        os.mkdir(cache_dir)
+
     if method == 'method-1':
         tokenizer = AutoTokenizer.from_pretrained(model_name,
                                                  revision=branch_name,
