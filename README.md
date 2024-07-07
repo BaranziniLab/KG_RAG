@@ -117,6 +117,9 @@ Running the setup script will:
 
 - create disease vector database for KG-RAG
 - download Llama model in your machine (optional, you can skip this and that is totally fine)
+  - If using the Llmaa model from huggingface, make sure you run `huggingface-cli login` and add the access token. For more info follow the [official documentation](https://huggingface.co/docs/huggingface_hub/en/quick-start#login-command)
+  - Make sure to request access to the gated repo in the `config["LLAMA_MODEL_NAME"]`. For the default example, it's [`meta-llama/Llama-2-13b-chat-hf`](https://huggingface.co/meta-llama/Llama-2-13b-hf). 
+  - Make sure to check `Read access to contents of all public gated repos you can access` by going to `Access Tokens > [Select the access token] > Manage > Edit Permissions`.
 
 ```
 python -m kg_rag.run_setup
