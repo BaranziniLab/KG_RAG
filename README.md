@@ -15,7 +15,7 @@
 
 [How to run KG-RAG](https://github.com/BaranziniLab/KG_RAG#how-to-run-kg-rag)
  - [Step 1: Clone the repo](https://github.com/BaranziniLab/KG_RAG#step-1-clone-the-repo)
- - [Step 2: Setup Dev Container](https://github.com/BaranziniLab/KG_RAG#step-0-setup-devcontainers) 
+ - [Step 2: Setup Dev Container](https://github.com/niraj17singh/KG_RAG#step-2-setup-devcontainers) 
  - [Step 3: Create a virtual environment](https://github.com/BaranziniLab/KG_RAG#step-2-create-a-virtual-environment)
  - [Step 4: Install dependencies](https://github.com/BaranziniLab/KG_RAG#step-3-install-dependencies)
  - [Step 5: Update config.yaml](https://github.com/BaranziniLab/KG_RAG#step-4-update-configyaml)
@@ -102,6 +102,9 @@ pip install -r requirements.txt
 ### Step 5: Update config.yaml 
 
 [config.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) holds all the necessary information required to run the scripts in your machine. Make sure to populate [this](https://github.com/BaranziniLab/KG_RAG/blob/main/config.yaml) yaml file accordingly.
+
+[.gpt_config.env](https://github.com/niraj17singh/KG_RAG/blob/main/.gpt_config.yaml)
+Update the values in the `.gpt_config.env` file.
 
 Note: There is another yaml file called [system_prompts.yaml](https://github.com/BaranziniLab/KG_RAG/blob/main/system_prompts.yaml). This is already populated and it holds all the system prompts used in the KG-RAG framework.
 
