@@ -218,10 +218,6 @@ def fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deploymen
 
 @memory.cache
 def get_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
-    print("instruction", instruction)
-    print("system_prompt", system_prompt)
-    print("chat_model_id", chat_model_id)
-    print("chat_deployment_id", chat_deployment_id)
     return fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature)
 
 
