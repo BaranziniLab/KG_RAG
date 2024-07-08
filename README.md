@@ -83,7 +83,11 @@ You can see that, KG-RAG was able to give the correct information about the FDA 
 Clone this repository. All Biomedical data used in the paper are uploaded to this repository, hence you don't have to download that separately.
 
 ### Step 2: Setup using Dev Containers
-Setup dev containers for quick setup if using MacOS (Recommended). Click on the Remote Host button on VSCode (a button on the left-bottom of the VSCode) and select "Reopen in Container". For more information on setting this up refer to [official documentation](https://code.visualstudio.com/docs/devcontainers/containers).
+Setup dev containers for quick setup if using MacOS (Recommended). Click on the Remote Host button on VSCode (a button on the left-bottom of the VSCode) and select "Reopen in Container". For more information on setting this up refer to [official documentation](https://code.visualstudio.com/docs/devcontainers/containers). Once the container is running, you can run the following command to activate the environment.
+
+```
+conda activate kg_rag
+```
 
 Note: If you setup your environment using dev containers, you can skip steps 3 and 4 as it's installed via `.devcontainer/postCreateCommand.sh`.  Follow instructions from step 5 onwards.
 
