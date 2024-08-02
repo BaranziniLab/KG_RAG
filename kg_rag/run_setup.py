@@ -4,10 +4,14 @@ from kg_rag.utility import config_data
 def download_llama(method):
     from kg_rag.utility import llama_model
     try:
+        if not os.path.exists(config_data["LLM_CACHE_DIR"]):
+            print(f"LLM_CACHE_DIR:  {config_data['LLM_CACHE_DIR']} doesn't exists. Creating one.." )
+            os.makedirs(config_data["LLM_CACHE_DIR"], exist_ok=True)
         llama_model(config_data["LLAMA_MODEL_NAME"], config_data["LLAMA_MODEL_BRANCH"], config_data["LLM_CACHE_DIR"], method=method)
         print("Model is successfully downloaded to the provided cache directory!")
-    except:
+    except Exception as e:
         print("Model is not downloaded! Make sure the above mentioned conditions are satisfied")
+        raise ValueError(e)
         
 
 print("")
