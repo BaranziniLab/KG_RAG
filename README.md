@@ -182,12 +182,12 @@ python -m kg_rag.rag_based_generation.Llama.text_generation -i True -m <method-1
 
 ## BiomixQA: Benchmark dataset
 
-BiomixQA is a curated biomedical question-answering dataset comprising two distinct components:
+BiomixQA is a curated biomedical question-answering dataset utilized to validate KG-RAG framework across different LLMs. This consists of:
 
 - Multiple Choice Questions (MCQ)
 - True/False Questions
 
-This dataset has been utilized to validate KG-RAG framework across different LLMs. The diverse nature of questions in this dataset, spanning multiple choice and true/false formats, along with its coverage of various biomedical concepts, makes it particularly suitable for assessing the performance of KG-RAG framework. Hence, this dataset is designed to support research and development in biomedical natural language processing, knowledge graph reasoning, and question-answering systems.
+The diverse nature of questions in this dataset, spanning multiple choice and true/false formats, along with its coverage of various biomedical concepts, makes it particularly suitable to support research and development in biomedical natural language processing, knowledge graph reasoning, and question-answering systems.
 
 This dataset is currently hosted in Hugging Face and you can find it [here](https://huggingface.co/datasets/kg-rag/BiomixQA).
 
