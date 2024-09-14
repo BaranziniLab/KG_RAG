@@ -191,7 +191,7 @@ The diverse nature of questions in this dataset, spanning multiple choice and tr
 
 This dataset is currently hosted in Hugging Face and you can find it [here](https://huggingface.co/datasets/kg-rag/BiomixQA).
 
-It’s easy to get started—just three lines of Python to load the dataset:
+It’s easy to get started with BiomixQA—just three lines of Python to load the dataset:
 
 ```
 from datasets import load_dataset
