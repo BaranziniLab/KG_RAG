@@ -26,7 +26,7 @@
     - [Using Llama interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-llama-interactive-mode)
   - [Command line arguments for KG-RAG](https://github.com/BaranziniLab/KG_RAG?tab=readme-ov-file#command-line-arguments-for-kg-rag)
   
-[BiomixQA: Benchmark dataset]
+[BiomixQA: Benchmark dataset](https://github.com/BaranziniLab/KG_RAG/tree/main?tab=readme-ov-file#biomixqa-benchmark-dataset)
 
 [Citation](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#citation)
 
