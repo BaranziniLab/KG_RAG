@@ -26,7 +26,10 @@
     - [Using Llama interactive mode](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#using-llama-interactive-mode)
   - [Command line arguments for KG-RAG](https://github.com/BaranziniLab/KG_RAG?tab=readme-ov-file#command-line-arguments-for-kg-rag)
   
+[BiomixQA: Benchmark dataset]
+
 [Citation](https://github.com/BaranziniLab/KG_RAG/blob/main/README.md#citation)
+
 
 ## What is KG-RAG?
 
@@ -176,6 +179,17 @@ python -m kg_rag.rag_based_generation.Llama.text_generation -i True -m <method-1
 | -e       | False           | Flag for showing evidence of association from the graph | True or False                      | Can be used for both GPT and Llama models                        |
 | -m       | method-1        | Which tokenizer method to use                            | method-1 or method-2. method-1 uses 'AutoTokenizer' and method-2 uses 'LlamaTokenizer' and with an additional 'legacy' flag set to False while initiating the tokenizer              | Use only for Llama models|
 
+
+## BiomixQA: Benchmark dataset
+
+BiomixQA is a curated biomedical question-answering dataset comprising two distinct components:
+
+- Multiple Choice Questions (MCQ)
+- True/False Questions
+
+This dataset has been utilized to validate KG-RAG framework across different LLMs. The diverse nature of questions in this dataset, spanning multiple choice and true/false formats, along with its coverage of various biomedical concepts, makes it particularly suitable for assessing the performance of KG-RAG framework. Hence, this dataset is designed to support research and development in biomedical natural language processing, knowledge graph reasoning, and question-answering systems.
+
+This dataset is currently hosted in Hugging Face and you can find it [here](https://huggingface.co/datasets/kg-rag/BiomixQA).
 
 
 ## Citation
