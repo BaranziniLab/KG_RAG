@@ -8,38 +8,39 @@ SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL : 'sentence-transformers/all-MiniLM-
 SENTENCE_EMBEDDING_MODEL_FOR_CONTEXT_RETRIEVAL : 'pritamdeka/S-PubMedBert-MS-MARCO'
 
 # VectorDB hyperparameters
-VECTOR_DB_DISEASE_ENTITY_PATH : '/data/somank/KG_RAG/data/disease_with_relation_to_genes.pickle'
-VECTOR_DB_PATH : '/data/somank/KG_RAG/data/vectorDB/disease_nodes_db'
+VECTOR_DB_DISEASE_ENTITY_PATH : '/workspaces/KG_RAG/data/disease_with_relation_to_genes.pickle'
+VECTOR_DB_PATH : '/workspaces/KG_RAG/data/vectorDB/disease_nodes_db'
 VECTOR_DB_CHUNK_SIZE : 650
 VECTOR_DB_CHUNK_OVERLAP : 200
 VECTOR_DB_BATCH_SIZE : 200
 VECTOR_DB_SENTENCE_EMBEDDING_MODEL : 'sentence-transformers/all-MiniLM-L6-v2'
 
 # Path for context file from SPOKE KG
-NODE_CONTEXT_PATH : '/data/somank/KG_RAG/data/context_of_disease_which_has_relation_to_genes.csv'
+NODE_CONTEXT_PATH : '/workspaces/KG_RAG/data/context_of_disease_which_has_relation_to_genes.csv'
 
 # Just note that, this assumes your GPT config file is in the $HOME path, if not, change it accordingly
 # Also, GPT '.env' file should contain values for API_KEY, and optionally API_VERSION and RESOURCE_ENDPOINT. We are not including those parameters in this yaml file
-GPT_CONFIG_FILE : '$HOME/.gpt_config.env'
+GPT_CONFIG_FILE : '/workspaces/KG_RAG/.gpt_config.env'
 # Can be 'azure' or 'open_ai'.
-GPT_API_TYPE : 'azure'
+# GPT_API_TYPE : 'azure'
+GPT_API_TYPE : 'open_ai'
 
 # Llama model name (Refer Hugging face to get the correct name for the model version you would like to use, also make sure you have the right permission to use the model)
 LLAMA_MODEL_NAME : 'meta-llama/Llama-2-13b-chat-hf'
 LLAMA_MODEL_BRANCH : 'main'
 
 # Path for caching LLM model files (When the model gets downloaded from hugging face, it will be saved in this path)
-LLM_CACHE_DIR : '/data/somank/llm_data/llm_models/huggingface'
+LLM_CACHE_DIR : '/workspaces/KG_RAG/llm_data/llm_models/huggingface'
 LLM_TEMPERATURE : 0
 
 # Path to save results
-SAVE_RESULTS_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/results'
+SAVE_RESULTS_PATH : '/workspaces/KG_RAG/data/results'
 
 # File paths for test questions
-MCQ_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/benchmark_data/mcq_questions.csv'
-TRUE_FALSE_PATH : '/data/somank/kg_rag_fork/KG_RAG/data/benchmark_data/true_false_questions.csv'
-SINGLE_DISEASE_ENTITY_FILE : '/data/somank/KG_RAG/data/hyperparam_tuning_data/single_disease_entity_prompts.csv'
-TWO_DISEASE_ENTITY_FILE : '/data/somank/KG_RAG/data/hyperparam_tuning_data/two_disease_entity_prompts.csv'
+MCQ_PATH : '/workspaces/KG_RAG/data/benchmark_data/mcq_questions.csv'
+TRUE_FALSE_PATH : '/workspaces/KG_RAG/data/benchmark_data/true_false_questions.csv'
+SINGLE_DISEASE_ENTITY_FILE : '/workspaces/KG_RAG/data/hyperparam_tuning_data/single_disease_entity_prompts.csv'
+TWO_DISEASE_ENTITY_FILE : '/workspaces/KG_RAG/data/hyperparam_tuning_data/two_disease_entity_prompts.csv'
 
 # SPOKE-API params
 BASE_URI : 'https://spoke.rbvi.ucsf.edu'
