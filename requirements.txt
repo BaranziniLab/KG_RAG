@@ -11,7 +11,7 @@ asttokens==2.4.0
 async-lru==2.0.4
 async-timeout==4.0.3
 attrs==23.1.0
-auto-gptq==0.4.2
+# auto-gptq==0.4.2
 Babel==2.12.1
 backcall==0.2.0
 backoff==2.2.1
@@ -102,17 +102,17 @@ notebook==7.0.4
 notebook_shim==0.2.3
 numexpr==2.8.6
 numpy==1.26.0
-nvidia-cublas-cu11==11.10.3.66
-nvidia-cuda-cupti-cu11==11.7.101
-nvidia-cuda-nvrtc-cu11==11.7.99
-nvidia-cuda-runtime-cu11==11.7.99
-nvidia-cudnn-cu11==8.5.0.96
-nvidia-cufft-cu11==10.9.0.58
-nvidia-curand-cu11==10.2.10.91
-nvidia-cusolver-cu11==11.4.0.1
-nvidia-cusparse-cu11==11.7.4.91
-nvidia-nccl-cu11==2.14.3
-nvidia-nvtx-cu11==11.7.91
+# nvidia-cublas-cu11==11.10.3.66
+# nvidia-cuda-cupti-cu11==11.7.101
+# nvidia-cuda-nvrtc-cu11==11.7.99
+# nvidia-cuda-runtime-cu11==11.7.99
+# nvidia-cudnn-cu11==8.5.0.96
+# nvidia-cufft-cu11==10.9.0.58
+# nvidia-curand-cu11==10.2.10.91
+# nvidia-cusolver-cu11==11.4.0.1
+# nvidia-cusparse-cu11==11.7.4.91
+# nvidia-nccl-cu11==2.14.3
+# nvidia-nvtx-cu11==11.7.91
 onnxruntime==1.16.0
 openai==0.28.1
 overrides==7.4.0
@@ -186,7 +186,7 @@ tornado==6.3.3
 tqdm==4.66.1
 traitlets==5.10.0
 transformers==4.33.2
-triton==2.0.0
+# triton==2.0.0
 typer==0.9.0
 typing-inspect==0.9.0
 typing_extensions==4.8.0
